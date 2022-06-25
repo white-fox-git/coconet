@@ -19,6 +19,7 @@
     font-family: var(--sub-font);
     font-size: 32px;
     color: var(--main-color);
+    margin-bottom: 2vh;
 }
 
 .message

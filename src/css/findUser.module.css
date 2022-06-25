@@ -1,0 +1,128 @@
+@import url('./default.css');
+
+.rootBox
+{
+    position: absolute;
+    margin: 0 auto;
+    top: 15vh;
+    left: 0;
+    right: 0;
+    width: 80%;
+    max-width: 900px;
+    text-align: center;
+}
+
+.findBox
+{
+    
+    display: flex;
+    flex-flow: row;
+    justify-content: center;
+    align-items: center;
+}
+
+.tap
+{
+    font-family: var(--sub-font);
+    width: 50%;
+    font-size: 18px;
+    padding: 0.6em;
+    background: none;
+    border: 1px solid rgb(197, 197, 197);
+    color: gray;
+    cursor: pointer;
+    transition: 0.3s;
+}
+
+.tap:hover
+{
+    background-color: var(--main-color);
+    color: white;
+}
+
+.clickTap
+{
+    font-family: var(--sub-font);
+    width: 50%;
+    font-size: 18px;
+    padding: 0.6em;
+    background: var(--main-color);
+    color: white;
+    border: 1px solid var(--main-color);
+    cursor: pointer;
+    transition: 0.3s;
+}
+
+.blueLine
+{
+    height: 4px;
+    background-color: var(--main-color);
+}
+
+.infoBox
+{
+    height: 50vh;
+    border: 1px solid rgb(197, 197, 197);
+    margin-bottom: 3vh;
+    min-height: 350px;
+    max-height: 650px;
+}
+
+.text
+{
+    color: gray;
+    font-family: var(--sub-font); 
+}
+
+.link
+{
+    text-decoration: none;
+    color: var(--main-color);
+    font-family: var(--sub-font);   
+    transition: 0.3s;
+}
+
+.text, .link
+{
+    font-size: 14px;
+}
+
+.link:hover
+{
+    color: var(--hover-color);
+}
+
+
+@media screen and (min-width: 769px) {
+    .tap, .clickTap
+    {
+        font-size: 20px;
+    }
+
+    .text, .link
+    {
+        font-size: 16px;
+    }
+}
+
+
+@media screen and (min-width: 1024px) {  
+    .tap, .clickTap
+    {
+        font-size: 24px;
+    }
+
+    .text, .link
+    {
+        font-size: 18px;
+    }
+}
+
+
+
+@media screen and (min-width: 1200px) {
+	.tap, .clickTap
+    {
+        font-size: 26px;
+    }
+}
