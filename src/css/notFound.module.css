@@ -53,6 +53,13 @@
     font-family: var(--sub-font);
 }
 
+.img
+{
+    width: 50%;
+    max-width: 350px;
+    margin-bottom: 2vh;
+}
+
 .backBtn:hover
 {
     background-color: var(--hover-color);

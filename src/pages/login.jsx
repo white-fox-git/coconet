@@ -44,7 +44,7 @@ const Login = () => {
         {
             let request; // post 요청의 결과 값
 
-            axios.post('URL', JSON.stringify({id : id, pwd : pwd})) // obj 형싱을 json파일로 변환하여 url경로에 post 요청
+            axios.post('URL', JSON.stringify({id : id, pwd : pwd})) // obj 형식을 json파일로 변환하여 url경로에 post 요청
             .then((response) => {
                 request = JSON.parse(response.data); // json으로 받아온 파일을 obj 형식으로 변환하여 변수에 저장
             })
