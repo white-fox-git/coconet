@@ -3,12 +3,13 @@
 .header
 {
     text-align: center;
+    margin-top: 10vh
 }
 
 .title
 {
     font-family: var(--main-font);
-    padding: 1.2em;
+    padding: 0.7em;
     font-size: 52px;
     color: var(--main-color);
 }
@@ -16,7 +17,6 @@
 .loginBox
 {
     margin: 0 auto;
-    margin-top: 2vh;
     display: flex;
     flex-flow: column;
     padding: 40px;

@@ -9,7 +9,7 @@ const FindUser = () =>
     return(
         <div className ={style.rootBox}>
             <div className ={style.findBox}>
-                <button className={tap == 0 ? style.clickTap : style.tap} onClick = {() => setTap(0)}>User ID</button>
+                <button className={tap == 0 ? style.clickTap : style.tap} onClick = {() => setTap(0)}>User</button>
                 <button className={tap == 1 ? style.clickTap : style.tap} onClick = {() => setTap(1)}>Password</button>
             </div>
             <div className={style.blueLine} />

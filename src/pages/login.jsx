@@ -27,6 +27,13 @@ const Login = () => {
         }
     }, [])
 
+    const Enter = (e) => {
+        if(e == 'Enter')
+        {
+            login();
+        }
+    }
+
 
     const login = () =>
     {
@@ -77,14 +84,18 @@ const Login = () => {
             <div className ={style.loginBox}>
                 <div className={style.inputBox}>
                     <FontAwesomeIcon className={style.label} icon ={faUser}></FontAwesomeIcon>
-                    <input type ="text" className={style.input} placeholder="user" maxLength={20} autoComplete = "off" onChange={(e) => {
-                        setId(e.target.value);
-                        setIdAlert(false);
+                    <input type ="text" className={style.input} placeholder="user" maxLength={20} autoComplete = "off" 
+                    onKeyPress={(e) => Enter(e.key) /*커서가 input위에 올라가 있는 상태에서 Enter Key클릭시 Login 이벤트 발생 */}
+                    onChange={(e) => {
+                        setId(e.target.value); // input에 작성되는 글자를 id state에 저장
+                        setIdAlert(false); // input에 글자가 써지기 시작하면 alert를 없앤다
                     }}/>
                 </div>
                 <div className={style.inputBox}>
                     <FontAwesomeIcon className={style.label} icon = {faLock}></FontAwesomeIcon>
-                    <input type ="password" className={style.input} placeholder="password" maxLength={20} autoComplete = "off" onChange={(e) => {
+                    <input type ="password" className={style.input} placeholder="password" maxLength={20} autoComplete = "off" 
+                    onKeyPress={(e) => Enter(e.key)}
+                    onChange={(e) => {
                         setPwd(e.target.value);
                         setPwdAlert(false);
                         }}/>
@@ -97,7 +108,7 @@ const Login = () => {
             </div>
             {
                 idAlert == true ? // idAlert 값이 true가 되면 경고창을 띄움
-                <p className={style.Alert}><FontAwesomeIcon icon = {faTriangleExclamation} className={style.icon}></FontAwesomeIcon> Check your name.</p>
+                <p className={style.Alert}><FontAwesomeIcon icon = {faTriangleExclamation} className={style.icon}></FontAwesomeIcon> Check your User name.</p>
                 :
                 null
             }
