@@ -22,3 +22,5 @@ const NotFound = () =>
 }
 
 export default NotFound;
+
+// 잘못된 경로로 접근했을 때 나타나는 페이지 버튼을 클릭하면 이전 페이지로 돌아감
