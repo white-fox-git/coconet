@@ -1,0 +1,161 @@
+@import url("./default.css");
+
+.header
+{
+    text-align: center;
+}
+
+.title
+{
+    font-family: var(--main-font);
+    padding: 1.2em;
+    font-size: 52px;
+    color: var(--main-color);
+}
+
+.loginBox
+{
+    margin: 0 auto;
+    margin-top: 2vh;
+    display: flex;
+    flex-flow: column;
+    padding: 40px;
+}
+
+.inputBox
+{
+    display: flex;
+    justify-content: space-between;
+    width: 100%;
+    max-width: 600px;
+    margin: auto;
+    margin-top: 3vh;
+    font-family: var(--sub-font);
+}
+
+.label
+{
+    width: 15%;
+    text-align: center;
+    padding: 1em;
+    border-left: 1px solid;
+    border-top: 1px solid;
+    border-bottom: 1px solid;
+    color: gray;
+    border-radius: 4px 0px 0px 4px;
+    background-color: rgb(238, 238, 238);
+}
+
+.input
+{
+    width: 80%;
+    padding: 0.8em;
+}
+
+.loginBtn
+{
+    padding: 1em;
+    background-color: var(--main-color);
+    color: white;
+    border: 0;
+    width: 100%;
+    max-width: 600px;
+    border-radius: 4px;
+    margin: 0 auto;
+    margin-top: 5vh;
+    transition: 0.3s;
+    cursor: pointer;
+    min-height: 40px;
+    font-family: var(--sub-font);
+}
+
+.hr
+{
+    margin: 0 auto;
+    width: 85%;
+    max-width: 600px;
+}
+
+.linkBox
+{
+    margin-top: 2vh;
+    text-align: center;
+}
+
+.link
+{
+    text-decoration: none;
+    color: gray;
+    font-family: var(--sub-font);
+    cursor: pointer;
+    transition: 0.3s;
+}
+
+.loginBtn:hover
+{
+    background-color: var(--hover-color);
+}
+
+.link:hover
+{
+    color: var(--hover-color);
+}
+
+.Alert
+{
+    position: absolute;
+    padding: 1.3em;
+    top: 2%;
+    width: 80%;
+    left: 0;
+    right: 0;
+    margin: 0 auto;
+    background-color: var(--alert-color);
+    font-family: var(--sub-font);
+    color: #494949;
+}
+
+.icon
+{
+    color: gray;
+    margin-right: 14px;
+}
+
+@media screen and (min-width: 769px) {
+    .title
+    {
+        font-size: 54px;
+    }
+
+    .label, .input, .loginBtn
+    {
+       font-size: 18px;
+    }
+}
+
+
+@media screen and (min-width: 1024px) {  
+    .title
+    {
+        font-size: 58px;
+    }
+
+    .label, .input, .loginBtn, .link, .Alert
+    {
+       font-size: 20px;
+    }
+}
+
+
+
+@media screen and (min-width: 1200px) {
+	.title
+    {
+        font-size: 64px;
+    }
+
+    .label, .input, .loginBtn
+    {
+       font-size: 22px;
+    }
+}

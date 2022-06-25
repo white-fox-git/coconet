@@ -1,0 +1,113 @@
+@import url('./default.css');
+
+.errorBox
+{
+    margin-top: 2vh;
+    text-align: center;
+}
+
+.title
+{
+    font-family: var(--main-font);
+    padding: 1.2em;
+    font-size: 52px;
+    color: var(--main-color);
+}
+
+.error
+{
+    font-family: var(--sub-font);
+    font-size: 32px;
+    color: var(--main-color);
+}
+
+.message
+{
+    font-family: var(--sub-font);
+    margin-bottom: 2vh;
+    color: gray
+}
+
+.hr
+{
+    width : 70%;
+    margin: 0 auto;
+    margin-top: 2vh;
+    margin-bottom: 2vh;
+}
+
+.backBtn
+{
+    padding: 1em;
+    background-color: var(--main-color);
+    color: white;
+    border: 0;
+    width: 60%;
+    max-width: 600px;
+    border-radius: 4px;
+    margin: 0 auto;
+    margin-top: 5vh;
+    transition: 0.3s;
+    cursor: pointer;
+    min-height: 40px;
+    font-family: var(--sub-font);
+}
+
+.backBtn:hover
+{
+    background-color: var(--hover-color);
+}
+
+@media screen and (min-width: 769px) {
+    .title
+    {
+        font-size: 54px;
+    }
+
+    .error
+    {
+        font-size: 36px;
+    }
+
+    .message, .backBtn
+    {
+       font-size: 18px;
+    }
+}
+
+
+@media screen and (min-width: 1024px) {  
+    .title
+    {
+        font-size: 58px;
+    }
+
+    .error
+    {
+        font-size: 40px;
+    }
+
+    .message, .backBtn
+    {
+       font-size: 20px;
+    }
+}
+
+
+
+@media screen and (min-width: 1200px) {
+	.title
+    {
+        font-size: 64px;
+    }
+
+    .error
+    {
+        font-size: 44px;
+    }
+
+    .message, .backBtn
+    {
+       font-size: 22px;
+    }
+}

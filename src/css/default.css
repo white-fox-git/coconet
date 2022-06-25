@@ -1,0 +1,18 @@
+@import url('https://fonts.googleapis.com/css2?family=Rubik:wght@500&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Noto+Sans+KR&family=Rubik:wght@500&display=swap');
+
+:root{
+    --main-color: #4b4ed4;
+    --hover-color: #2c3e8f;
+    --sub-color: ;
+    --point-color: ;
+    --alert-color: #fff9c4;
+    --main-font: 'Rubik';
+    --sub-font: 'Noto Sans KR';
+}
+
+*
+{
+    margin: 0;
+    padding: 0;
+}
