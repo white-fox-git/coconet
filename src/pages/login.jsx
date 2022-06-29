@@ -14,6 +14,7 @@ const Login = () => {
     const [idAlert, setIdAlert] = useState(false); // id 잘못 입력했을 때 
     const [pwdAlert, setPwdAlert] = useState(false); // pwd 잘못 입력했을 때
 
+
     const navigate = useNavigate(); // 페이지 이동 함수
     const dispatch = useDispatch(); // redux에 있는 state의 함수 실행을 위한 함수
 
@@ -34,10 +35,9 @@ const Login = () => {
         }
     }
 
-
     const login = () =>
     {
-        if(id == '')
+        if(id == '' || id == ' ')
         {
             setIdAlert(true)
             setTimeout(() => {setIdAlert(false)}, 2000); // id값이 없을 때 2초동안 alert창
@@ -49,7 +49,7 @@ const Login = () => {
         }
         else
         {
-            let request; // post 요청의 결과 값
+            let resData; // post 요청의 결과 값
 
             axios.post('URL', JSON.stringify({id : id, pwd : pwd})) // obj 형식을 json파일로 변환하여 url경로에 post 요청
             .then((response) => {
@@ -59,11 +59,11 @@ const Login = () => {
                 console.log(error) // error 처리
             });
 
-            console.log("data : " + request);
+            console.log("data : " + resData);
 
-            if(request/*.auth*/ == true) // requset.auth의 값이 true 경우 메인 페이지로 이동하고 redux의 user state에 값 설정
+            if(resData/*.auth*/ == true) // requset.auth의 값이 true 경우 메인 페이지로 이동하고 redux의 user state에 값 설정
             {
-                dispatch(setUser(request)); // redux state의 user 값 세팅
+                dispatch(setUser(resData)); // redux state의 user 값 세팅
                 navigate('/main'); // main 페이지로 이동
             }
             else // true가 아닐경우엔 pwd alert 창을 띄우고 로그인 실패 로그

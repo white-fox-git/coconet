@@ -2,7 +2,7 @@ import { configureStore, createSlice } from '@reduxjs/toolkit'
 
 const user = createSlice({
     name : "user",
-    initialState : {name : '', auth : false, session : null}, // user state 기본 값
+    initialState : {name : 'root', auth : true, session : true}, // user state 기본 값
     reducers : {
         setUser(state, requset){
 

@@ -8,13 +8,12 @@
     left: 0;
     right: 0;
     width: 80%;
-    max-width: 900px;
+    max-width: 600px;
     text-align: center;
 }
 
 .findBox
 {
-    
     display: flex;
     flex-flow: row;
     justify-content: center;
@@ -24,44 +23,17 @@
 .tap
 {
     font-family: var(--sub-font);
-    width: 50%;
-    font-size: 18px;
-    padding: 0.6em;
-    background: none;
-    border: 1px solid rgb(197, 197, 197);
-    color: gray;
-    cursor: pointer;
-    transition: 0.3s;
-}
-
-.tap:hover
-{
-    background-color: var(--main-color);
-    color: white;
-}
-
-.clickTap
-{
-    font-family: var(--sub-font);
-    width: 50%;
+    width: 100%;
     font-size: 18px;
     padding: 0.6em;
     background: var(--main-color);
     color: white;
     border: 1px solid var(--main-color);
-    cursor: pointer;
-    transition: 0.3s;
-}
-
-.blueLine
-{
-    height: 4px;
-    background-color: var(--main-color);
 }
 
 .infoBox
 {
-    height: 50vh;
+    padding-bottom: 5vh;
     border: 1px solid rgb(197, 197, 197);
     margin-bottom: 3vh;
     min-height: 350px;
@@ -70,7 +42,7 @@
 
 .text
 {
-    color: gray;
+    color: var(--gray-color);
     font-family: var(--sub-font); 
 }
 
@@ -92,6 +64,91 @@
     color: var(--hover-color);
 }
 
+.itemBox
+{
+    text-align: left;
+    padding-left: 6%;
+    padding-top: 6%;
+}
+
+.label
+{
+    font-family: var(--sub-font);
+    font-size: 18px;
+    margin-bottom: 10px;
+    color: var(--gray-color);
+}
+
+.input
+{
+    width: 90%;
+    max-width: 500px;
+    font-family: var(--sub-font);
+    padding: 0.5em;
+    font-size: 16px;
+}
+
+.phoneNum
+{
+    width: 60%;
+    max-width: 400px;
+    font-family: var(--sub-font);
+    padding: 0.5em;
+    font-size: 16px;
+    -webkit-appearance: none;
+}
+
+.getBtn
+{
+    width: 30%;
+    padding: 0.6em;
+    font-size: 16px;
+    border: 0;
+    background-color: var(--main-color);
+    color: white;
+    font-family: var(--sub-font);
+    transition: 0.2s;
+    cursor: pointer;
+}
+
+.submitBtn
+{
+    width: 25%;
+    padding: 0.6em;
+    font-size: 16px;
+    margin-top: 5vh;
+    border: 0;
+    background-color: var(--main-color);
+    color: white;
+    font-family: var(--sub-font);
+    transition: 0.2s;
+    cursor: pointer;
+}
+
+.getBtn:hover, .submitBtn:hover
+{
+    background-color: var(--hover-color);
+}
+
+.Alert
+{
+    position: absolute;
+    padding: 1.3em;
+    top: 2%;
+    width: 80%;
+    left: 0;
+    right: 0;
+    margin: 0 auto;
+    background-color: var(--alert-color);
+    font-family: var(--sub-font);
+    color: #494949;
+}
+
+.icon
+{
+    color: gray;
+    margin-right: 14px;
+}
 
 @media screen and (min-width: 769px) {
     .tap, .clickTap
@@ -112,7 +169,7 @@
         font-size: 24px;
     }
 
-    .text, .link
+    .text, .link, input, .phoneNum, .getBtn, .submitBtn, .Alert
     {
         font-size: 18px;
     }
@@ -124,5 +181,15 @@
 	.tap, .clickTap
     {
         font-size: 26px;
+    }
+
+    .label, .Alert
+    {
+        font-size: 22px;
+    }
+
+    .input, .phoneNum, .getBtn
+    {
+        font-size: 20px;
     }
 }
