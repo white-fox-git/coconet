@@ -86,28 +86,32 @@
     font-family: var(--sub-font);
     padding: 0.5em;
     font-size: 16px;
+    border: 1px solid #c5c5c5;
 }
 
 .phoneNum
 {
-    width: 60%;
+    width: 55%;
     max-width: 400px;
     font-family: var(--sub-font);
     padding: 0.5em;
     font-size: 16px;
     -webkit-appearance: none;
+    border: 1px solid #c5c5c5;
 }
 
 .getBtn
 {
-    width: 30%;
-    padding: 0.6em;
+    width: 34%;
+    margin-left: 1%;
+    padding: 0.5em;
     font-size: 16px;
     border: 0;
     background-color: var(--main-color);
     color: white;
     font-family: var(--sub-font);
     transition: 0.2s;
+    border-radius: 4px;
     cursor: pointer;
 }
 
@@ -123,6 +127,7 @@
     font-family: var(--sub-font);
     transition: 0.2s;
     cursor: pointer;
+    border-radius: 4px;
 }
 
 .getBtn:hover, .submitBtn:hover
@@ -148,6 +153,13 @@
 {
     color: gray;
     margin-right: 14px;
+}
+
+.message
+{
+    padding: 10px;
+    color: var(--main-color);
+    font-family: var(--sub-font);
 }
 
 @media screen and (min-width: 769px) {
