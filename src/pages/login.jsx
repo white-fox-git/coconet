@@ -1,7 +1,7 @@
 import {React, useEffect, useState} from "react";
 import style from '../css/login.module.css'
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import {faUser, faLock, faTriangleExclamation} from "@fortawesome/free-solid-svg-icons";
+import { faTriangleExclamation} from "@fortawesome/free-solid-svg-icons";
 import { Link, useNavigate } from 'react-router-dom'
 import { useDispatch, useSelector } from "react-redux/es/exports";
 import { setUser } from '../redux'
@@ -79,12 +79,12 @@ const Login = () => {
     return(
         <>
             <header className={style.header}>
-                <h2 className={style.title}>coconet</h2>
+                <img src ="/logo_text.png" className={style.logo} />
             </header>
             <div className ={style.loginBox}>
                 <div className={style.inputBox}>
-                    <FontAwesomeIcon className={style.label} icon ={faUser}></FontAwesomeIcon>
-                    <input type ="text" className={style.input} placeholder="user" maxLength={20} autoComplete = "off" 
+                    <p className = {style.label}>User</p>
+                    <input type ="text" className={style.input}  maxLength={20} autoComplete = "off" 
                     onKeyPress={(e) => Enter(e.key) /*커서가 input위에 올라가 있는 상태에서 Enter Key클릭시 Login 이벤트 발생 */}
                     onChange={(e) => {
                         setId(e.target.value); // input에 작성되는 글자를 id state에 저장
@@ -92,8 +92,8 @@ const Login = () => {
                     }}/>
                 </div>
                 <div className={style.inputBox}>
-                    <FontAwesomeIcon className={style.label} icon = {faLock}></FontAwesomeIcon>
-                    <input type ="password" className={style.input} placeholder="password" maxLength={20} autoComplete = "off" 
+                <p className = {style.label}>Password</p>
+                    <input type ="password" className={style.input} maxLength={20} autoComplete = "off" 
                     onKeyPress={(e) => Enter(e.key)}
                     onChange={(e) => {
                         setPwd(e.target.value);

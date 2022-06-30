@@ -12,13 +12,15 @@ const user = createSlice({
         },
         removeUser(state)
         {
+            sessionStorage.removeItem('user'); // seesion stroage의 user 세션 정보 삭제
+            console.log(JSON.stringify({name : state.name, session: false}));
             axios.post('URL', JSON.stringify({name : state.name, session: false}))
             .then(() =>
             {
                 state = {name : '', auth : false, session : false}; // 기본 값으로 초기화
                 console.log('sign out');
                 console.log('auth : ' + state.auth);
-                sessionStorage.removeItem('user'); // seesion stroage의 user 세션 정보 삭제
+                
             })
             .catch((error) =>
             {

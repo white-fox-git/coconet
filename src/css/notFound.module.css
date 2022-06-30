@@ -2,21 +2,14 @@
 
 .errorBox
 {
-    margin-top: 5vh;
+    margin-top: 20vh;
     text-align: center;
-}
-
-.title
-{
-    font-family: var(--main-font);
-    padding: 1.2em;
-    font-size: 52px;
-    color: var(--main-color);
 }
 
 .error
 {
-    font-family: var(--sub-font);
+    font-family: var(--main-font);
+    letter-spacing: 1px;
     font-size: 32px;
     color: var(--main-color);
     margin-bottom: 2vh;
@@ -24,8 +17,10 @@
 
 .message
 {
-    font-family: var(--sub-font);
+    font-family: var(--main-font);
+    font-weight: 300;
     margin-bottom: 2vh;
+    letter-spacing: 1px;
     color: gray
 }
 
@@ -51,7 +46,8 @@
     transition: 0.3s;
     cursor: pointer;
     min-height: 40px;
-    font-family: var(--sub-font);
+    font-family: var(--main-font);
+    letter-spacing: 1px;
 }
 
 .img

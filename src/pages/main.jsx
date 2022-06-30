@@ -1,16 +1,16 @@
-import {React, useEffect } from "react";
+import {React, useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { useSelector } from "react-redux"
-import { useDispatch } from "react-redux/es/exports";
-import { removeUser } from "../redux";
 import axios from "axios";
+import User from './compornt/user';
+import Admin from './compornt/admin';
 
 const Main = () => {
 
     let navigate = useNavigate();
-    let dispatch = useDispatch();
     let user = useSelector((state) => {return state.user}); // user에 reudx안의 user state값을 가져옴
     let session = sessionStorage.getItem('user'); // session stroage의 세션 값 가져옴
+    const [admin, setAdmin] = useState(false);
 
     useEffect(() => {
 
@@ -19,6 +19,11 @@ const Main = () => {
 
             alert("Please Sign In!")
             navigate('/'); // 로그인 페이지로 이동
+        }
+
+        if(user.name == admin)
+        {
+            setAdmin(true);
         }
 
         /*axios.post('URL', user.session)
@@ -35,11 +40,7 @@ const Main = () => {
 
     return(
         <>
-            <h1>{user.name} 접속 성공</h1>
-            <button onClick = {() => {
-                dispatch(removeUser()); // 버튼 클릭하면 세션과 redux에 있는 user state 초기화
-                navigate('/'); // 로그인 페이지로 이동함
-            }}>Sign Out</button>
+            {admin == false ? <User user = {user}/> : <Admin user = {user} />}
         </>
     )
 }

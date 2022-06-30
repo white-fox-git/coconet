@@ -56,7 +56,7 @@ const UserInfo = (props) =>
     const getCode = () =>
     {
         let resData;
-    
+
         if(props.phone.length != 11 && props.name == '')
         {
             // phone 번호 또는 name입력이 잘못 되었을 때 Alert창 띄우기
@@ -99,7 +99,7 @@ const UserInfo = (props) =>
         else
         {
             // 아니라면 code 관련 Alert 창을 띄운다
-            
+            props.setCheckCode(true);
             setTimeout(() => {props.setCheckCode(false)}, 3000);
         }
     }
@@ -120,11 +120,11 @@ const UserInfo = (props) =>
     return(
         <>
                 <div className={style.itemBox}>
-                    <h4 className={style.label}>Name</h4>
+                    <p className={style.label}>Name</p>
                     <input type ="text" className ={style.input} onChange = {(e) => props.setName(e.target.value)}/>
                 </div>
                 <div className={style.itemBox}>
-                    <h5 className={style.label}>Phone Number</h5>
+                    <p className={style.label}>Phone Number</p>
                     <input type ="text" className ={style.phoneNum} maxLength="11" placeholder="ex) 01012345678" value = {props.phone} onChange = {(e) => {
                             props.setPhone(check(e.target.value)); // check 함수를 거쳐 리턴된 값을 phone state에 저장
                         }}/>
@@ -134,7 +134,7 @@ const UserInfo = (props) =>
                     }
                 </div>
                 <div className={style.itemBox}>
-                    <h4 className={style.label}>Code</h4>
+                    <p className={style.label}>Code</p>
                     <input id = "code" type ="text" disabled className ={style.input} placeholder="ex) 123456" maxLength="6" value = {code} onChange = {(e) => {
                         setCode(check(e.target.value)); // check 함수를 거쳐 리턴된 값을 code state에 저장
                         }}/> 
@@ -177,11 +177,11 @@ const SetPwd = (props) =>
     return(
         <>
             <div className={style.itemBox}>
-                <h4 className={style.label}>New Password</h4>
+                <p className={style.label}>New Password</p>
                 <input type ="password" className ={style.input} onChange={(e) => setPwd(e.target.value)} maxLength="20"/>
             </div>
             <div className={style.itemBox}>
-                <h4 className={style.label}>Check Password</h4>
+                <p className={style.label}>Check Password</p>
                 <input type ="password" className ={style.input} onChange={(e) => setPwd2(e.target.value)} maxLength="20"/>
             </div>
             <button className={style.submitBtn} onClick={() => submit()}>Submit</button>

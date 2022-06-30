@@ -10,7 +10,6 @@ const NotFound = () =>
     return(
         <>
             <div className={style.errorBox}>
-                <h1 className = {style.title}>coconet</h1>
                 <img className ={style.img} src = "/error.png"/>
                 <h4 className = {style.error}>Page Not Found</h4>
                 <p className = {style.message}>Sorry, the page could not be found. The link may be invalid. Click the button below or go to the main page.</p>

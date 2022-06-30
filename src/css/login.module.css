@@ -3,15 +3,15 @@
 .header
 {
     text-align: center;
-    margin-top: 10vh
+    margin-top: 10vh;
+    width: 100%;
 }
 
-.title
+.logo
 {
-    font-family: var(--main-font);
-    padding: 0.7em;
-    font-size: 52px;
-    color: var(--main-color);
+    -webkit-user-drag: none; 
+    width: 80%;
+    max-width: 500px;
 }
 
 .loginBox
@@ -25,36 +25,39 @@
 .inputBox
 {
     display: flex;
+    flex-flow: column;
     justify-content: space-between;
     width: 100%;
     max-width: 600px;
     margin: auto;
     margin-top: 3vh;
-    font-family: var(--sub-font);
 }
 
 .label
 {
-    width: 15%;
-    text-align: center;
-    padding: 1em;
-    border-left: 1px solid;
-    border-top: 1px solid;
-    border-bottom: 1px solid;
-    color: gray;
-    border-radius: 4px 0px 0px 4px;
-    background-color: rgb(238, 238, 238);
+    font-family: var(--main-font);
+    color: var(--gray-color);
+    letter-spacing: 1px;
+    font-weight: 300;
 }
 
 .input
 {
-    width: 80%;
-    padding: 0.8em;
+    width: 94%;
+    max-width: 600px;
+    padding: 3%;
+    font-size: 18px;
+    margin-top: 4px;
+    border-radius: 4px;
+    border: 1px solid #dfdfdf;
+    font-family: var(--main-font);
+    font-weight: 300;
+    letter-spacing: 1px;
 }
 
 .loginBtn
 {
-    padding: 1em;
+    padding: 0.7em;
     background-color: var(--main-color);
     color: white;
     border: 0;
@@ -63,10 +66,13 @@
     border-radius: 4px;
     margin: 0 auto;
     margin-top: 5vh;
+    font-size: 18px;
     transition: 0.3s;
     cursor: pointer;
     min-height: 40px;
-    font-family: var(--sub-font);
+    font-family: var(--main-font);
+    font-weight: 400;
+    letter-spacing: 1px;
 }
 
 .hr
@@ -86,7 +92,9 @@
 {
     text-decoration: none;
     color: gray;
-    font-family: var(--sub-font);
+    font-family: var(--main-font);
+    font-weight: 300;
+    letter-spacing: 1px;
     cursor: pointer;
     transition: 0.3s;
 }
@@ -111,13 +119,15 @@
     right: 0;
     margin: 0 auto;
     background-color: var(--alert-color);
-    font-family: var(--sub-font);
-    color: #494949;
+    font-family: var(--main-font);
+    font-weight: 300;
+    letter-spacing: 1px;
+    color: var(--gray-color);
 }
 
 .icon
 {
-    color: gray;
+    color: var(--gray-color);
     margin-right: 14px;
 }
 
@@ -127,7 +137,7 @@
         font-size: 54px;
     }
 
-    .label, .input, .loginBtn
+    .label, .input
     {
        font-size: 18px;
     }
@@ -140,9 +150,14 @@
         font-size: 58px;
     }
 
-    .label, .input, .loginBtn, .link, .Alert
+    .label, .input, .link, .Alert
     {
        font-size: 20px;
+    }
+
+    .loginBtn
+    {
+        font-size: 22px;
     }
 }
 
@@ -154,7 +169,7 @@
         font-size: 64px;
     }
 
-    .label, .input, .loginBtn
+    .label, .input
     {
        font-size: 22px;
     }
