@@ -2,124 +2,166 @@
 
 .header
 {
-    height: 60px;
-    padding-left: 1em;
-    padding-right: 1.4em;
-    border-bottom: 1px solid var(--light-gray);
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    z-index: 200;
+    padding: 10px;
+    border-bottom: 1px solid var(--light-gray); 
+    text-align: center;
 }
 
 .logo
 {
-    -webkit-user-drag: none; 
-    cursor: pointer;
-    width: 34%;
-    max-width: 230px;
+
+    width: 40%;
+    max-width: 350px;
 }
 
-.barBtn
+.signout
 {
     font-size: 24px;
-    color: var(--gray-color);
+    color: var(--main-color);
+    margin-right: 14px;
     cursor: pointer;
 }
 
-.mobileUl
+.content
 {
-    list-style: none;
-    padding-left: 4%;
-    padding-right: 4%;
-    animation-duration: 0.4s;
-    animation-name: bar;
-    position: absolute;
-    background-color: white;
-    width: 92%;
-    height: 100%;
+    margin-top: 30px;
+    display: flex;
+    flex-flow: column;
 }
 
-.mobileLi
+.helloBox
 {
-    padding: 0.8em;
-    font-size: 18px;
-    font-family: var(--main-font);
-    color: var(--gray-color);
-    font-weight: 400;
-    letter-spacing: 1px;
-    border-bottom: 1px solid var(--light-gray);
-    transition: 0.1s;
-    cursor: pointer;
+    text-align: center;
+    padding: 20px;
 }
 
-.desktopUl
+.userImg
 {
-    display: none;
-    justify-content: space-between;
-    width: 60%;
-    margin-right: 2%;
+    width: 200px;
+    height: 200px;
+    border-radius: 100%;
+    border: 4px solid var(--main-color);
 }
 
-.desktopLi
+.hello
+{
+    padding: 20px;
+}
+
+.helloText
 {
     font-family: var(--main-font);
-    letter-spacing: 1px;
-    list-style: none;
-    font-size: 20px;
-    color: var(--gray-color);
-    cursor: pointer;
-}
-
-.hiddenUl
-{
-    display: none;
-}
-
-.signOut
-{
+    font-weight: 500;
     font-size: 28px;
     color: var(--gray-color);
+}
+
+.todayBox
+{
+    width: 80%;
+    max-width: 500px;
+    margin: 0 auto;
+    margin-top: 20px;
+    border: 1px solid var(--light-gray);
+    text-align: left;
+    padding: 20px;
+    border-radius: 10px;
+}
+
+.title
+{
+    color: var(--main-color);
+    font-family: var(--main-font);
+    font-size: 500;
+    letter-spacing: 1px;
+    font-size: 20px;
+}
+
+.today
+{
+    margin-top: 10px;
+    width: 100%;
+    background-color: rgb(245, 245, 245);
+    height: 300px;
+}
+
+.dashboard
+{
+    padding: 40px;
+    font-family: var(--main-font);
+    color: var(--main-color);
+    font-size: 24px;
+    font-weight: 500;
+    letter-spacing: 1px;
+}
+
+.chatBtnBox
+{
     position: fixed;
-    left: 4%;
-    bottom: 2%;
+    bottom: 20px;
+    right: 3%;
+    display: flex;
+    justify-content: center;
+    flex-flow: column;
+    align-items:flex-end;
+}
+
+.ul
+{
+    font-family: var(--main-font);
+    font-weight: 300;
+    font-size: 20px;
+    list-style: none;
+    width: 100px;
+    background-color: #ffffff;
+    padding: 20px;
+    height: 90px;
+    animation-name: ul;
+    animation-duration: 0.3s;
+    border-radius: 10px 10px 10px 10px;
+    margin-bottom: 10px;
+    text-align: left;
+    border: 1px solid var(--light-gray);
+}
+
+.li
+{
+    width: 100%;
+    padding: 6px;
+    margin-top: 4px;
+}
+
+.liIcon
+{
+    color: #bdbdbd;
+}
+
+.liLink
+{
+    text-decoration: none;
+    color: var(--gray-color);
+}   
+
+.chatBtn
+{
+    background: var(--main-color);
+    border: 0;
+    width: 60px;
+    height: 60px;
+    border-radius: 100% 100% 100% 100%;
+    padding: 10px;
+    font-size: 30px;
+    color: white;
     cursor: pointer;
 }
 
 @media screen and (min-width: 769px) {
-    .mobileLi
-    {
-        font-size: 22px;
-    }
     
-    .signOut
-    {
-        font-size: 34px;
-    }
 }
 
 
 @media screen and (min-width: 1024px) {  
-    .barBtn, .mobileUl
-    {
-        display: none;
-    }
-
-    .header
-    {
-        height: 80px;
-    }
-
-    .desktopUl
-    {
-        display: flex;
-    }
-
-    .signOut
-    {
-        position: static;
-        font-size: 28px;
-    }
+   
 }
 
 
@@ -128,12 +170,15 @@
 	
 }
 
-@keyframes bar {
-    from {
-      opacity: 0%;
+@keyframes ul
+{
+    from
+    {
+        opacity: 0%;
     }
-  
-    to {
-      opacity: 100%;
+
+    to
+    {
+        opacity: 100%;
     }
 }

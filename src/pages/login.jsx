@@ -18,15 +18,14 @@ const Login = () => {
     const navigate = useNavigate(); // 페이지 이동 함수
     const dispatch = useDispatch(); // redux에 있는 state의 함수 실행을 위한 함수
 
-    let session = sessionStorage.getItem('user'); // session Stroage의 세션 값
     let user = useSelector((state) => {return state.user}); // redux.jsx에 있는 user state의 값을 가져옴
 
-    useEffect(() => {
-        if(user.name != '' && user.session != null && user.auth != false && session != null) // 만약 redux의 유저 정보와 세션이 존재할경우 메인페이지로
+    /*useEffect(() => {
+        if(user.name != ''  && user.auth != false)
         {
             navigate('/main')
         }
-    }, [])
+    }, []);*/
 
     const Enter = (e) => {
         if(e == 'Enter')
@@ -49,75 +48,56 @@ const Login = () => {
         }
         else
         {
-            let resData; // post 요청의 결과 값
-
-            axios.post('URL', JSON.stringify({id : id, pwd : pwd})) // obj 형식을 json파일로 변환하여 url경로에 post 요청
-            .then((response) => {
-                request = JSON.parse(response.data); // json으로 받아온 파일을 obj 형식으로 변환하여 변수에 저장
-            })
-            .catch((error) => {
-                console.log(error) // error 처리
-            });
-
-            console.log("data : " + resData);
-
-            if(resData/*.auth*/ == true) // requset.auth의 값이 true 경우 메인 페이지로 이동하고 redux의 user state에 값 설정
-            {
-                dispatch(setUser(resData)); // redux state의 user 값 세팅
-                navigate('/main'); // main 페이지로 이동
-            }
-            else // true가 아닐경우엔 pwd alert 창을 띄우고 로그인 실패 로그
-            {
-                setPwdAlert(true)
-                setTimeout(() => {setPwdAlert(false)}, 2000);
-                console.log("login failed");
-            }    
+            dispatch(setUser({name : '김현빈', auth : true}));
+            navigate('/main');
         }
-        
     }
 
     return(
         <>
-            <header className={style.header}>
-                <img src ="/logo_text.png" className={style.logo} />
-            </header>
-            <div className ={style.loginBox}>
-                <div className={style.inputBox}>
-                    <p className = {style.label}>User</p>
-                    <input type ="text" className={style.input}  maxLength={20} autoComplete = "off" 
-                    onKeyPress={(e) => Enter(e.key) /*커서가 input위에 올라가 있는 상태에서 Enter Key클릭시 Login 이벤트 발생 */}
-                    onChange={(e) => {
-                        setId(e.target.value); // input에 작성되는 글자를 id state에 저장
-                        setIdAlert(false); // input에 글자가 써지기 시작하면 alert를 없앤다
-                    }}/>
-                </div>
-                <div className={style.inputBox}>
-                <p className = {style.label}>Password</p>
-                    <input type ="password" className={style.input} maxLength={20} autoComplete = "off" 
-                    onKeyPress={(e) => Enter(e.key)}
-                    onChange={(e) => {
-                        setPwd(e.target.value);
-                        setPwdAlert(false);
+        <div className={style.item}>
+                <header className={style.header}>
+                    <h4 className={style.headerTitle}>로그인</h4>
+                    <p className={style.headerText}>회사에서 사용하는 이메일을 사용하여 로그인하세요.</p>
+                </header>
+                <div className ={style.loginBox}>
+                    <div className={style.inputBox}>
+                        <p className = {style.label}>Email</p>
+                        <input type ="email" className={style.input}  maxLength={25} autoComplete = "off" 
+                        onKeyPress={(e) => Enter(e.key) /*커서가 input위에 올라가 있는 상태에서 Enter Key클릭시 Login 이벤트 발생 */}
+                        onChange={(e) => {
+                            setId(e.target.value); // input에 작성되는 글자를 id state에 저장
+                            setIdAlert(false); // input에 글자가 써지기 시작하면 alert를 없앤다
                         }}/>
+                    </div>
+                    <div className={style.inputBox}>
+                    <p className = {style.label}>Password</p>
+                        <input type ="password" className={style.input} maxLength={20} autoComplete = "off" 
+                        onKeyPress={(e) => Enter(e.key)}
+                        onChange={(e) => {
+                            setPwd(e.target.value);
+                            setPwdAlert(false);
+                            }}/>
+                    </div>
+                    <div className ={style.linkBox}>
+                    <Link to ="/findUser" className = {style.link}><span className={style.pointText}>비밀번호</span>를 잊으셨나요?</Link>
                 </div>
-                <button className={style.loginBtn} onClick={() => login()}>Sign In</button>
+                    <button className={style.loginBtn} onClick={() => login()}>로그인</button>
+                </div>
+                {
+                    idAlert == true ? // idAlert 값이 true가 되면 경고창을 띄움
+                    <p className={style.Alert}><FontAwesomeIcon icon = {faTriangleExclamation} className={style.icon}></FontAwesomeIcon>이메일을 확인해주세요.</p>
+                    :
+                    null
+                }
+                {
+                    pwdAlert == true ? // pwdAlert 값이 true가 되면 경고창을 띄움
+                    <p className={style.Alert}><FontAwesomeIcon icon = {faTriangleExclamation} className={style.icon}></FontAwesomeIcon>비밀번호를 확인해주세요.</p>
+                    :
+                    null
+                }
             </div>
-            <hr className={style.hr}/>
-            <div className ={style.linkBox}>
-                <Link to ="/findUser" className = {style.link}>Forgot your password?</Link>
-            </div>
-            {
-                idAlert == true ? // idAlert 값이 true가 되면 경고창을 띄움
-                <p className={style.Alert}><FontAwesomeIcon icon = {faTriangleExclamation} className={style.icon}></FontAwesomeIcon> Check your User name.</p>
-                :
-                null
-            }
-            {
-                pwdAlert == true ? // pwdAlert 값이 true가 되면 경고창을 띄움
-                <p className={style.Alert}><FontAwesomeIcon icon = {faTriangleExclamation} className={style.icon}></FontAwesomeIcon> Check your password.</p>
-                :
-                null
-            }
+        <div className={style.bg} />
         </>
     )
 }

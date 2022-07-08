@@ -1,43 +1,68 @@
 import {React, useState} from "react";
 import { removeUser } from "../../redux";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faBars, faRightFromBracket } from "@fortawesome/free-solid-svg-icons";
-import { useNavigate } from "react-router-dom";
-import { useDispatch } from "react-redux/es/exports";
+import { faUser, faRightFromBracket, faComment } from "@fortawesome/free-solid-svg-icons";
+import { PieChart } from "react-minimal-pie-chart";
+import { useNavigate, Link } from "react-router-dom";
+import { useDispatch, useSelector } from "react-redux/es/exports";
 import style from "../../css/main.module.css";
+import axios from "axios";
 
-const User = () =>
+const User = (props) =>
 {
-    const [bar, setBar] = useState(false);
     let navigate = useNavigate();
     let dispatch = useDispatch();
+    let user = useSelector((state) => { return state.user } )
+
+    const [ul, setUl] = useState(false);
+
+    let today = new Date();
+    let year = today.getFullYear();
+    let month = today.getMonth() + 1;
+    let date =  today.getDate();
+
+    let data;
+
 
     return(
         <>
-            <header className = {style.header}>
-                <img src = "/logo_text.png" className ={style.logo} onClick={() => navigate('/main')}/>
-                <ul className ={style.desktopUl}>
-                    <li className={style.desktopLi}>Manage Users</li>
-                    <li className={style.desktopLi}>Device Management</li>
-                    <li className={style.desktopLi}>Board</li>
-                    <li className={style.desktopLi}>Chat</li>
-                    <FontAwesomeIcon icon = {faRightFromBracket } className ={style.signOut} onClick = {() => {
-                        dispatch(removeUser()); // 버튼 클릭하면 세션과 redux에 있는 user state 초기화
-                        navigate('/'); // 로그인 페이지로 이동함
-                    }}/>
-                </ul>
-                <FontAwesomeIcon icon = {faBars} className={style.barBtn} onClick={() => {bar == true ? setBar(false) : setBar(true)}}/>
-            </header>
-            <ul className ={bar == true ? style.mobileUl : style.hiddenUl}>
-                <li className={style.mobileLi}>Manage Users</li>
-                <li className={style.mobileLi}>Device Management</li>
-                <li className={style.mobileLi}>Board</li>
-                <li className={style.mobileLi}>Chat</li>
-                <FontAwesomeIcon icon = {faRightFromBracket } className ={style.signOut} onClick = {() => {
-                    dispatch(removeUser()); // 버튼 클릭하면 세션과 redux에 있는 user state 초기화
-                    navigate('/'); // 로그인 페이지로 이동함
-                }}/>
-            </ul>
+           <div className={style.content}>
+            <div className={style.helloBox}>
+                    <img className={style.userImg} src="/logo.png"/>
+                    <div className={style.hello}>
+                        <p className={style.helloText}>{user.name}님 환영합니다</p>
+                    </div>
+                    <div className={style.todayBox}>
+                        <h3 className={style.title}>오늘의 업무</h3>
+                        <section className={style.today}>
+                            
+                        </section>
+                    </div>
+            </div>
+            <div className={style.dashboard}>
+                <div className={style.boardTitle}>
+                    <h4>대시보드</h4>
+                </div>
+                <section>
+                </section>
+            </div>
+            <div className={style.chatBtnBox}>
+                {
+                    ul == true ?
+                    <ul className={style.ul}>
+                        <li className={style.li}><Link to ="" className={style.liLink}><FontAwesomeIcon icon ={ faComment } className={style.liIcon}/> 채팅</Link></li>
+                        <li className={style.li}><Link to ="" className={style.liLink} onClick={() => {
+                            console.log('sign out');
+                            navigate('/');
+                            dispatch(removeUser());
+                        }}><FontAwesomeIcon icon ={ faRightFromBracket } className={style.liIcon}/> 로그아웃</Link></li>
+                    </ul>
+                    :
+                    null
+                }
+                <button className={style.chatBtn} onClick={() => {ul == true ? setUl(false) : setUl(true)}}><FontAwesomeIcon icon ={ faUser }/></button>
+            </div>
+           </div>
         </>
     )
 }

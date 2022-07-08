@@ -19,9 +19,10 @@ const FindUser = () =>
 
     return(
         <>
+            <div className={style.bg}/>
             <div className ={style.rootBox}>
             <div className ={style.findBox}>
-                <div className={style.tap}>Reset Password</div>
+                <div className={style.tap}>비밀번호 초기화</div>
             </div>
             <div className={style.infoBox}>
                 {
@@ -31,16 +32,16 @@ const FindUser = () =>
                         <SetPwd setCheckPwd = {setCheckPwd} name = {name} phone = {phone} /> 
                     }
             </div>
-            <p className = {style.text}>You want Return to Sign In page <Link to = "/" className = {style.link}>Click here!</Link></p>
+            <p className = {style.text}>로그인 페이지로 돌아가려면<Link to = "/" className = {style.link}> 이곳</Link>을 클릭해주세요</p>
             </div>
             {
-                checkPhone == true ? <p className={style.Alert}><FontAwesomeIcon icon = {faTriangleExclamation} className={style.icon}></FontAwesomeIcon> Please check the name or phone number you entered</p> : null  
+                checkPhone == true ? <p className={style.Alert}><FontAwesomeIcon icon = {faTriangleExclamation} className={style.icon}></FontAwesomeIcon>이름 또는 전화번호를 확인해주세요.</p> : null  
             }
             {
-                checkCode == true ? <p className={style.Alert}><FontAwesomeIcon icon = {faTriangleExclamation} className={style.icon}></FontAwesomeIcon> Please check the code</p> : null  
+                checkCode == true ? <p className={style.Alert}><FontAwesomeIcon icon = {faTriangleExclamation} className={style.icon}></FontAwesomeIcon>코드가 틀립니다. 다시 입력해주세요.</p> : null  
             }
             {
-                checkPwd == true ? <p className={style.Alert}><FontAwesomeIcon icon = {faTriangleExclamation} className={style.icon}></FontAwesomeIcon> The passwords are different or the input value is invalid.</p> : null  
+                checkPwd == true ? <p className={style.Alert}><FontAwesomeIcon icon = {faTriangleExclamation} className={style.icon}></FontAwesomeIcon>비밀번호가 서로 다르거나 입력값이 잘못 되었습니다.</p> : null  
             }
         </>
         
@@ -71,9 +72,10 @@ const UserInfo = (props) =>
                 if(resData.check == true)
                 {
                     // check값이 true일 경우 redCode state에 서버가 보낸 code값을 넣고 비활성화 된 code Input을 활성화
-                    setResCode(resData.code);
                     document.getElementById('code').disabled = false;
                     setMessage(true);
+                    setResCode(resData.code);
+                    
                 }
                 else
                 {
@@ -120,26 +122,26 @@ const UserInfo = (props) =>
     return(
         <>
                 <div className={style.itemBox}>
-                    <p className={style.label}>Name</p>
+                    <p className={style.label}>이름</p>
                     <input type ="text" className ={style.input} onChange = {(e) => props.setName(e.target.value)}/>
                 </div>
                 <div className={style.itemBox}>
-                    <p className={style.label}>Phone Number</p>
+                    <p className={style.label}>전화번호</p>
                     <input type ="text" className ={style.phoneNum} maxLength="11" placeholder="ex) 01012345678" value = {props.phone} onChange = {(e) => {
                             props.setPhone(check(e.target.value)); // check 함수를 거쳐 리턴된 값을 phone state에 저장
                         }}/>
-                    <button className={style.getBtn} onClick={() => {getCode()}}>Get Code</button>
+                    <button className={style.getBtn} onClick={() => {getCode()}}>코드 얻기</button>
                     {
-                        message == true ? <p className = {style.message}>Code has been sent.</p> : null
+                        message == true ? <p className = {style.message}>코드가 전송되었습니다.</p> : null
                     }
                 </div>
                 <div className={style.itemBox}>
-                    <p className={style.label}>Code</p>
+                    <p className={style.label}>코드</p>
                     <input id = "code" type ="text" disabled className ={style.input} placeholder="ex) 123456" maxLength="6" value = {code} onChange = {(e) => {
                         setCode(check(e.target.value)); // check 함수를 거쳐 리턴된 값을 code state에 저장
                         }}/> 
                 </div>
-                <button className={style.submitBtn} onClick = {() => {submitCode()}}>Submit</button>
+                <button className={style.submitBtn} onClick = {() => {submitCode()}}>인증하기</button>
         </>
     )
 }
@@ -177,14 +179,14 @@ const SetPwd = (props) =>
     return(
         <>
             <div className={style.itemBox}>
-                <p className={style.label}>New Password</p>
+                <p className={style.label}>새로운 비밀번호</p>
                 <input type ="password" className ={style.input} onChange={(e) => setPwd(e.target.value)} maxLength="20"/>
             </div>
             <div className={style.itemBox}>
-                <p className={style.label}>Check Password</p>
+                <p className={style.label}>비밀번호 확인</p>
                 <input type ="password" className ={style.input} onChange={(e) => setPwd2(e.target.value)} maxLength="20"/>
             </div>
-            <button className={style.submitBtn} onClick={() => submit()}>Submit</button>
+            <button className={style.submitBtn} onClick={() => submit()}>변경</button>
         </>
     )
 }

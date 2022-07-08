@@ -3,20 +3,28 @@
 .header
 {
     text-align: center;
-    margin-top: 10vh;
-    width: 100%;
 }
 
-.logo
+.headerTitle
 {
-    -webkit-user-drag: none; 
-    width: 80%;
-    max-width: 500px;
+    font-family: var(--main-font);
+    font-weight: 700;
+    font-size: 28px;
+    letter-spacing: 1px;
+    
+}
+
+.headerText
+{
+    font-family: var(--main-font);
+    font-weight: 300;
+    margin-top: 10px;
+    letter-spacing: -1px;
+    
 }
 
 .loginBox
 {
-    margin: 0 auto;
     display: flex;
     flex-flow: column;
     padding: 40px;
@@ -55,6 +63,11 @@
     letter-spacing: 1px;
 }
 
+.input:focus{
+    border-color: var(--main-color);
+    outline: none;
+}
+
 .loginBtn
 {
     padding: 0.7em;
@@ -75,16 +88,9 @@
     letter-spacing: 1px;
 }
 
-.hr
-{
-    margin: 0 auto;
-    width: 85%;
-    max-width: 600px;
-}
-
 .linkBox
 {
-    margin-top: 2vh;
+    margin-top: 5px;
     text-align: center;
 }
 
@@ -97,6 +103,7 @@
     letter-spacing: 1px;
     cursor: pointer;
     transition: 0.3s;
+    
 }
 
 .loginBtn:hover
@@ -123,12 +130,41 @@
     font-weight: 300;
     letter-spacing: 1px;
     color: var(--gray-color);
+    
+}
+
+.pointText
+{
+    color: var(--main-color);
 }
 
 .icon
 {
     color: var(--gray-color);
     margin-right: 14px;
+}
+
+.bg
+{
+    position: absolute;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    background-image: url('../asset/login_bg.svg');
+    background-size: cover;
+    background-repeat: no-repeat;
+    z-index: -100;
+    animation-name: bg;
+    animation-duration: 1.5s;
+    
+}
+
+.item
+{
+    animation-name: item;
+    animation-duration: 1s;
+    animation-fill-mode: forwards;
+    padding-top: 16vh
 }
 
 @media screen and (min-width: 769px) {
@@ -150,9 +186,14 @@
         font-size: 58px;
     }
 
-    .label, .input, .link, .Alert
+    .label, .input, .link, .Alert, .headerText
     {
        font-size: 20px;
+    }
+    
+    .headerTitle
+    {
+        font-size: 34px;
     }
 
     .loginBtn
@@ -162,15 +203,74 @@
 }
 
 
-
 @media screen and (min-width: 1200px) {
 	.title
     {
         font-size: 64px;
     }
 
-    .label, .input
+    .label, .input, .headerText
     {
        font-size: 22px;
+    }
+
+    .linkBox
+    {
+        text-align: left;
+        margin-left: 0px;
+    }
+
+
+    .loginBtn
+    {
+        max-width: 350px;
+    }
+
+    .header
+    {
+        text-align: left;
+        margin-left: 40px;
+    }
+
+    .item
+    {
+        padding-top: 24vh
+    }
+
+    .headerTitle
+    {
+        font-size: 42px;
+    }
+
+    .loginBox, .inputBox, .loginBtn
+    {
+        margin-left: 0px;
+    }
+
+    @keyframes item
+    {
+        from{
+            margin-left: 20px;
+            opacity: 20%;
+        }
+
+        to
+        {
+            margin-left: 80px;
+            opacity: 100%;
+        }
+    }
+}
+
+
+@keyframes bg
+{
+    from{
+        opacity: 40%;
+    }
+
+    to
+    {
+        opacity: 100%;
     }
 }
