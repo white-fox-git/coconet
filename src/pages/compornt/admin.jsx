@@ -4,7 +4,6 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import {  } from "@fortawesome/free-solid-svg-icons";
 import { useNavigate, Link } from "react-router-dom";
 import { useDispatch } from "react-redux/es/exports";
-import style from "../../css/main.module.css";
 
 const User = (props) =>
 {

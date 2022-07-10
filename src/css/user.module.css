@@ -1,0 +1,534 @@
+@import url('./default.css');
+
+.header
+{
+    padding: 10px;
+    border-bottom: 1px solid var(--light-gray); 
+    text-align: center;
+}
+
+.logo
+{
+
+    width: 40%;
+    max-width: 350px;
+    cursor: pointer;
+}
+
+.signout
+{
+    font-size: 24px;
+    color: var(--main-color);
+    margin-right: 14px;
+    cursor: pointer;
+}
+
+.content
+{
+    margin-top: 30px;
+    display: flex;
+    flex-flow: column;
+}
+
+.helloBox
+{
+    text-align: center;
+    padding: 20px;
+}
+
+.userImg
+{
+    width: 150px;
+    height: 150px;
+    border-radius: 100%;
+    border: 4px solid var(--main-color);
+}
+
+.hello
+{
+    padding: 20px;
+}
+
+.helloText
+{
+    font-family: var(--main-font);
+    font-weight: 500;
+    font-size: 22px;
+    color: var(--gray-color);
+}
+
+.helloItem
+{
+    display: flex;
+    flex-flow: column;
+}
+
+.todayBox, .messageBox
+{
+    width: 80%;
+    max-width: 500px;
+    margin: 0 auto;
+    margin-top: 20px;
+    border: 1px solid var(--light-gray);
+    text-align: left;
+    padding: 20px;
+    border-radius: 10px;
+}
+
+.sectionHeader
+{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding-bottom: 20px;
+    border-bottom: solid 1px var(--light-gray);
+}
+
+.titleBox
+{
+    display: flex;
+    align-items: center;
+}
+
+.titleIcon
+{
+    font-size: 22px;
+    color: var(--main-color);
+    margin-right: 15px;
+}
+
+.more
+{
+    cursor: pointer;
+    color: #8f8f8f;
+}
+
+.title
+{
+    color: var(--main-color);
+    font-family: var(--main-font);
+    font-size: 500;
+    letter-spacing: 1px;
+    font-size: 20px;
+}
+
+.sectionItem
+{
+    margin-top: 20px;
+    width: 100%;
+}
+
+.messageItem
+{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border-bottom: 1px solid var(--light-gray);
+    padding: 10px;
+    cursor: pointer;
+}
+
+.message
+{
+    display: flex;
+    justify-content: start;
+    width: 100%;
+    text-decoration: none;
+    color: var(--gray-color);
+}
+
+.messagePhoto
+{
+    width: 45px;
+    height: 45px;
+    border-radius: 100%;
+    margin-right: 10px;
+}
+
+.userBox
+{
+    width: 70%;
+    font-family: var(--main-font);
+    letter-spacing: 1px;
+}
+
+.userName
+{
+    font-size: 16px;
+}
+
+.lastMessage
+{
+    font-size: 14px;
+    font-weight: 300;
+}
+
+.messageCount
+{
+    width: 10px;
+    height: 10px;
+    padding: 6px;
+    border-radius: 100%;
+    color: white;
+    font-size: 16px;
+    background-color: #ff6060;
+    font-family: var(--main-font);
+    line-height: 50%;
+}
+
+.mapItem
+{
+    font-size: 16px;
+    font-family: var(--main-font);
+    font-weight: 300;
+    letter-spacing: 1px;
+    margin-top: 14px;
+    color: var(--gray-color);
+    transition: 0.3s;
+    display: flex;
+    justify-content: space-between;
+}
+
+.board
+{
+    display: flex;
+    width: 100%;
+    flex-flow: column;
+    text-align: center;
+}
+
+.tapBox
+{
+    padding: 10px;
+    width: 90%;
+    height: 5vh;
+    min-height: 60px;
+    margin: 0 auto;
+    display: flex;
+    justify-content: center;
+}
+
+
+.tap
+{
+    text-align: center;
+    width: 33%;
+    font-size: 16px;
+    cursor: pointer;
+    background: none;
+    border: 0;
+    font-family: var(--main-font);
+    font-weight: 500;
+    letter-spacing: 1px;
+    color: var(--gray-color);
+    border-bottom: 1px solid var(--main-color);
+    transition: 0.3s;
+}
+
+.setTap
+{
+    text-align: center;
+    width: 33%;
+    font-size: 18px;
+    cursor: pointer;
+    background: none;
+    border: 1px solid var(--main-color);
+    font-family: var(--main-font);
+    font-weight: 500;
+    letter-spacing: 1px;
+    color: var(--main-color);
+    border-bottom: 1px solid var(--main-color);
+    transition: 0.3s;
+}
+
+.tap:hover
+{
+    color: white;
+    background-color: var(--main-color);
+}
+
+.tapItem
+{
+    width: 90%;
+    margin: 0 auto;
+    padding: 10px;
+    margin-top: 20px;
+}
+
+
+.chatBtnBox
+{
+    position: fixed;
+    bottom: 20px;
+    right: 3%;
+    display: flex;
+    justify-content: center;
+    flex-flow: column;
+    align-items:flex-end;
+}
+
+.fade
+{
+    animation-name: fade;
+    animation-duration: 0.3s;
+    animation-fill-mode: forwards;
+    display: grid;
+    justify-items: center;
+    row-gap: 30px;
+    grid-template-columns: 100%;
+}
+
+.noticeBox
+{
+    width: 80%;
+    border: 1px solid var(--light-gray);
+    text-align: left;
+    padding: 20px;
+    border-radius: 10px;
+}
+
+.noticeLink
+{
+    text-decoration: none;
+    color: var(--gray-color);
+}
+
+.noticeDay, .alertTime
+{
+    display: none;
+}
+
+.alertItem
+{
+    display: flex;
+    font-family: var(--main-font);
+    font-weight: 300;
+    letter-spacing: 1px;
+    align-items: center;
+    padding: 10px;
+}
+
+.alertIcon
+{
+    width: 50px;
+    margin-right: 10px;
+    height: 50px;
+    border-radius: 100%;
+    border: 0;
+}
+
+.alertText
+{
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-flow: row;
+    color: var(--gray-color);
+}
+
+
+.ul
+{
+    font-family: var(--main-font);
+    font-weight: 300;
+    font-size: 20px;
+    list-style: none;
+    width: 120px;
+    background-color: #ffffff;
+    padding: 20px;
+    height: 130px;
+    animation-name: ul;
+    animation-duration: 0.5s;
+    border-radius: 10px 10px 10px 10px;
+    margin-bottom: 10px;
+    text-align: left;
+    border: 1px solid var(--light-gray);
+}
+
+.li
+{
+    width: 100%;
+    padding-bottom: 5px;
+    margin-top: 8px;
+}
+
+.liLink
+{
+    text-decoration: none;
+    color: #8f8f8f;
+    cursor: pointer;
+    transition: 0.3s;
+}   
+
+.liLink:hover
+{
+    color: var(--hover-color)
+}
+
+.chatBtn
+{
+    background: var(--main-color);
+    border: 0;
+    width: 60px;
+    height: 60px;
+    border-radius: 100% 100% 100% 100%;
+    padding: 10px;
+    font-size: 30px;
+    color: white;
+    cursor: pointer;
+}
+
+
+@media screen and (min-width: 769px) {
+    .helloItem
+    {
+        flex-flow: row;
+    }
+
+    .todayBox, .messageBox
+    {
+        width: 40%;
+    }
+
+    .messagePhoto, .alertIcon
+    {
+        width: 60px;
+        height: 60px;
+    }
+
+    .messageCount
+    {
+        padding: 10px;
+    }
+
+    .userName, .mapItem, .more, .alertText
+    {
+        font-size: 18px;
+    }
+
+    .lastMessage
+    {
+        font-size: 16px;
+    }
+
+    .messageCount
+    {
+        width: 10px;
+        height: 10px;
+        padding: 6px;
+        border-radius: 100%;
+        color: white;
+        background-color: #ff6060;
+        font-family: var(--main-font);
+        line-height: 50%;
+    }
+    
+    .tap
+    {
+        font-size: 22px;
+    }
+
+    .setTap
+    {
+        font-size: 24px;
+    }
+}
+
+
+@media screen and (min-width: 1024px) {  
+    .helloItem
+    {
+        flex-flow: column;
+    }
+
+    .todayBox, .messageBox
+    {
+        width: 80%;
+    }
+    
+    .userImg
+    {
+        width: 200px;
+        height: 200px;
+    }
+
+    .noticeDay, .alertTime
+    {
+        display: inline;
+    }
+
+    .tap, .helloText
+    {
+     font-size: 28px;
+    }
+
+    .setTap
+    {
+        font-size: 30px;
+    }
+
+    .title
+    {
+        font-size: 24px;;
+    }
+}
+
+
+
+@media screen and (min-width: 1200px) {
+	.content
+   {
+        flex-flow: row;
+   }
+
+   .helloBox
+   {
+        margin-top: 20px;
+        width: 20%;
+        min-width: 500px;
+        max-width: 600px;
+        border-right: 1px solid var(--light-gray);
+        height: 85vh;
+   }
+
+   .dashboard
+   {
+    font-size: 32px;
+   }
+}
+
+@media screen and (min-width: 1600px) {
+    .fade
+   {
+        grid-template-columns: 50% 50%;
+   }
+}
+
+@keyframes ul
+{
+    from
+    {
+        opacity: 0%;
+    }
+
+    to
+    {
+        opacity: 100%;
+    }
+}
+
+@keyframes fade
+{
+    from
+    {
+        opacity: 0%;
+        margin-top: 120px;
+    }
+
+    to
+    {
+        opacity: 100%;
+        margin-top: 20px;
+    }
+}

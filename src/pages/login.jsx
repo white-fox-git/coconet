@@ -9,7 +9,7 @@ import axios from 'axios';
 
 const Login = () => {
 
-    const [id, setId] = useState(''); // id 값
+    const [email, setEmail] = useState(''); // id 값
     const [pwd, setPwd] = useState(''); // pwd 값
     const [idAlert, setIdAlert] = useState(false); // id 잘못 입력했을 때 
     const [pwdAlert, setPwdAlert] = useState(false); // pwd 잘못 입력했을 때
@@ -36,7 +36,7 @@ const Login = () => {
 
     const login = () =>
     {
-        if(id == '' || id == ' ')
+        if(email == '' || email == ' ')
         {
             setIdAlert(true)
             setTimeout(() => {setIdAlert(false)}, 2000); // id값이 없을 때 2초동안 alert창
@@ -48,8 +48,17 @@ const Login = () => {
         }
         else
         {
-            dispatch(setUser({name : '김현빈', auth : true}));
-            navigate('/main');
+            axios.post('URL', JSON.stringify({email : email, pwd : pwd}))
+            .then((res) => {
+                axios.defaults.headers.common["Authorization"] = `Bearer ${res.headers.access_token}`;
+                dispatch(setUser(res.data));
+                navigate('/main');
+            })
+            .catch((error) => {
+                console.log(error);
+                setPwdAlert(true)
+                setTimeout(() => {setPwdAlert(false)}, 2000); // pwd값이 없을 때 2초동안 alert창
+            })
         }
     }
 
@@ -66,7 +75,7 @@ const Login = () => {
                         <input type ="email" className={style.input}  maxLength={25} autoComplete = "off" 
                         onKeyPress={(e) => Enter(e.key) /*커서가 input위에 올라가 있는 상태에서 Enter Key클릭시 Login 이벤트 발생 */}
                         onChange={(e) => {
-                            setId(e.target.value); // input에 작성되는 글자를 id state에 저장
+                            setEmail(e.target.value); // input에 작성되는 글자를 id state에 저장
                             setIdAlert(false); // input에 글자가 써지기 시작하면 alert를 없앤다
                         }}/>
                     </div>
