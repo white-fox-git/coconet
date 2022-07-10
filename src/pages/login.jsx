@@ -36,6 +36,7 @@ const Login = () => {
 
     const login = () =>
     {
+        navigate('/main');
         if(email == '' || email == ' ')
         {
             setIdAlert(true)
@@ -52,7 +53,6 @@ const Login = () => {
             .then((res) => {
                 axios.defaults.headers.common["Authorization"] = `Bearer ${res.headers.access_token}`;
                 dispatch(setUser(res.data));
-                navigate('/main');
             })
             .catch((error) => {
                 console.log(error);

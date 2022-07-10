@@ -10,8 +10,9 @@
 .logo
 {
 
-    width: 40%;
-    max-width: 350px;
+    width: 30%;
+    min-width: 200px;
+    max-width: 250px;
     cursor: pointer;
 }
 
@@ -26,6 +27,7 @@
 .content
 {
     margin-top: 30px;
+    margin-bottom: 30px;
     display: flex;
     flex-flow: column;
 }
@@ -73,6 +75,32 @@
     text-align: left;
     padding: 20px;
     border-radius: 10px;
+}
+
+.chartBox
+{
+    width: 80%;
+    max-width: 1200px;
+    margin: 0 auto;
+    margin-top: 20px;
+    border: 1px solid var(--light-gray);
+    text-align: left;
+    padding: 20px;
+    border-radius: 10px;
+}
+
+.chartItem
+{
+    padding-top: 40px;
+    display: flex;
+    flex-flow: column;
+    align-items: center;
+}
+
+.chart
+{
+    width: 250px;
+    height: 250px;
 }
 
 .sectionHeader
@@ -186,6 +214,8 @@
     color: var(--gray-color);
     transition: 0.3s;
     display: flex;
+    padding-bottom: 10px;
+    border-bottom: 1px solid var(--light-gray);
     justify-content: space-between;
 }
 
@@ -267,7 +297,54 @@
     align-items:flex-end;
 }
 
-.fade
+.chartLabel
+{
+    width: 100%;
+    padding-top: 20px;
+    padding-bottom: 20px;
+    display: grid;
+    flex-flow: column;
+    align-items: center;
+    grid-template-columns: 50% 50%;
+    row-gap: 10px;
+    column-gap: 10px;
+    font-size: 18px;
+}
+
+.chartPer
+{
+    padding: 20px;
+    text-align: center;
+    font-family: var(--main-font);
+    color: var(--main-color);
+    font-size: 20px;
+    font-weight: 500;
+    letter-spacing: 1px;
+}
+
+.chartSection
+{
+    text-align: center;
+}
+
+.label
+{
+    width: 40%;
+    min-width: 80px;
+    margin: 0 auto;
+    font-size: 18px;
+}
+
+.labelText
+{
+    text-align: left;
+    color: var(--gray-color);
+    font-family: var(--main-font);
+    font-weight: 300;
+    letter-spacing: 1px;
+}
+
+.tap1, .tap2, .tap3
 {
     animation-name: fade;
     animation-duration: 0.3s;
@@ -306,6 +383,7 @@
     letter-spacing: 1px;
     align-items: center;
     padding: 10px;
+    border-bottom: 1px solid var(--light-gray);
 }
 
 .alertIcon
@@ -321,9 +399,9 @@
 {
     width: 100%;
     display: flex;
-    justify-content: space-between;
-    align-items: center;
-    flex-flow: row;
+    justify-content: start;
+    flex-flow: column;
+    font-weight: 500;
     color: var(--gray-color);
 }
 
@@ -419,12 +497,11 @@
         padding: 6px;
         border-radius: 100%;
         color: white;
-        background-color: #ff6060;
         font-family: var(--main-font);
         line-height: 50%;
     }
     
-    .tap
+    .tap, .label
     {
         font-size: 22px;
     }
@@ -456,21 +533,34 @@
     .noticeDay, .alertTime
     {
         display: inline;
+        font-size: 15px;
+        font-weight: 300;
     }
 
     .tap, .helloText
     {
-     font-size: 28px;
+     font-size: 24px;
     }
 
     .setTap
     {
-        font-size: 30px;
+        font-size: 26px;
     }
 
-    .title
+    .title, .chartPer
     {
         font-size: 24px;;
+    }
+
+    .chart
+    {
+        width: 400px;
+        height: 400px;
+    }
+    
+    .label
+    {
+        min-width: 120px;
     }
 }
 
@@ -488,21 +578,37 @@
         width: 20%;
         min-width: 500px;
         max-width: 600px;
-        border-right: 1px solid var(--light-gray);
-        height: 85vh;
    }
 
-   .dashboard
+   .board
    {
-    font-size: 32px;
+    border-left: 1px solid var(--light-gray);
    }
 }
 
 @media screen and (min-width: 1600px) {
-    .fade
+    .tap1
    {
         grid-template-columns: 50% 50%;
    }
+
+   .tap2
+   {
+    grid-template-columns: 100%;
+   }
+
+   .chartItem
+    {
+        display: flex;
+        flex-flow: row;
+        align-items: center;
+        justify-content: space-between;
+    }
+
+    .chartLabel
+    {
+       width: 60%;
+    }
 }
 
 @keyframes ul

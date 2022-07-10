@@ -13,7 +13,7 @@ const Main = () => {
 
     useEffect(() => {
 
-        if(user.name == admin)
+        if(user.name == "admin")
         {
             setAdmin(true);
         }
