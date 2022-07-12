@@ -6,7 +6,10 @@
     border-bottom: 1px solid var(--light-gray); 
     text-align: center;
 }
-
+.footer
+{
+    padding: 10px;
+}
 .logo
 {
 
@@ -15,7 +18,6 @@
     max-width: 250px;
     cursor: pointer;
 }
-
 .signout
 {
     font-size: 24px;
@@ -23,7 +25,6 @@
     margin-right: 14px;
     cursor: pointer;
 }
-
 .content
 {
     margin-top: 30px;
@@ -31,13 +32,11 @@
     display: flex;
     flex-flow: column;
 }
-
 .helloBox
 {
     text-align: center;
     padding: 20px;
 }
-
 .userImg
 {
     width: 150px;
@@ -45,12 +44,10 @@
     border-radius: 100%;
     border: 4px solid var(--main-color);
 }
-
 .hello
 {
     padding: 20px;
 }
-
 .helloText
 {
     font-family: var(--main-font);
@@ -58,7 +55,6 @@
     font-size: 22px;
     color: var(--gray-color);
 }
-
 .helloItem
 {
     display: flex;
@@ -77,7 +73,14 @@
     border-radius: 10px;
 }
 
-.chartBox
+.tap2Grid
+{
+    width: 100%;
+    display: grid;
+    grid-template-columns: 100%;
+}
+
+.chartBox, .approvalBox, .logBox
 {
     width: 80%;
     max-width: 1200px;
@@ -165,7 +168,7 @@
     color: var(--gray-color);
 }
 
-.messagePhoto
+.messagePhoto, .approvalPhoto
 {
     width: 45px;
     height: 45px;
@@ -299,9 +302,9 @@
 
 .chartLabel
 {
-    width: 100%;
-    padding-top: 20px;
-    padding-bottom: 20px;
+    width: 90%;
+    padding: 20px;
+    margin-top:10px;
     display: grid;
     flex-flow: column;
     align-items: center;
@@ -313,10 +316,13 @@
 
 .chartPer
 {
-    padding: 20px;
+    margin-top: 20px;
+    padding: 10px;
+    border: 1px solid var(--main-color);
+    border-radius: 20px;
+    color: var(--main-color);
     text-align: center;
     font-family: var(--main-font);
-    color: var(--main-color);
     font-size: 20px;
     font-weight: 500;
     letter-spacing: 1px;
@@ -325,6 +331,80 @@
 .chartSection
 {
     text-align: center;
+}
+
+.approvalItem, .logItem
+{
+    display: flex;
+    padding: 20px;
+    justify-content: space-between;
+    align-items: center;
+    font-family: var(--main-font);
+    letter-spacing: 1px;
+    color: var(--gray-color);
+}
+
+.approval, .log
+{
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+}
+
+.approvalState
+{
+    margin-right: 30px;
+    font-weight: 500;
+    padding: 5px;
+    padding-left: 15px;
+    padding-right: 15px;
+    color: rgb(252, 252, 252);
+    border-radius: 20px 20px 20px 20px;
+}
+
+.approvalName
+{
+    margin-left: 10px;
+    font-weight: 500;
+}
+
+.logPositon
+{
+    font-weight: 300;
+    font-size: 12px;
+}
+
+.logTime
+{
+    font-weight: 300;
+    padding: 10px;
+    border: 2px solid;
+    border-radius: 0px 8px 8px 0px;
+    display: none;
+}
+
+.approvalDay
+{
+    font-weight: 300;
+    display: none;
+}
+
+.logName
+{
+    font-weight: 500;
+}
+
+.logState
+{
+    display: inline;
+    padding: 10px;
+    font-size: 14px;
+    border-top: 1px solid;
+    border-left: 1px solid;
+    border-bottom: 1px solid;
+    border-right: 1px solid;
+    font-weight: 500;
+    border-radius: 8px 8px 8px 8px;
 }
 
 .label
@@ -469,7 +549,25 @@
         width: 40%;
     }
 
-    .messagePhoto, .alertIcon
+    .logState
+    {
+        padding: 10px;
+        font-size: 15px;
+        border-top: 2px solid;
+        border-left: 2px solid;
+        border-bottom: 2px solid;
+        border-right: 0;
+        border-radius: 8px 0px 0px 8px;
+    }
+
+    .noticeDay, .alertTime, .approvalDay, .logTime
+    {
+        display: inline;
+        font-size: 15px;
+        font-weight: 300;
+    }
+
+    .messagePhoto, .alertIcon, .approvalPhoto
     {
         width: 60px;
         height: 60px;
@@ -480,7 +578,7 @@
         padding: 10px;
     }
 
-    .userName, .mapItem, .more, .alertText
+    .userName, .mapItem, .more, .alertText, .approvalName, .logName
     {
         font-size: 18px;
     }
@@ -530,12 +628,6 @@
         height: 200px;
     }
 
-    .noticeDay, .alertTime
-    {
-        display: inline;
-        font-size: 15px;
-        font-weight: 300;
-    }
 
     .tap, .helloText
     {
@@ -587,7 +679,7 @@
 }
 
 @media screen and (min-width: 1600px) {
-    .tap1
+    .tap1, .tap2Grid
    {
         grid-template-columns: 50% 50%;
    }
@@ -607,6 +699,7 @@
 
     .chartLabel
     {
+        margin-left: 10%;
        width: 60%;
     }
 }

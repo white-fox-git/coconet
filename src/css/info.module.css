@@ -1,0 +1,17 @@
+@import url('./default.css');
+
+.header
+{
+    padding: 10px;
+    border-bottom: 1px solid var(--light-gray); 
+    text-align: center;
+}
+
+.logo
+{
+
+    width: 30%;
+    min-width: 200px;
+    max-width: 250px;
+    cursor: pointer;
+}
