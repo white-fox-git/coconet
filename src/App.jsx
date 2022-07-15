@@ -6,6 +6,7 @@ import NotFound from "./pages/notFound";
 import FindUser from "./pages/findUser";
 import Chat from "./pages/chat";
 import Info from "./pages/info";
+import Notice from "./pages/notice";
 
 const App = () => {
   return (
@@ -15,6 +16,8 @@ const App = () => {
       <Route path ="/findUser" element = {<FindUser />} />
       <Route path ="/chat" element = {<Chat />} />
       <Route path ="/chat/:id" element = {<Chat />} />
+      <Route path ="/notice" element = {<Notice />} />
+      <Route path ="/notice/:id" element = {<Notice />} />
       <Route path ="/info" element = {<Info />} />
       <Route path ="*" element = {<NotFound/>} />
     </Routes>

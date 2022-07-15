@@ -73,6 +73,53 @@
     border-radius: 10px;
 }
 
+.pushTodo
+{  
+    padding-top: 20px;
+    padding-bottom: 10px;
+    text-align: center;
+    font-family: var(--main-font);
+}
+
+.todoCheck
+{
+    width: 18px;
+    height: 18px;
+}
+
+.todoInput
+{
+    width: 70%;
+    color: var(--gray-color);
+    height: 35px;
+    border: 1px solid #cecece;
+    padding-left: 10px;
+    margin-right: 5px;
+    
+}
+
+.todoSubmit
+{
+    width: 20%;
+    height: 38px;
+    color: white;
+    background-color: var(--main-color);
+    cursor: pointer;
+    border: 0;
+    border-radius: 4px;
+}
+
+.todoSubmit:hover
+{
+    background-color: var(--hover-color);
+}
+
+.todoInput:focus
+{
+    outline: none;
+}
+
+
 .tap2Grid
 {
     width: 100%;
@@ -537,6 +584,54 @@
     cursor: pointer;
 }
 
+.deviceInfo
+{
+    padding: 10px;
+    margin-top: 10px;
+    font-family: var(--main-font);
+    letter-spacing: 1px;
+    font-size: 14px;
+    font-weight: 300;
+}
+
+.deviceTitle
+{
+    font-weight: 500;
+    color: var(--main-color);
+    font-size: 18px;
+    margin-bottom: 15px;
+}
+
+.acceptIcon
+{
+    width: 45px;
+    height: 45px;
+    padding: 5px;
+    background: url('./image/bg_on.png');
+    background-size: cover;
+    margin-top: 10px;
+    margin-right: 10px;
+    display: inline-block;
+}
+
+.banIcon
+{
+    width: 45px;
+    height: 45px;
+    padding: 5px;
+    background: url('./image/bg_off.png');
+    background-size: cover;
+    margin-top: 10px;
+    margin-right: 10px;
+    display: inline-block;
+}
+
+.icon
+{
+    width: 45px;
+    height: 45px;
+}
+
 
 @media screen and (min-width: 769px) {
     .helloItem
@@ -687,6 +782,11 @@
    .tap2
    {
     grid-template-columns: 100%;
+   }
+
+   .tap3
+   {
+    grid-template-columns: 55% 45%;
    }
 
    .chartItem

@@ -48,7 +48,17 @@ const Login = () => {
         }
         else
         {
-            axios.post('URL', JSON.stringify({email : email, pwd : pwd}))
+            let json = JSON.stringify({email : email, password : pwd});
+            console.log(json);
+
+            axios({
+                url : 'http://211.200.250.190:7070/coconet/login',
+                method : "post",
+                data : json,
+                headers : {
+                    'Content-Type': 'application/json'
+                }
+            })
             .then((res) => {
                 dispatch(setUser(res.data));
                 navigate('/main');

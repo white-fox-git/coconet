@@ -1,14 +1,13 @@
 import { configureStore, createSlice } from '@reduxjs/toolkit'
 import axios from 'axios';
 
-const defaultData = {name : '', auth : false};
+const defaultData = {name : '김현빈', auth : true};
 
 const user = createSlice({
     name : "user",
-    initialState : {name : '김현빈', auth : true}, // user state 기본 값
+    initialState : defaultData, // user state 기본 값
     reducers : {
         setUser(state, res){
-            
             return res.payload;
         },
         removeUser(state)
