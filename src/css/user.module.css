@@ -61,6 +61,32 @@
     flex-flow: column;
 }
 
+.stateBox
+{
+    padding: 20px;
+}
+
+.stateBtn
+{
+    width: 80px;
+    margin: 10px;
+    padding: 8px;
+    border: 0;
+    border-radius: 8px;
+    cursor: pointer;
+    background-color: var(--main-color);
+    color: white;
+    font-family: var(--main-font);
+    font-size: 18px;
+    font-weight: 300;
+    letter-spacing: 1px;
+}
+
+.stateBtn:hover
+{
+    background-color: var(--hover-color);
+}
+
 .todayBox, .messageBox
 {
     width: 80%;
@@ -127,10 +153,22 @@
     grid-template-columns: 100%;
 }
 
-.chartBox, .approvalBox, .logBox
+.approvalBox, .logBox
 {
     width: 80%;
     max-width: 1200px;
+    margin: 0 auto;
+    margin-top: 20px;
+    border: 1px solid var(--light-gray);
+    text-align: left;
+    padding: 20px;
+    border-radius: 10px;
+}
+
+.chartBox
+{
+    width: 80%;
+    max-width: 1400px;
     margin: 0 auto;
     margin-top: 20px;
     border: 1px solid var(--light-gray);
@@ -365,8 +403,6 @@
 {
     margin-top: 20px;
     padding: 10px;
-    border: 1px solid var(--main-color);
-    border-radius: 20px;
     color: var(--main-color);
     text-align: center;
     font-family: var(--main-font);
@@ -592,14 +628,52 @@
     letter-spacing: 1px;
     font-size: 14px;
     font-weight: 300;
+    color: var(--gray-color);
+}
+
+.deviceInfoIcon
+{
+    display: inline-block;
+    width: 40px;
+    padding: 4px;
+    text-align: center;
+    margin-top: 8px;
+    margin-right: 8px;
+    border: 1px solid var(--main-color);
+    color: var(--main-color);
+    font-weight: 300;
+    border-radius: 4px;
+}
+
+.deviceTitleIcon
+{
+    color: #8f8f8f;
 }
 
 .deviceTitle
 {
     font-weight: 500;
-    color: var(--main-color);
+    color: var(--gray-color);
     font-size: 18px;
-    margin-bottom: 15px;
+    margin-bottom: 5px;
+}
+
+.deviceName
+{
+    margin-top: 10px;
+    font-size: 18px;
+    font-weight: 500;
+}
+
+.deviceOs
+{
+    font-size: 16px;
+}
+
+.iconBox
+{
+    text-align: left;
+    padding: 5px;
 }
 
 .acceptIcon
@@ -678,7 +752,7 @@
         font-size: 18px;
     }
 
-    .lastMessage
+    .lastMessage, .deviceInfo
     {
         font-size: 16px;
     }
@@ -694,9 +768,20 @@
         line-height: 50%;
     }
     
-    .tap, .label
+    .deviceTitle
+    {
+        font-size: 20px;
+    }
+
+    .tap, .label, .deviceOs, .deviceName
     {
         font-size: 22px;
+    }
+
+    .acceptIcon, .banIcon, .icon
+    {
+        width: 55px;
+        height: 55px;
     }
 
     .setTap
@@ -741,8 +826,8 @@
 
     .chart
     {
-        width: 400px;
-        height: 400px;
+        width: 300px;
+        height: 300px;
     }
     
     .label
@@ -779,10 +864,10 @@
         grid-template-columns: 50% 50%;
    }
 
-   .tap2
+   .tap2, .chartLabel
    {
-    grid-template-columns: 100%;
-   }
+        grid-template-columns: 100%;
+   }   
 
    .tap3
    {
@@ -791,16 +876,14 @@
 
    .chartItem
     {
-        display: flex;
-        flex-flow: row;
-        align-items: center;
-        justify-content: space-between;
+        display: grid;
+        grid-template-columns: 50% 50%;
     }
 
     .chartLabel
     {
         margin-left: 10%;
-       width: 60%;
+        width: 60%;
     }
 }
 

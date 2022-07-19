@@ -15,7 +15,7 @@ const Main = () => {
 
     useEffect(() => {
 
-        if(user.name == '' && user.auth == false)
+        if(user.name == '' || user.auth == false)
         {
             dispatch(removeUser());
             navigate('/');

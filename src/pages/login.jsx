@@ -55,12 +55,17 @@ const Login = () => {
                 url : 'http://211.200.250.190:7070/coconet/login',
                 method : "post",
                 data : json,
+                responseType : 'json',
                 headers : {
-                    'Content-Type': 'application/json'
+                    'Content-Type': 'application/json',
+                    'Access-Control-Allow-Origin' : '*'
                 }
             })
             .then((res) => {
                 dispatch(setUser(res.data));
+                console.log(res);
+                console.log(res.headers);
+                console.log(res.data);
                 navigate('/main');
             })
             .catch((error) => {

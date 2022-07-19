@@ -14,3 +14,10 @@
     max-width: 250px;
     cursor: pointer;
 }
+
+.chatBox
+{
+    width: 20%;
+    max-width: 700px;
+    border: 1px solid;
+}

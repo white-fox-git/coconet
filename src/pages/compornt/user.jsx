@@ -24,9 +24,9 @@ const User = () =>
     const [message, setMessage] = useState();
 
     const getTodoList = () => {
-        axios.get('')
+        axios.post('', {name : user.name})
         .then((res) => {
-
+            setTodoList(res.data);
         })
         .catch((error) => {
             console.log('Todo List Error => ' + error);
@@ -34,9 +34,9 @@ const User = () =>
     }
 
     const getMessage = () => {
-        axios.get('')
+        axios.post('', {name : user.name})
         .then((res) => {
-
+            setMessage(res.data);
         })
         .catch((error) => {
             console.log('Message Error => ' + error);
@@ -49,11 +49,23 @@ const User = () =>
     }, [])
 
     const todoSubmit = () => {
-        axios.post('URL', JSON.stringify({todo : todo}))
+        axios.post('URL', JSON.stringify({user : user.name, todo : todo}))
         .then((res) => {
             console.log('Success : ' + res.data);
             getTodoList();
         }).catch((error) => {
+            console.log(error);
+        })
+    }
+
+    const pushState = (state) => {
+
+        console.log({name : user.name, state : state});
+        axios.post('URL', {name : user.name, state : state})
+        .then((data) => {
+            console.log(data.res);
+        })
+        .catch((error) => {
             console.log(error);
         })
     }
@@ -68,6 +80,11 @@ const User = () =>
                         <img className={style.userImg} src="/logo.png" /*Get Server *//>
                         <div className={style.hello}>
                             <span className={style.helloText}>{user.name}님 환영합니다</span>
+                        </div>
+                        <div className = {style.stateBox}>
+                            <button className = {`${style.attendance}, ${style.stateBtn}`} onClick ={() => pushState('출근')}>출근</button>
+                            <button className = {`${style.leave}, ${style.stateBtn}`} onClick ={() => pushState('퇴근')}>퇴근</button>
+                            <button className = {`${style.rest}, ${style.stateBtn}`} onClick ={() => pushState('휴식')}>휴식</button>
                         </div>
                         <div className={style.helloItem}>
                             <div className={style.todayBox}>
@@ -244,14 +261,15 @@ const Tap1 = () =>
 
 const Tap2 = () =>
 {
-    const [chartData, serChartData] = useState();
+    const [chartData, setChartData] = useState();
     const [approvalData, setApprovalData] = useState();
     const [logData, setLogData] = useState();
 
     const getChartData = () => {
-        axios.get('')
+        axios.get('http://211.200.250.190:7070/coconet/board/chart')
         .then((res) => {
-
+            setChartData(res.data);
+            console.log(res.data);
         })
         .catch((error) => {
             console.log('Chart Error => ' + error);
@@ -259,9 +277,9 @@ const Tap2 = () =>
     }
 
     const getApprovalData = () => {
-        axios.get('')
+        axios.get('http://211.200.250.190:7070/coconet/board/approval')
         .then((res) => {
-
+            setApprovalData(res.data);
         })
         .catch((error) => {
             console.log('Approval Error => ' + error);
@@ -269,9 +287,9 @@ const Tap2 = () =>
     }
 
     const getLogData = () => {
-        axios.get('')
+        axios.get('http://211.200.250.190:7070/coconet/board/log')
         .then((res) => {
-
+            setLogData(res.data);
         })
         .catch((error) => {
             console.log('Log Error => ' + error);
@@ -390,11 +408,20 @@ const Tap2 = () =>
 const Tap3 = () =>
 {
 
-    const [deviceLog, setDeviceLog] = useState();
+    const [deviceLog, setDeviceLog] = useState([
+        {text : '업무 시간 시작', img : 'https://previews.123rf.com/images/jovanas/jovanas1602/jovanas160201359/52097507-%EC%95%8C%EB%A6%BC-%EC%95%84%EC%9D%B4%EC%BD%98.jpg', time : '2022.07.01 (금) 9:00'},
+        {text : '업무 시간 시작', img : 'https://previews.123rf.com/images/jovanas/jovanas1602/jovanas160201359/52097507-%EC%95%8C%EB%A6%BC-%EC%95%84%EC%9D%B4%EC%BD%98.jpg', time : '2022.07.01 (금) 9:00'},
+        {text : '업무 시간 시작', img : 'https://previews.123rf.com/images/jovanas/jovanas1602/jovanas160201359/52097507-%EC%95%8C%EB%A6%BC-%EC%95%84%EC%9D%B4%EC%BD%98.jpg', time : '2022.07.01 (금) 9:00'},
+        {text : '업무 시간 시작', img : 'https://previews.123rf.com/images/jovanas/jovanas1602/jovanas160201359/52097507-%EC%95%8C%EB%A6%BC-%EC%95%84%EC%9D%B4%EC%BD%98.jpg', time : '2022.07.01 (금) 9:00'},
+        {text : '업무 시간 시작', img : 'https://previews.123rf.com/images/jovanas/jovanas1602/jovanas160201359/52097507-%EC%95%8C%EB%A6%BC-%EC%95%84%EC%9D%B4%EC%BD%98.jpg', time : '2022.07.01 (금) 9:00'},
+        {text : '업무 시간 시작', img : 'https://previews.123rf.com/images/jovanas/jovanas1602/jovanas160201359/52097507-%EC%95%8C%EB%A6%BC-%EC%95%84%EC%9D%B4%EC%BD%98.jpg', time : '2022.07.01 (금) 9:00'},
+        {text : '업무 시간 시작', img : 'https://previews.123rf.com/images/jovanas/jovanas1602/jovanas160201359/52097507-%EC%95%8C%EB%A6%BC-%EC%95%84%EC%9D%B4%EC%BD%98.jpg', time : '2022.07.01 (금) 9:00'}
+    ]);
     
     const [device, setDevice] = useState(
         {
-            name : 'iPhone 12 mini',
+            name : 'Galuxy Note 10+',
+            os : 'Android',
             camera : true,
             mike : true,
             record : true,
@@ -412,7 +439,7 @@ const Tap3 = () =>
                 <div className={style.sectionHeader}>
                     <div className={style.titleBox}>
                         <FontAwesomeIcon icon = {faMobileScreen} className={style.titleIcon}/>
-                        <h3 className={style.title}> 현재 등록된 기기</h3>
+                        <h3 className={style.title}> 현재 등록된 디바이스</h3>
                     </div>
                 </div>
                 {
@@ -420,13 +447,13 @@ const Tap3 = () =>
                     <>
                         <section className={style.deviceInfoBox}>
                             <div className={style.deviceInfo}>
-                                <h5 className={style.deviceTitle}>사용중인 디바이스</h5>
-                                <p className={style.deviceName}>{device.name}</p>
+                                <h4 classNAme={style.deviceOs}>{device.os}</h4>
+                                <h3 className={style.deviceName}>{device.name}</h3>
                             </div>
                         </section>
                         <section className={style.deviceInfoBox}>
                             <div className={style.deviceInfo}>
-                                <h5 className={style.deviceTitle}><FontAwesomeIcon icon={faCube} /> 전체 상태 보기</h5>
+                                <h5 className={style.deviceTitle}><FontAwesomeIcon icon={faCube} className={style.deviceTitleIcon}/> 전체 상태 보기</h5>
                                 <div className={style.iconBox}>
                                     <div className={device.camera == true ? style.acceptIcon : style.banIcon}>
                                         <img src='/ic_camera.svg' className={style.icon}/>
@@ -445,7 +472,7 @@ const Tap3 = () =>
                         </section>
                         <section className={style.deviceInfoBox}>
                             <div className={style.deviceInfo}>
-                                <h5 className={style.deviceTitle}><FontAwesomeIcon icon={faCircleCheck} /> 허용됨</h5>
+                                <h5 className={style.deviceTitle}><FontAwesomeIcon icon={faCircleCheck} className={style.deviceTitleIcon}/> 허용됨</h5>
                                 <span className={style.infoText}>해당 기능은 업무중에도 사용이 가능합니다</span>
                                 <div className={style.iconBox}>
                                 {
@@ -493,7 +520,7 @@ const Tap3 = () =>
                         </section>
                         <section className={style.deviceInfoBox}>
                             <div className={style.deviceInfo}>
-                                <h5 className={style.deviceTitle}><FontAwesomeIcon icon={faBan} /> 차단됨</h5>
+                                <h5 className={style.deviceTitle}><FontAwesomeIcon icon={faBan} className={style.deviceTitleIcon}/> 차단됨</h5>
                                 <span className={style.infoText}>해당 기능은 업무중에 사용이 불가능합니다</span>
                                 <div className={style.iconBox}>
                                     {
@@ -548,26 +575,18 @@ const Tap3 = () =>
                 <div className={style.sectionHeader}>
                     <div className={style.titleBox}>
                         <FontAwesomeIcon icon = {faTimeline} className={style.titleIcon}/>
-                        <h3 className={style.title}> 디바이스 활동 기록</h3>
+                        <h3 className={style.title}> 디바이스 제어 기록</h3>
                     </div>
                 </div>
                 <section className={style.sectionItem}>
                     {
                         deviceLog != null && deviceLog.map((item, idx) => {
                             return(
-                                <div className={style.logItem} key={idx}>
-                                    <div className={style.log}>
-                                        <img src={item.img} className={style.approvalPhoto} />
-                                        <div className={style.logUserInfo}>
-                                            <p className={style.logName}>{item.name}</p>
-                                            <p className={style.logPosition}>{item.position}</p>
-                                        </div>
-                                    </div>
-                                    <div className={style.logTimeBox}>
-                                        <div style={{borderColor : item.color}} className={style.logState}>
-                                                {item.state}
-                                        </div>
-                                        <span style = {{borderColor : item.color}}className={style.logTime}>{item.time}</span>
+                                <div className={style.alertItem} key={idx}>
+                                    <img src = {item.img} className={style.alertIcon}/>
+                                    <div className={style.alertText}>
+                                        <span>{item.text}</span>
+                                        <span className={style.alertTime}>{item.time}</span>
                                     </div>
                                 </div>
                                 )

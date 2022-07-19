@@ -1,4 +1,4 @@
-import React from "react";
+import {React, useState} from "react";
 import style from '../css/chat.module.css';
 import { useNavigate, useParams } from "react-router-dom";
 
@@ -7,6 +7,9 @@ const Chat = () =>
     let navigate = useNavigate();
     let {id} = useParams();
     console.log(id);
+
+    const [message, setMessage] = useState()
+
 
     return(
         <>
