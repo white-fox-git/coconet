@@ -1,7 +1,7 @@
 import { configureStore, createSlice } from '@reduxjs/toolkit'
 import axios from 'axios';
 
-const defaultData = {name : '', auth : false};
+const defaultData = {name : '김현빈', auth : true}
 
 const user = createSlice({
     name : "user",

@@ -63,9 +63,8 @@ const Login = () => {
             })
             .then((res) => {
                 dispatch(setUser(res.data));
-                console.log(res);
-                console.log(res.headers);
-                console.log(res.data);
+                axios.defaults.headers.common['Authorization'] = 'Bearer ' + res.headers.jwt_access_token;
+                localStorage.setItem('TOKEN', res.headers.jwt_refresh_token);
                 navigate('/main');
             })
             .catch((error) => {
