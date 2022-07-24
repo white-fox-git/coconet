@@ -37,6 +37,7 @@
     display: flex;
     flex-flow: column;
 }
+
 .helloBox
 {
     text-align: center;
@@ -853,11 +854,6 @@
         justify-content: start;
     }
 
-   .board
-   {
-    border-left: 1px solid var(--light-gray);
-   }
-
    .setTap
     {
         border-bottom: 5px solid var(--main-color);
@@ -865,8 +861,7 @@
 
     .tap, .setTap
     {
-        width: 10%;
-        min-width: 200px;
+        width: 150px;
         font-size: 22px;
         margin-left: 5%;
     }

@@ -1,5 +1,5 @@
 import {React, useState, useEffect} from "react";
-import { removeUser } from "../../redux";
+import { removeUser } from "../../utils/redux";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faUser, faRightFromBracket, faComment, faThumbTack } from "@fortawesome/free-solid-svg-icons";
 import { useNavigate } from "react-router-dom";

@@ -4,7 +4,7 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faTriangleExclamation} from "@fortawesome/free-solid-svg-icons";
 import { Link, useNavigate } from 'react-router-dom'
 import { useDispatch, useSelector } from "react-redux/es/exports";
-import { setUser } from '../redux'
+import { setUser, removeUser } from '../utils/redux'
 import axios from 'axios';
 
 const Login = () => {
@@ -13,15 +13,18 @@ const Login = () => {
     const [pwd, setPwd] = useState(''); // pwd 값
     const [idAlert, setIdAlert] = useState(false); // id 잘못 입력했을 때 
     const [pwdAlert, setPwdAlert] = useState(false); // pwd 잘못 입력했을 때
-
+    const [serverAlert, setServerAlert] = useState(false);
 
     const navigate = useNavigate(); // 페이지 이동 함수
     const dispatch = useDispatch(); // redux에 있는 state의 함수 실행을 위한 함수
 
-    let user = useSelector((state) => {return state.user}); // redux.jsx에 있는 user state의 값을 가져옴
+    let user = localStorage.getItem('user'); // redux.jsx에 있는 user state의 값을 가져옴
 
     useEffect(() => {
-        if(user.name != ''  && user.auth != false)
+
+        localStorage.setItem('user', JSON.stringify({name : 'admin', authResult : true}));
+
+        if(user != null)
         {
             navigate('/main');
         }
@@ -49,7 +52,6 @@ const Login = () => {
         else
         {
             let json = JSON.stringify({email : email, password : pwd});
-            console.log(json);
 
             axios({
                 url : 'http://211.200.250.190:7070/coconet/login',
@@ -63,14 +65,14 @@ const Login = () => {
             })
             .then((res) => {
                 dispatch(setUser(res.data));
-                axios.defaults.headers.common['Authorization'] = 'Bearer ' + res.headers.jwt_access_token;
-                localStorage.setItem('TOKEN', res.headers.jwt_refresh_token);
+                axios.defaults.headers.common['Jwt_Access_Token'] = res.headers.jwt_access_token;
+                localStorage.setItem('Refresh_Token', res.headers.jwt_refresh_token);
                 navigate('/main');
             })
             .catch((error) => {
                 console.log(error);
-                setPwdAlert(true)
-                setTimeout(() => {setPwdAlert(false)}, 2000); // pwd값이 없을 때 2초동안 alert창
+                setServerAlert(true)
+                setTimeout(() => {setServerAlert(false)}, 2000); // pwd값이 없을 때 2초동안 alert창
             })
         }
     }
@@ -115,6 +117,12 @@ const Login = () => {
                     {
                         pwdAlert == true ? // pwdAlert 값이 true가 되면 경고창을 띄움
                         <p className={style.Alert}><FontAwesomeIcon icon = {faTriangleExclamation} className={style.icon}></FontAwesomeIcon>비밀번호를 확인해주세요.</p>
+                        :
+                        null
+                    }
+                    {
+                        serverAlert == true ? // pwdAlert 값이 true가 되면 경고창을 띄움
+                        <p className={style.Alert}><FontAwesomeIcon icon = {faTriangleExclamation} className={style.icon}></FontAwesomeIcon>서버와의 연결이 원할하지 않습니다.</p>
                         :
                         null
                     }

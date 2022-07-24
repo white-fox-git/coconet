@@ -1,24 +1,50 @@
 import {React, useState} from "react";
-import { removeUser } from "../../redux";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import {  } from "@fortawesome/free-solid-svg-icons";
+import { removeUser } from "../../utils/redux";
 import { useNavigate, Link } from "react-router-dom";
 import { useDispatch } from "react-redux/es/exports";
+import style from "../../css/admin.module.css";
+import CommutingTime from "./commutingTime";
 
 const User = (props) =>
 {
-    const [bar, setBar] = useState(false);
-    let navigate = useNavigate();
-    let dispatch = useDispatch();
 
-    let today = new Date();
-    let year = today.getFullYear();
-    let month = today.getMonth() + 1;
-    let date =  today.getDate();
+    const [tap, setTap] = useState(1);
+    const dispatch = useDispatch();
+    const navigate = useNavigate();
 
     return(
         <>
-           
+           <header className={style.header}>
+                <img src="/logo_text.png" className={style.logo} onClick={() => navigate('/main')}/>
+           </header>
+           <div className = {style.bodyArea}>
+            <aside className={style.aside}>
+                    <div className={style.helloAdmin}>
+                        <h2 className={style.adminLocation}>/Admin</h2>
+                        <p className = {style.adminPage}>관리자 페이지</p>
+                    </div>
+                    <nav className={style.nav}>
+                        <ul className={style.menu}>
+                            <li className={tap == 1 ? style.selectMenuItem : style.menuItem} onClick = {() => {setTap(1)}}>출퇴근시간</li>
+                            <li className={tap == 2 ? style.selectMenuItem : style.menuItem} onClick = {() => {setTap(2)}}>근태 관리</li>
+                            <li className={tap == 3 ? style.selectMenuItem : style.menuItem} onClick = {() => {setTap(3)}}>기기 제어</li>
+                            <li className={tap == 4 ? style.selectMenuItem : style.menuItem} onClick = {() => {setTap(4)}}>사용자 제어</li>
+                            <li className={tap == 5 ? style.selectMenuItem : style.menuItem} onClick = {() => {setTap(5)}}>사용자 로그</li>
+                            <li className={tap == 6 ? style.selectMenuItem : style.menuItem} onClick = {() => {setTap(6)}}>관리자 로그</li>
+                            <li className={tap == 7 ? style.selectMenuItem : style.menuItem} onClick = {() => {setTap(7)}}>신규 회원 추가</li>
+                        </ul>
+                    </nav>
+                    <button className={style.logout} onClick={() => {
+                        dispatch(removeUser());
+                        navigate('/');
+                    }}>로그아웃</button>
+            </aside>
+            <main className={style.main}>
+                {
+                    tap == 1 ? <CommutingTime /> : null
+                }
+            </main>
+           </div>
         </>
     )
 }

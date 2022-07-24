@@ -2,7 +2,7 @@ import {React, useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { useSelector, useDispatch } from "react-redux"
 import axios from "axios";
-import { removeUser } from "../redux";
+import { removeUser, refreshToken } from "../utils/redux";
 import User from './compornt/user';
 import Admin from './compornt/admin';
 
@@ -13,24 +13,30 @@ const Main = () => {
     let user = useSelector((state) => {return state.user}); // user에 reudx안의 user state값을 가져옴
     const [admin, setAdmin] = useState(false);
 
+
     useEffect(() => {
 
-        if(user.name == '' || user.auth == false)
+        const token = localStorage.getItem('Refresh_Token');
+        console.log(user);
+        /*if(user == null ||user.name == null || user.authResult == false || token == null)
         {
             dispatch(removeUser());
             navigate('/');
         }
+        else
+        {
+            dispatch(refreshToken(localStorage.getItem('Refresh_Token')));
+        }*/
 
         if(user.name == "admin")
         {
             setAdmin(true);
         }
-
     }, []);
 
     return(
         <>
-            {admin == false ? <User user = {user}/> : <Admin user = {user} />}
+            {admin == true ? <Admin /> : <User user = {user}/> }
         </>
     )
 }

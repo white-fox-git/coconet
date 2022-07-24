@@ -15,7 +15,6 @@ const WorkStatus = () =>
         axios.get('http://211.200.250.190:7070/coconet/board/chart')
         .then((res) => {
             setChartData(res.data);
-            console.log(res.data);
         })
         .catch((error) => {
             console.log('Chart Error => ' + error);
