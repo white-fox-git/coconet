@@ -28,7 +28,7 @@ const Main = () => {
             dispatch(refreshToken(localStorage.getItem('Refresh_Token')));
         }*/
 
-        if(user.name == "admin")
+        if(user.authResult == true /* && user.admin == true */)
         {
             setAdmin(true);
         }
@@ -36,7 +36,8 @@ const Main = () => {
 
     return(
         <>
-            {admin == true ? <Admin /> : <User user = {user}/> }
+            {admin == true ? <Admin /> : null }
+            {admin == false ? <User /> : null }
         </>
     )
 }

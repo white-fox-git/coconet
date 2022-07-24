@@ -5,6 +5,7 @@
 .header
 {
     padding: 10px;
+    min-width: 1360px;
     border-bottom: 1px solid var(--light-gray); 
     text-align: center;
 }
@@ -124,14 +125,11 @@
 .boardTitle
 {
     font-size: 24px;
-    color: var(--gray-color);
+    color: var(--main-color);
 }
 
-/*-- Commuting Time 영역  -------------------------------------------*/
-
-.commutingTimeBox
+.tableBox
 {
-
     border-top: 3px solid var(--light-gray);
     padding-top: 20px;
     width: 100%;
@@ -139,7 +137,7 @@
     margin-top: 40px;
 }
 
-.commutingTimeItem
+.tableItem
 {
     padding: 5px;
     padding-bottom: 25px;
@@ -148,13 +146,50 @@
     justify-content: space-between;
     align-items: center;
     border-bottom: 1px solid var(--light-gray);
+
 }
 
-.ctiTitle
+.tableTitle
 {
     font-size: 18px;
     letter-spacing: 1px;
 }
+
+.tableTitleMini
+{
+    text-align: center;
+    width: 200px;
+    font-size: 16px;
+    letter-spacing: 1px;
+}
+
+.selectBox
+{
+    width: 200px;
+    height: 34px;
+    padding: 5px;
+}
+
+.selectBox:focus
+{
+    border: 1px solid var(--main-color);
+    outline: none;
+}
+
+.tableInfo
+{
+    text-align: center;
+    width: 200px;
+}
+
+.success
+{
+    margin-left: 30px;
+    margin-top: 25px;
+    color: var(--main-color);
+}
+
+/*-- Commuting Time 영역  -------------------------------------------*/
 
 .ctiInfoBox
 {
@@ -193,6 +228,43 @@
     color:var(--main-color);
 }
 
+/*-- User Log 영역  -------------------------------------------*/
+
+.searchUser
+{
+    border-top: 3px solid var(--light-gray);
+    padding-top: 20px;
+    width: 100%;
+    color: var(--gray-color);
+    margin-top: 40px;
+}
+
+.userSelectBox
+{
+    display: flex;
+    flex-flow: row;
+    align-items: center;
+    margin-top: 30px;
+}
+
+.userSelect
+{
+    margin: 15px;
+}
+
+.searchUserTitle
+{
+    font-size: 16px;
+    color: #7c7c7c;
+    font-weight: 300;
+    margin-bottom: 10px;
+}
+
+.logInfo
+{
+    margin-top: 60px;
+}
+
 @media screen and (min-width: 1920px) {
     /*-- 공통 영역  -------------------------------------------*/
     
@@ -219,11 +291,17 @@
         font-size: 26px;
     }
 
-    /*-- Commuting Time 영역  -------------------------------------------*/
-    .ctiTitle
+    .tableTitle
     {
         font-size: 20px;
     }
+
+    .tableTitleMini
+    {
+        font-size: 18px;
+    }
+
+    /*-- Commuting Time 영역  -------------------------------------------*/
 }
 
 /*-- 애니메이션 영역  -------------------------------------------*/

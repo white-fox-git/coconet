@@ -4,6 +4,9 @@ import { useNavigate, Link } from "react-router-dom";
 import { useDispatch } from "react-redux/es/exports";
 import style from "../../css/admin.module.css";
 import CommutingTime from "./commutingTime";
+import UserLog from "./userLog";
+import AdminLog from "./adminLog";
+import StatusManagement from "./statusManagement";
 
 const User = (props) =>
 {
@@ -42,6 +45,15 @@ const User = (props) =>
             <main className={style.main}>
                 {
                     tap == 1 ? <CommutingTime /> : null
+                }
+                {
+                    tap == 2 ? <StatusManagement /> : null
+                }
+                {
+                    tap == 5 ? <UserLog /> : null
+                }
+                {
+                    tap == 6 ? <AdminLog /> : null
                 }
             </main>
            </div>
