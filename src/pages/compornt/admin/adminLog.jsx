@@ -1,6 +1,6 @@
 import {React, useState, useEffect} from "react";
 import axios from "axios";
-import style from "../../css/admin.module.css";
+import style from "../../../css/admin.module.css";
 
 const AdminLog = () => {
 

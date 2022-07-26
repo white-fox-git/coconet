@@ -1,12 +1,13 @@
 import {React, useState} from "react";
-import { removeUser } from "../../utils/redux";
+import { removeUser } from "../../../utils/redux";
 import { useNavigate, Link } from "react-router-dom";
 import { useDispatch } from "react-redux/es/exports";
-import style from "../../css/admin.module.css";
+import style from "../../../css/admin.module.css";
 import CommutingTime from "./commutingTime";
 import UserLog from "./userLog";
 import AdminLog from "./adminLog";
 import StatusManagement from "./statusManagement";
+import AddUser from "./addUser";
 
 const User = (props) =>
 {
@@ -50,10 +51,19 @@ const User = (props) =>
                     tap == 2 ? <StatusManagement /> : null
                 }
                 {
+                    tap == 3 ? <StatusManagement /> : null
+                }
+                {
+                    tap == 4 ? <StatusManagement /> : null
+                }
+                {
                     tap == 5 ? <UserLog /> : null
                 }
                 {
                     tap == 6 ? <AdminLog /> : null
+                }
+                {
+                    tap == 7 ? <AddUser/> : null
                 }
             </main>
            </div>

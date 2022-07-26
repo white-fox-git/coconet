@@ -2,7 +2,7 @@ import {React, useState, useEffect} from "react";
 import axios from "axios";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faPen, faFloppyDisk } from "@fortawesome/free-solid-svg-icons";
-import style from "../../css/admin.module.css";
+import style from "../../../css/admin.module.css";
 
 const CommutingTime = () => {
 
@@ -41,7 +41,7 @@ const CommutingTime = () => {
         {
             copy[id].select = false;
             setInfo(copy);
-
+            alert(JSON.stringify(copy));
             axios.post('URL', JSON.stringify(copy))
             .then((res) => {
                 setInfo(res.data);

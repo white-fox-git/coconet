@@ -1,10 +1,10 @@
 import {React, useState, useEffect} from "react";
-import { removeUser } from "../../utils/redux";
+import { removeUser } from "../../../utils/redux";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faUser, faRightFromBracket, faComment, faThumbTack } from "@fortawesome/free-solid-svg-icons";
 import { useNavigate } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux/es/exports";
-import style from "../../css/user.module.css";
+import style from "../../../css/user.module.css";
 import axios from "axios";
 import BusinessInfo from "./BusinessInfo";
 import WorkStatus from "./workStatus";
@@ -26,7 +26,7 @@ const User = () =>
     const [message, setMessage] = useState();
 
     const getTodoList = () => {
-        axios.post('', {name : user.name})
+        axios.get(`http://211.200.250.190:7070/coconet/board/todo?username=${user.name}`)
         .then((res) => {
             setTodoList(res.data);
         })
@@ -36,12 +36,17 @@ const User = () =>
     }
 
     const getMessage = () => {
-        axios.post('', {name : user.name})
+        axios.get(`URL/message?message=${user.name}`)
         .then((res) => {
             setMessage(res.data);
         })
         .catch((error) => {
-            console.log('Message Error => ' + error);
+            setMessage([
+                {name : '정사원', photo : 'https://search.pstatic.net/common/?src=http%3A%2F%2Fblogfiles.naver.net%2FMjAyMjA0MDVfMjAy%2FMDAxNjQ5MTI3NjkxMTY5.CIJjlqtoI_U-xEPO4gV0kESVLVzDiZRVqFJVPGiYXbUg.PmCIdXeIy0--BTtGLpVG0Uqfv_skFotargeHYoes5ssg.JPEG.dshm__%2F%25B4%25D9%25BF%25EE%25B7%25CE%25B5%25E5%25C6%25C4%25C0%25CF%25A3%25DF20220405%25A3%25DF120037.jpg&type=sc960_832', message : '일은 언제 다 할 수 있어?', count : 2, id: 0},
+                {name : '김사원', photo : 'https://search.pstatic.net/common/?src=http%3A%2F%2Fblogfiles.naver.net%2FMjAyMTA4MDNfMzQg%2FMDAxNjI3OTUyNzYyNjYx.MeunogcogYoUUdG3dIof_aZRvaJCKGEVHtW9hXte7wYg.9JCJJ8I9OX70w5p4OQB3KRodC3QBPAeUsYKN3vf1Eucg.JPEG.kimjin8946%2F30.jpg&type=sc960_832', message : '선배 이거 어떻게 해요?', count : 1, id: 1},
+                {name : '정부장', photo : 'https://search.pstatic.net/common/?src=http%3A%2F%2Fblogfiles.naver.net%2FMjAyMTA4MDJfMTAy%2FMDAxNjI3ODY3Mjg4OTE4.fSsvI5C1jzRaihZ9cf0Cr_Q0rZca-jKi6b-wcVdoWcsg.J_o6qJGoPuUIKxSTJ4ktNCer6T0mA45FcXWhSpmzBWsg.JPEG.wenice777%2F8.jpeg&type=sc960_832', message : '이번 크리스마스 때 출근 가능한가?', count : 4, id: 2},
+                {name : '유과장', photo : 'https://search.pstatic.net/common/?src=http%3A%2F%2Fblogfiles.naver.net%2FMjAyMTAzMDNfMjEw%2FMDAxNjE0NzgwMzAxNjk1.RymwABmkDl7R4SEqW9wxM7Mac_Zl8zzAXAob7LjccZcg.sWQwom3eaziWTh4BCY0f2D75X3_lwRj1Fw5fIC-aLNwg.JPEG.sosohan_n%2FIMG_3598.JPG&type=sc960_832', message : '자네 휴가가 짤릴 것 같아', count : 2, id: 3},
+            ])
         });
     }
 
@@ -61,8 +66,6 @@ const User = () =>
     }
 
     const pushState = (state) => {
-
-        console.log({name : user.name, state : state});
         axios.post('URL', {name : user.name, state : state})
         .then((data) => {
             console.log(data.res);
@@ -101,7 +104,7 @@ const User = () =>
                                         todoList != null && todoList.map((item, idx) => {
                                             return (
                                             <div className={style.mapItem} key = {idx}>
-                                                <span>{item}</span>
+                                                <span>{item.todo}</span>
                                                 <input type="checkbox" className={style.todoCheck} onClick = {(idx) => {
 
                                                 }}/>

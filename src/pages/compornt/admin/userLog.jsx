@@ -1,15 +1,15 @@
 import {React, useState} from "react";
 import axios from "axios";
-import style from "../../css/admin.module.css";
+import style from "../../../css/admin.module.css";
 
 const UserLog = () => {
 
-    const [department, setDepartment] = useState();
-    const [selectDepartment, setSelectDepartment] = useState();
-    const [position, setPosition] = useState();
-    const [selctPosition, setSelectPosition] = useState();
-    const [userList, setUserList] = useState();
-    const [logInfo, setLogInfo] = useState();
+    const [department, setDepartment] = useState(); // 부서 정보
+    const [selectDepartment, setSelectDepartment] = useState(); // 어떤 부서가 선택되었는가?
+    const [position, setPosition] = useState(); // 직급 정보
+    const [selectPosition, setSelectPosition] = useState(); // 어떤 직급이 선택되었는가?
+    const [userList, setUserList] = useState(); // 유저 정보
+    const [logInfo, setLogInfo] = useState(); // 유저의 로그 정보
 
     const getDepartment = () =>
     {
@@ -23,7 +23,8 @@ const UserLog = () => {
     }
 
     const searchPositon = (team) => {
-        axios.post('URL', JSON.stringify({team : team}))
+        alert(`URL?department=${team}`)
+        axios.get(`URL?department=${team}`)
         .then((res) => {
             setPosition(res.data);
         })
@@ -35,7 +36,8 @@ const UserLog = () => {
     }
 
     const searchUser = (position) => {
-        axios.post('URL', {team : selectDepartment, position : position})
+        alert(`URL?department=${selectDepartment}&position=${position}`);
+        axios.get(`URL?department=${selectDepartment}&position${position}`)
         .then((res) => {
             setUserList(res.data);
         })
@@ -47,7 +49,8 @@ const UserLog = () => {
     }
 
     const getLog = (user) => {
-        axios.post('URL', {team : selectDepartment, position : selctPosition, user : user})
+        alert(`URL?department=${selectDepartment}&position=${selectPosition}&user=${user}`);
+        axios.get(`URL?department=${selectDepartment}&position=${selectPosition}&user=${user}`)
         .then((res) => {
             setLogInfo(res.data);
         })

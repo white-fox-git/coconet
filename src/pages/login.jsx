@@ -19,14 +19,16 @@ const Login = () => {
     const dispatch = useDispatch(); // redux에 있는 state의 함수 실행을 위한 함수
 
     let user = localStorage.getItem('user'); // redux.jsx에 있는 user state의 값을 가져옴
+    let token = sessionStorage.getItem('Refresh_Token');
 
     useEffect(() => {
-
-        localStorage.setItem('user', JSON.stringify({name : 'admin', authResult : true}));
-
-        if(user != null)
+        if(user != null && token != null)
         {
             navigate('/main');
+        }
+        else
+        {
+            sessionStorage.removeItem('Refresh_Token');
         }
     }, []);
 
@@ -66,13 +68,19 @@ const Login = () => {
             .then((res) => {
                 dispatch(setUser(res.data));
                 axios.defaults.headers.common['Jwt_Access_Token'] = res.headers.jwt_access_token;
-                localStorage.setItem('Refresh_Token', res.headers.jwt_refresh_token);
+                sessionStorage.setItem('Refresh_Token', res.headers.jwt_refresh_token);
                 navigate('/main');
             })
             .catch((error) => {
-                console.log(error);
-                setServerAlert(true)
-                setTimeout(() => {setServerAlert(false)}, 2000); // pwd값이 없을 때 2초동안 alert창
+                if(error.response.data.message == "자격 증명에 실패하였습니다.")
+                {
+                    setPwdAlert(true)
+                    setTimeout(() => {setPwdAlert(false)}, 2000); // pwd값이 없을 때 2초동안 alert창
+                }
+                else{
+                    setServerAlert(true)
+                    setTimeout(() => {setServerAlert(false)}, 2000); // pwd값이 없을 때 2초동안 alert창
+                }
             })
         }
     }

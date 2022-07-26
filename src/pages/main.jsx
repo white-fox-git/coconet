@@ -3,8 +3,8 @@ import { useNavigate } from "react-router-dom";
 import { useSelector, useDispatch } from "react-redux"
 import axios from "axios";
 import { removeUser, refreshToken } from "../utils/redux";
-import User from './compornt/user';
-import Admin from './compornt/admin';
+import User from './compornt/user/user';
+import Admin from './compornt/admin/admin';
 
 const Main = () => {
 
@@ -16,20 +16,21 @@ const Main = () => {
 
     useEffect(() => {
 
-        const token = localStorage.getItem('Refresh_Token');
+        const token = sessionStorage.getItem('Refresh_Token');
         console.log(user);
-        /*if(user == null ||user.name == null || user.authResult == false || token == null)
+        if(user == null ||user.name == null || user.authResult == false || token == null)
         {
             dispatch(removeUser());
             navigate('/');
         }
         else
         {
-            dispatch(refreshToken(localStorage.getItem('Refresh_Token')));
-        }*/
+            dispatch(refreshToken(sessionStorage.getItem('Refresh_Token')));
+        }
 
-        if(user.authResult == true /* && user.admin == true */)
+        if(user.name == "admin")
         {
+            console.log("admin입니다");
             setAdmin(true);
         }
     }, []);

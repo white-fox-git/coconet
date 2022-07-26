@@ -3,7 +3,7 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faFlag, faBell, } from "@fortawesome/free-solid-svg-icons";
 import { useNavigate, Link } from "react-router-dom";
 import axios from "axios";
-import style from "../../css/user.module.css";
+import style from "../../../css/user.module.css";
 
 const BusinessInfo = () =>
 {

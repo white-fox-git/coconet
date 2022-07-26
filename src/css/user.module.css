@@ -59,7 +59,7 @@
     font-family: var(--main-font);
     font-weight: 500;
     font-size: 22px;
-    color: var(--gray-color);
+    color: var(--black-color);
 }
 .helloItem
 {
@@ -123,9 +123,9 @@
 .todoInput
 {
     width: 70%;
-    color: var(--gray-color);
+    color: var(--black-color);
     height: 35px;
-    border: 1px solid #cecece;
+    border: 1px solid #B0B8BF;
     padding-left: 10px;
     margin-right: 5px;
     
@@ -255,7 +255,7 @@
     justify-content: start;
     width: 100%;
     text-decoration: none;
-    color: var(--gray-color);
+    color: var(--black-color);
 }
 
 .messagePhoto, .approvalPhoto
@@ -304,7 +304,7 @@
     font-weight: 300;
     letter-spacing: 1px;
     margin-top: 14px;
-    color: var(--gray-color);
+    color: var(--black-color);
     transition: 0.3s;
     display: flex;
     padding-bottom: 10px;
@@ -427,7 +427,7 @@
     align-items: center;
     font-family: var(--main-font);
     letter-spacing: 1px;
-    color: var(--gray-color);
+    color: var(--black-color);
 }
 
 .approval, .log
@@ -504,7 +504,7 @@
 .labelText
 {
     text-align: left;
-    color: var(--gray-color);
+    color: var(--black-color);
     font-family: var(--main-font);
     font-weight: 300;
     letter-spacing: 1px;
@@ -533,7 +533,7 @@
 .noticeLink
 {
     text-decoration: none;
-    color: var(--gray-color);
+    color: var(--black-color);
 }
 
 .noticeDay, .alertTime
@@ -567,7 +567,7 @@
     justify-content: start;
     flex-flow: column;
     font-weight: 500;
-    color: var(--gray-color);
+    color: var(--black-color);
 }
 
 
@@ -630,7 +630,7 @@
     letter-spacing: 1px;
     font-size: 14px;
     font-weight: 300;
-    color: var(--gray-color);
+    color: var(--black-color);
 }
 
 .deviceInfoIcon
@@ -655,7 +655,7 @@
 .deviceTitle
 {
     font-weight: 500;
-    color: var(--gray-color);
+    color: var(--black-color);
     font-size: 18px;
     margin-bottom: 5px;
 }
@@ -674,15 +674,14 @@
 
 .iconBox
 {
-    text-align: left;
     padding: 5px;
 }
 
 .acceptIcon
 {
-    width: 45px;
-    height: 45px;
-    padding: 5px;
+    width: 35px;
+    height: 35px;
+    padding: 10px;
     background: url('./image/bg_on.png');
     background-size: cover;
     margin-top: 10px;
@@ -692,9 +691,9 @@
 
 .banIcon
 {
-    width: 45px;
-    height: 45px;
-    padding: 5px;
+    width: 35px;
+    height: 35px;
+    padding: 10px;
     background: url('./image/bg_off.png');
     background-size: cover;
     margin-top: 10px;
@@ -704,8 +703,8 @@
 
 .icon
 {
-    width: 45px;
-    height: 45px;
+    width: 35px;
+    height: 35px;
 }
 
 
@@ -782,9 +781,10 @@
 
     .acceptIcon, .banIcon, .icon
     {
-        width: 55px;
-        height: 55px;
+        width: 45px;
+        height: 45px;
     }
+
 
     .setTap
     {

@@ -1,6 +1,6 @@
 import { React } from "react";
 import { Link } from "react-router-dom";
-import style from "../../css/user.module.css";
+import style from "../../../css/user.module.css";
 const Message = (props) =>
 {
     return(

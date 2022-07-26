@@ -19,7 +19,7 @@ const user = createSlice({
         {
             console.log('유저 삭제')
             delete axios.defaults.headers.common['Jwt_Access_Token'];
-            localStorage.removeItem('Refresh_Token');
+            sessionStorage.removeItem('Refresh_Token');
             localStorage.removeItem('user');
             const data = {name : '', authResult : false};
 
@@ -42,7 +42,7 @@ const user = createSlice({
                 .then((res) => {
                     axios.defaults.headers.common['Jwt_Access_Token'] = res.headers.jwt_access_token;
                     localStorage.setItem('user', JSON.stringify(res.data));
-                    localStorage.setItem('Refresh_Token', res.headers.jwt_refresh_token);
+                    sessionStorage.setItem('Refresh_Token', res.headers.jwt_refresh_token);
                     console.log('새로운 토큰이 발급되었습니다.');
 
                     return(res.data);

@@ -1,7 +1,7 @@
 import {React, useState, useEffect} from "react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faTimeline, faMobileScreen, faCube, faBan, faCircleCheck } from "@fortawesome/free-solid-svg-icons";
-import style from "../../css/user.module.css";
+import style from "../../../css/user.module.css";
 import axios from "axios";
 
 const DeviceManagement = () =>
@@ -64,7 +64,7 @@ const DeviceManagement = () =>
                                         <img src='/ic_record.svg' className={style.icon}/>
                                     </div>
                                     <div className={device.screenShout == true ? style.acceptIcon : style.banIcon}>
-                                        <img src='/ic_screenShout.svg' className={style.icon}/>
+                                        <img src='/ic_screenshot.svg' className={style.icon}/>
                                     </div>
                                 </div> 
                             </div>
@@ -108,7 +108,7 @@ const DeviceManagement = () =>
                                     device.screenShout == true ?
                                     <>
                                         <div className={style.acceptIcon}>
-                                            <img src='/ic_screenShout.svg' className={style.icon}/>
+                                            <img src='/ic_screenshot.svg' className={style.icon}/>
                                         </div>
                                     </>
                                     :
@@ -156,7 +156,7 @@ const DeviceManagement = () =>
                                         device.screenShout != true ?
                                         <>
                                             <div className={style.banIcon}>
-                                                <img src='/ic_screenShout.svg' className={style.icon}/>
+                                                <img src='/ic_screenshot.svg' className={style.icon}/>
                                             </div>
                                         </>
                                         :

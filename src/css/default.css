@@ -4,10 +4,9 @@
 :root{
     --main-color: #19A2D5;
     --hover-color: #13799e;
-    --sub-color: ;
-    --point-color: ;
     --title-color : #19A2D5;
-    --gray-color: #535353;
+    --black-color: #2A2C2D;
+    --gray-color: #B0B8BF;
     --light-gray: #ebebeb;
     --alert-color: #fff9c4;
     --main-font: 'Noto Sans KR';

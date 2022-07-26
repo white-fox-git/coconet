@@ -44,7 +44,7 @@
 .label
 {
     font-family: var(--main-font);
-    color: var(--gray-color);
+    color: var(--black-color);
     letter-spacing: 1px;
     font-weight: 300;
 }
@@ -129,7 +129,7 @@
     font-family: var(--main-font);
     font-weight: 300;
     letter-spacing: 1px;
-    color: var(--gray-color);
+    color: var(--black-color);
     
 }
 
@@ -140,7 +140,7 @@
 
 .icon
 {
-    color: var(--gray-color);
+    color: var(--black-color);
     margin-right: 14px;
 }
 
