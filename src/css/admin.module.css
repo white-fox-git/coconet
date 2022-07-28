@@ -105,6 +105,18 @@
     background-color: var(--hover-color);
 }
 
+.tip
+{
+    color: var(--main-color);
+    cursor: pointer;
+    margin-top: 10px;
+}
+
+.tipLight
+{
+    margin-right: 5px;
+}
+
 /*-- main 영역  -------------------------------------------*/
 
 .main
@@ -116,6 +128,7 @@
 
 .board
 {
+    margin-top: 30px;
     padding: 50px;
     animation-name: fade;
     animation-duration: 0.5s;
@@ -162,17 +175,34 @@
     letter-spacing: 1px;
 }
 
+.userSelectBox
+{
+    display: flex;
+    flex-flow: row;
+    align-items: center;
+    margin-top: 30px;
+}
+
+.userSelect
+{
+    margin: 15px;
+}
+
+.selectTitle, .inputTitle
+{
+    font-size: 16px;
+    color: #7c7c7c;
+    font-weight: 300;
+    margin-bottom: 10px;
+}
+
 .selectBox
 {
     width: 200px;
     height: 34px;
     padding: 5px;
-}
-
-.selectBox:focus
-{
-    border: 1px solid var(--main-color);
-    outline: none;
+    border-radius: 4px;
+    margin-bottom: 30px;
 }
 
 .tableInfo
@@ -184,10 +214,68 @@
 .success
 {
     margin-left: 30px;
-    margin-top: 25px;
     width: 200px;
     white-space: nowrap;
     color: var(--main-color);
+}
+
+.inputBox
+{
+    display: flex;
+    flex-flow: column;
+    margin: 15px;
+    margin-top: 30px;
+}
+
+.input
+{
+    width: 350px;
+    height: 34px;
+    padding: 5px;
+    padding-left: 15px;
+    font-size: 16px;
+    border-radius: 4px;
+    border: 1px solid var(--gray-color);
+}
+
+.selectBox:focus, .input:focus
+{
+    border: 1px solid var(--main-color);
+    outline: none;
+}
+
+.toggleBtn
+{
+    display: inline-block;
+    width: 45px;
+    padding: 3px;
+    background-color: var(--light-gray);
+    border-radius: 20px;
+    cursor: pointer;
+}
+
+.selectTogle
+{
+    width: 20px;
+    height: 20px;
+    border-radius: 100%;
+    transition: 0.3s;
+    background-color: var(--main-color);
+}
+
+.unselectTogle
+{
+    width: 20px;
+    height: 20px;
+    border-radius: 100%;
+    transition: 0.3s;
+    background-color: #c2c2c2;
+    float: right;
+}
+
+.togle
+{
+    display: none;
 }
 
 /*-- Commuting Time 영역  -------------------------------------------*/
@@ -240,30 +328,33 @@
     margin-top: 40px;
 }
 
-.userSelectBox
-{
-    display: flex;
-    flex-flow: row;
-    align-items: center;
-    margin-top: 30px;
-}
-
-.userSelect
-{
-    margin: 15px;
-}
-
-.searchUserTitle
-{
-    font-size: 16px;
-    color: #7c7c7c;
-    font-weight: 300;
-    margin-bottom: 10px;
-}
-
 .logInfo
 {
     margin-top: 60px;
+}
+
+/*-- addUser 영역  -------------------------------------------*/
+
+.userSubmitBtn
+{
+    margin: 15px;
+    padding: 10px;
+    width: 200px;
+    cursor: pointer;
+    background-color: var(--main-color);
+    font-family: var(--main-font);
+    color: white;
+    border: 0;
+    font-size: 18px;
+    border-radius: 4px;
+    font-weight: 300;
+    transition: 0.3s;
+    margin-top: 30px;
+}
+
+.userSubmitBtn:hover
+{
+    background-color: var(--hover-color);
 }
 
 @media screen and (min-width: 1920px) {
@@ -312,12 +403,12 @@
     from
     {
         opacity: 0%;
-        margin-top: 80px;
+        margin-top: 100px;
     }
 
     to
     {
         opacity: 100%;
-        margin-top: 0px;
+        margin-top: 30px;
     }
 }

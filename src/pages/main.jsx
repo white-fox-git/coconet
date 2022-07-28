@@ -18,7 +18,8 @@ const Main = () => {
 
         const token = sessionStorage.getItem('Refresh_Token');
         console.log(user);
-        if(user == null ||user.name == null || user.authResult == false || token == null)
+        
+        /*if(user == null ||user.name == null || user.authResult == false || token == null)
         {
             dispatch(removeUser());
             navigate('/');
@@ -26,7 +27,7 @@ const Main = () => {
         else
         {
             dispatch(refreshToken(sessionStorage.getItem('Refresh_Token')));
-        }
+        }*/
 
         if(user.name == "admin")
         {

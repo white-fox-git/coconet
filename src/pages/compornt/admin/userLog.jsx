@@ -23,7 +23,6 @@ const UserLog = () => {
     }
 
     const searchPositon = (team) => {
-        alert(`URL?department=${team}`)
         axios.get(`URL?department=${team}`)
         .then((res) => {
             setPosition(res.data);
@@ -36,7 +35,6 @@ const UserLog = () => {
     }
 
     const searchUser = (position) => {
-        alert(`URL?department=${selectDepartment}&position=${position}`);
         axios.get(`URL?department=${selectDepartment}&position${position}`)
         .then((res) => {
             setUserList(res.data);
@@ -49,7 +47,6 @@ const UserLog = () => {
     }
 
     const getLog = (user) => {
-        alert(`URL?department=${selectDepartment}&position=${selectPosition}&user=${user}`);
         axios.get(`URL?department=${selectDepartment}&position=${selectPosition}&user=${user}`)
         .then((res) => {
             setLogInfo(res.data);
@@ -72,7 +69,7 @@ const UserLog = () => {
                 <h4 className={style.tableTitle}>조회할 사용자 선택</h4>
                 <div className={style.userSelectBox}>
                     <div className={style.userSelect}>
-                        <h5 className={style.searchUserTitle}>부서</h5>
+                        <h5 className={style.selectTitle}>부서</h5>
                         <select className={style.selectBox} value={selectDepartment} onClick={() => {getDepartment()}} onChange={(e) => {searchPositon(e.target.value)}}>
                             <option value="" disabled selected>부서 선택</option>
                             {
@@ -85,7 +82,7 @@ const UserLog = () => {
                         </select>
                     </div>
                     <div className={style.userSelect}>
-                        <h5 className={style.searchUserTitle}>직급</h5>
+                        <h5 className={style.selectTitle}>직급</h5>
                         <select className={style.selectBox} onChange={(e) => {searchUser(e.target.value)}}> 
                             <option value="" disabled selected>직급 선택</option>
                             {
@@ -98,7 +95,7 @@ const UserLog = () => {
                         </select>
                     </div>
                     <div className={style.userSelect}>
-                        <h5 className={style.searchUserTitle}>사원명</h5>
+                        <h5 className={style.selectTitle}>사원명</h5>
                         <select className={style.selectBox} onChange={(e) => {getLog(e.target.value)}}>
                             <option value="" disabled selected>사원 선택</option>
                             {
