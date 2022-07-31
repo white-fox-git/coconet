@@ -48,7 +48,7 @@ const DeviceControl = () => {
     }
 
     const getDevice = (user) => {
-        axios.get(`URL?department=${selectDepartment}&position=${position}&user=${user}?device`)
+        axios.get(`URL?department=${selectDepartment}&position=${position}&user=${user}`)
         .then((res) => {
             setDeviceInfo(res.data);
         })
@@ -60,8 +60,6 @@ const DeviceControl = () => {
                 ]
             )
         });
-
-        setSelectPosition(position);
     }
 
     const changeState = (state, idx, item) => {
@@ -175,22 +173,22 @@ const DeviceControl = () => {
                                         <span className={style.tableInfo}>{item.device}</span>
                                         <div className={style.tableInfo}>
                                             <label className={style.toggleBtn} onClick={() => {changeState(item.camera, idx, 1)}}>
-                                                <div className={item.camera == true ? style.selectTogle : style.unselectTogle} />
+                                                <div className={item.camera == true ? style.selectToggle : style.unselectToggle} />
                                             </label>
                                         </div>
                                         <div className={style.tableInfo}>
                                             <label className={style.toggleBtn} onClick={() => {changeState(item.mike, idx, 2)}}>
-                                                <div className={item.mike == true ? style.selectTogle : style.unselectTogle} />
+                                                <div className={item.mike == true ? style.selectToggle : style.unselectToggle} />
                                             </label>
                                         </div>
                                         <div className={style.tableInfo}>
                                             <label className={style.toggleBtn} onClick={() => {changeState(item.record, idx, 3)}}>
-                                                <div className={item.record == true ? style.selectTogle : style.unselectTogle} />
+                                                <div className={item.record == true ? style.selectToggle : style.unselectToggle} />
                                             </label>
                                         </div>
                                         <div className={style.tableInfo}>
                                             <label className={style.toggleBtn} onClick={() => {changeState(item.screenShot, idx, 4)}}>
-                                                <div className={item.screenShot == true ? style.selectTogle : style.unselectTogle} />
+                                                <div className={item.screenShot == true ? style.selectToggle : style.unselectToggle} />
                                             </label>
                                         </div>
                                     </div>

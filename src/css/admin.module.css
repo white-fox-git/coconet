@@ -254,7 +254,7 @@
     cursor: pointer;
 }
 
-.selectTogle
+.selectToggle
 {
     width: 20px;
     height: 20px;
@@ -263,7 +263,7 @@
     background-color: var(--main-color);
 }
 
-.unselectTogle
+.unselectToggle
 {
     width: 20px;
     height: 20px;
@@ -271,11 +271,6 @@
     transition: 0.3s;
     background-color: #c2c2c2;
     float: right;
-}
-
-.togle
-{
-    display: none;
 }
 
 /*-- Commuting Time 영역  -------------------------------------------*/

@@ -18,6 +18,14 @@ const WorkStatus = () =>
         })
         .catch((error) => {
             console.log('Chart Error => ' + error);
+            setChartData([
+                {title : '근무중', value : 60, color : '#a1c6f1'},
+                {title : '휴식', value : 7, color : '#7bdfd3'},
+                {title : '외근', value : 11, color : '#4955ba'},
+                {title : '휴가', value : 4, color : '#70a78b'},
+                {title : '출장', value : 3, color : '#b378c9'},
+                {title : '출근전', value : 15, color : '#cccccc'}
+            ]);
         })
     }
 
@@ -28,6 +36,16 @@ const WorkStatus = () =>
         })
         .catch((error) => {
             console.log('Approval Error => ' + error);
+            setApprovalData(
+                [
+                    {state : '휴가', color : '#86ca89', name: '정사원',day : '2022.04.03(금)', img : 'https://search.pstatic.net/common/?src=http%3A%2F%2Fblogfiles.naver.net%2FMjAyMjA0MDVfMjAy%2FMDAxNjQ5MTI3NjkxMTY5.CIJjlqtoI_U-xEPO4gV0kESVLVzDiZRVqFJVPGiYXbUg.PmCIdXeIy0--BTtGLpVG0Uqfv_skFotargeHYoes5ssg.JPEG.dshm__%2F%25B4%25D9%25BF%25EE%25B7%25CE%25B5%25E5%25C6%25C4%25C0%25CF%25A3%25DF20220405%25A3%25DF120037.jpg&type=sc960_832'},
+                    {state : '휴가', color : '#86ca89', name: '정사원',day : '2022.04.03(금)', img : 'https://search.pstatic.net/common/?src=http%3A%2F%2Fblogfiles.naver.net%2FMjAyMjA0MDVfMjAy%2FMDAxNjQ5MTI3NjkxMTY5.CIJjlqtoI_U-xEPO4gV0kESVLVzDiZRVqFJVPGiYXbUg.PmCIdXeIy0--BTtGLpVG0Uqfv_skFotargeHYoes5ssg.JPEG.dshm__%2F%25B4%25D9%25BF%25EE%25B7%25CE%25B5%25E5%25C6%25C4%25C0%25CF%25A3%25DF20220405%25A3%25DF120037.jpg&type=sc960_832'},
+                    {state : '휴가', color : '#86ca89', name: '정사원',day : '2022.04.03(금)', img : 'https://search.pstatic.net/common/?src=http%3A%2F%2Fblogfiles.naver.net%2FMjAyMjA0MDVfMjAy%2FMDAxNjQ5MTI3NjkxMTY5.CIJjlqtoI_U-xEPO4gV0kESVLVzDiZRVqFJVPGiYXbUg.PmCIdXeIy0--BTtGLpVG0Uqfv_skFotargeHYoes5ssg.JPEG.dshm__%2F%25B4%25D9%25BF%25EE%25B7%25CE%25B5%25E5%25C6%25C4%25C0%25CF%25A3%25DF20220405%25A3%25DF120037.jpg&type=sc960_832'},
+                    {state : '휴가', color : '#86ca89', name: '정사원',day : '2022.04.03(금)', img : 'https://search.pstatic.net/common/?src=http%3A%2F%2Fblogfiles.naver.net%2FMjAyMjA0MDVfMjAy%2FMDAxNjQ5MTI3NjkxMTY5.CIJjlqtoI_U-xEPO4gV0kESVLVzDiZRVqFJVPGiYXbUg.PmCIdXeIy0--BTtGLpVG0Uqfv_skFotargeHYoes5ssg.JPEG.dshm__%2F%25B4%25D9%25BF%25EE%25B7%25CE%25B5%25E5%25C6%25C4%25C0%25CF%25A3%25DF20220405%25A3%25DF120037.jpg&type=sc960_832'},
+                    {state : '휴가', color : '#86ca89', name: '정사원',day : '2022.04.03(금)', img : 'https://search.pstatic.net/common/?src=http%3A%2F%2Fblogfiles.naver.net%2FMjAyMjA0MDVfMjAy%2FMDAxNjQ5MTI3NjkxMTY5.CIJjlqtoI_U-xEPO4gV0kESVLVzDiZRVqFJVPGiYXbUg.PmCIdXeIy0--BTtGLpVG0Uqfv_skFotargeHYoes5ssg.JPEG.dshm__%2F%25B4%25D9%25BF%25EE%25B7%25CE%25B5%25E5%25C6%25C4%25C0%25CF%25A3%25DF20220405%25A3%25DF120037.jpg&type=sc960_832'},
+                    {state : '휴가', color : '#86ca89', name: '정사원',day : '2022.04.03(금)', img : 'https://search.pstatic.net/common/?src=http%3A%2F%2Fblogfiles.naver.net%2FMjAyMjA0MDVfMjAy%2FMDAxNjQ5MTI3NjkxMTY5.CIJjlqtoI_U-xEPO4gV0kESVLVzDiZRVqFJVPGiYXbUg.PmCIdXeIy0--BTtGLpVG0Uqfv_skFotargeHYoes5ssg.JPEG.dshm__%2F%25B4%25D9%25BF%25EE%25B7%25CE%25B5%25E5%25C6%25C4%25C0%25CF%25A3%25DF20220405%25A3%25DF120037.jpg&type=sc960_832'},
+                ]
+            )
         })
     }
 
@@ -38,6 +56,16 @@ const WorkStatus = () =>
         })
         .catch((error) => {
             console.log('Log Error => ' + error);
+            setLogData(
+                [
+                    {state : '퇴근', color : '#86ca89', name: '김대리', position : '백엔드 개발', time : '오후 07:30', img : 'https://search.pstatic.net/common/?src=http%3A%2F%2Fblogfiles.naver.net%2FMjAyMjA0MDVfMjAy%2FMDAxNjQ5MTI3NjkxMTY5.CIJjlqtoI_U-xEPO4gV0kESVLVzDiZRVqFJVPGiYXbUg.PmCIdXeIy0--BTtGLpVG0Uqfv_skFotargeHYoes5ssg.JPEG.dshm__%2F%25B4%25D9%25BF%25EE%25B7%25CE%25B5%25E5%25C6%25C4%25C0%25CF%25A3%25DF20220405%25A3%25DF120037.jpg&type=sc960_832' },
+                    {state : '퇴근', color : '#86ca89', name: '김대리', position : '백엔드 개발', time : '오후 07:30', img : 'https://search.pstatic.net/common/?src=http%3A%2F%2Fblogfiles.naver.net%2FMjAyMjA0MDVfMjAy%2FMDAxNjQ5MTI3NjkxMTY5.CIJjlqtoI_U-xEPO4gV0kESVLVzDiZRVqFJVPGiYXbUg.PmCIdXeIy0--BTtGLpVG0Uqfv_skFotargeHYoes5ssg.JPEG.dshm__%2F%25B4%25D9%25BF%25EE%25B7%25CE%25B5%25E5%25C6%25C4%25C0%25CF%25A3%25DF20220405%25A3%25DF120037.jpg&type=sc960_832' },
+                    {state : '퇴근', color : '#86ca89', name: '김대리', position : '백엔드 개발', time : '오후 07:30', img : 'https://search.pstatic.net/common/?src=http%3A%2F%2Fblogfiles.naver.net%2FMjAyMjA0MDVfMjAy%2FMDAxNjQ5MTI3NjkxMTY5.CIJjlqtoI_U-xEPO4gV0kESVLVzDiZRVqFJVPGiYXbUg.PmCIdXeIy0--BTtGLpVG0Uqfv_skFotargeHYoes5ssg.JPEG.dshm__%2F%25B4%25D9%25BF%25EE%25B7%25CE%25B5%25E5%25C6%25C4%25C0%25CF%25A3%25DF20220405%25A3%25DF120037.jpg&type=sc960_832' },
+                    {state : '퇴근', color : '#86ca89', name: '김대리', position : '백엔드 개발', time : '오후 07:30', img : 'https://search.pstatic.net/common/?src=http%3A%2F%2Fblogfiles.naver.net%2FMjAyMjA0MDVfMjAy%2FMDAxNjQ5MTI3NjkxMTY5.CIJjlqtoI_U-xEPO4gV0kESVLVzDiZRVqFJVPGiYXbUg.PmCIdXeIy0--BTtGLpVG0Uqfv_skFotargeHYoes5ssg.JPEG.dshm__%2F%25B4%25D9%25BF%25EE%25B7%25CE%25B5%25E5%25C6%25C4%25C0%25CF%25A3%25DF20220405%25A3%25DF120037.jpg&type=sc960_832' },
+                    {state : '퇴근', color : '#86ca89', name: '김대리', position : '백엔드 개발', time : '오후 07:30', img : 'https://search.pstatic.net/common/?src=http%3A%2F%2Fblogfiles.naver.net%2FMjAyMjA0MDVfMjAy%2FMDAxNjQ5MTI3NjkxMTY5.CIJjlqtoI_U-xEPO4gV0kESVLVzDiZRVqFJVPGiYXbUg.PmCIdXeIy0--BTtGLpVG0Uqfv_skFotargeHYoes5ssg.JPEG.dshm__%2F%25B4%25D9%25BF%25EE%25B7%25CE%25B5%25E5%25C6%25C4%25C0%25CF%25A3%25DF20220405%25A3%25DF120037.jpg&type=sc960_832' },
+                    {state : '퇴근', color : '#86ca89', name: '김대리', position : '백엔드 개발', time : '오후 07:30', img : 'https://search.pstatic.net/common/?src=http%3A%2F%2Fblogfiles.naver.net%2FMjAyMjA0MDVfMjAy%2FMDAxNjQ5MTI3NjkxMTY5.CIJjlqtoI_U-xEPO4gV0kESVLVzDiZRVqFJVPGiYXbUg.PmCIdXeIy0--BTtGLpVG0Uqfv_skFotargeHYoes5ssg.JPEG.dshm__%2F%25B4%25D9%25BF%25EE%25B7%25CE%25B5%25E5%25C6%25C4%25C0%25CF%25A3%25DF20220405%25A3%25DF120037.jpg&type=sc960_832' },
+                ]
+            )
         })
     }
 

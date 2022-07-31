@@ -5,6 +5,7 @@ import axios from "axios";
 import { removeUser, refreshToken } from "../utils/redux";
 import User from './compornt/user/user';
 import Admin from './compornt/admin/admin';
+axios.defaults.timeout = 1000;
 
 const Main = () => {
 

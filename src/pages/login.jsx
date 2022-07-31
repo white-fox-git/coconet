@@ -6,6 +6,7 @@ import { Link, useNavigate } from 'react-router-dom'
 import { useDispatch, useSelector } from "react-redux/es/exports";
 import { setUser, removeUser } from '../utils/redux'
 import axios from 'axios';
+axios.defaults.timeout = 2000;
 
 const Login = () => {
 
@@ -21,7 +22,7 @@ const Login = () => {
     let user = localStorage.getItem('user'); // redux.jsx에 있는 user state의 값을 가져옴
     let token = sessionStorage.getItem('Refresh_Token');
 
-    localStorage.setItem('user', JSON.stringify({name : "admin", authResult : true}));
+    localStorage.setItem('user', JSON.stringify({name : "김현빈", authResult : true, state : "출근전"}));
 
     useEffect(() => {
         if(user != null /*&& token != null*/)

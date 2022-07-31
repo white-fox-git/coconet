@@ -20,6 +20,7 @@ const User = () =>
     const [todo, setTodo] = useState();
     const [ul, setUl] = useState(false);
     const [tap, setTap] = useState(0);
+    const [state, setState] = useState(user.state);
 
     // Get Server
     const [todoList, setTodoList] = useState();
@@ -69,9 +70,11 @@ const User = () =>
         axios.post('URL', {name : user.name, state : state})
         .then((data) => {
             console.log(data.res);
+            setState(state);
         })
         .catch((error) => {
             console.log(error);
+            setState(state);
         })
     }
 
@@ -82,15 +85,34 @@ const User = () =>
            </header>
            <div className={style.content}>
                 <div className={style.helloBox}>
-                        <img className={style.userImg} src="/logo.png" /*Get Server *//>
+                    <div className={style.userProfile}>
+                        <div className={style.imgBox}>
+                            <img className={style.userImg} src="/logo.png" /*Get Server *//>
+                        </div>
                         <div className={style.hello}>
-                            <span className={style.helloText}>{user.name}님 환영합니다</span>
+                            {
+                                state == "업무" ? <div className={style.workIcon} /> : null
+                            }
+                            {
+                                state == "휴식" ? <div className={style.restIcon} /> : null
+                            }
+                            {
+                                state == "출근전" ? <div className={style.goHomeIcon} /> : null
+                            }
+                            <div className={style.helloText}>{user.name}님 환영합니다</div>
                         </div>
                         <div className = {style.stateBox}>
-                            <button className = {`${style.attendance}, ${style.stateBtn}`} onClick ={() => pushState('출근')}>출근</button>
-                            <button className = {`${style.leave}, ${style.stateBtn}`} onClick ={() => pushState('퇴근')}>퇴근</button>
-                            <button className = {`${style.rest}, ${style.stateBtn}`} onClick ={() => pushState('휴식')}>휴식</button>
+                            <div className={style.stateItem}>
+                                <div className={style.userState}>근무 상태</div>
+                                <select className={style.state} onChange={(e) => {pushState(e.target.value)}}>
+                                    <option value="" disabled selected>{user.state}</option>
+                                    <option value="업무">업무중</option>
+                                    <option value="휴식">휴식중</option>
+                                    <option value="출근전">퇴근</option>
+                                </select>
+                            </div>
                         </div>
+                    </div>
                         <div className={style.helloItem}>
                             <div className={style.todayBox}>
                                 <div className={style.sectionHeader}>
@@ -163,7 +185,6 @@ const User = () =>
                     ul == true ?
                     <ul className={style.ul}>
                         <li className={style.li}><span className={style.liLink} onClick={() => {navigate('/info')}}><FontAwesomeIcon icon ={ faUser }/> 사용자 정보</span></li>
-                        <li className={style.li}><span className={style.liLink} onClick={() => {navigate('/chat')}}><FontAwesomeIcon icon ={ faComment }/> 채팅</span></li>
                         <li className={style.li}><span className={style.liLink} onClick={() => {
                             dispatch(removeUser());
                             navigate('/');

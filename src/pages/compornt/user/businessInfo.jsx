@@ -67,7 +67,6 @@ const BusinessInfo = () =>
                         <FontAwesomeIcon icon = {faBell} className={style.titleIcon}/>
                         <h3 className={style.title}> 알림</h3>
                     </div>
-                    <span className={style.more}>+ 더보기</span>
                 </div>
                 <section className={style.sectionItem}>
                     {
