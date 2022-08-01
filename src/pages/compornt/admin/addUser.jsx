@@ -31,12 +31,12 @@ const AddUser = () => {
         {
             const data = JSON.stringify(
                 {
-                    department : selectDepartment, 
-                    position : selectPosition, 
-                    name : name, 
-                    email : email, 
-                    phone : phone, 
-                    birthday : birthday
+                    department : selectDepartment, // 부서
+                    position : selectPosition,  // 직급
+                    name : name, // 이름
+                    email : email,  // 이메일
+                    phone : phone,  // 전화번호
+                    birthday : birthday // 생년월일
                 })
     
             alert(data);

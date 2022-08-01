@@ -54,7 +54,11 @@ const BusinessInfo = () =>
                        notice!= null && notice.map((item, idx) => {
                         return(
                             <div className={style.mapItem} key={idx}>
-                            <Link to={"/notice/" + item.id} className={style.noticeLink}>{item.title}</Link>
+                            <Link to="/noticePost" state={{
+                                    day : item.day,
+                                    title : item.title,
+                                    id : item.id
+                                }} className={style.noticeLink}>{item.title}</Link>
                             <span className={style.noticeDay}>{item.day}</span>
                             </div>)
                         }) 

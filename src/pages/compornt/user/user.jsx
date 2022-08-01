@@ -1,7 +1,7 @@
 import {React, useState, useEffect} from "react";
 import { removeUser } from "../../../utils/redux";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faUser, faRightFromBracket, faComment, faThumbTack } from "@fortawesome/free-solid-svg-icons";
+import { faUser, faRightFromBracket, faComment, faThumbTack, faMinus } from "@fortawesome/free-solid-svg-icons";
 import { useNavigate } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux/es/exports";
 import style from "../../../css/user.module.css";
@@ -10,6 +10,8 @@ import BusinessInfo from "./BusinessInfo";
 import WorkStatus from "./workStatus";
 import DeviceManagement from "./deviceManagement";
 import Message from "./message";
+
+axios.defaults.timeout = 1000;
 
 const User = () =>
 {
@@ -32,7 +34,8 @@ const User = () =>
             setTodoList(res.data);
         })
         .catch((error) => {
-            console.log('Todo List Error => ' + error);
+            //console.log('Todo List Error => ' + error);
+            setTodoList([{todo:'test1'}, {todo:'test2'}, {todo:'test3'}, {todo:'test4'}, {todo:'test5'},])
         });
     }
 
@@ -57,17 +60,31 @@ const User = () =>
     }, [])
 
     const todoSubmit = () => {
-        axios.post('URL', JSON.stringify({user : user.name, todo : todo}))
-        .then((res) => {
-            console.log('Success : ' + res.data);
-            getTodoList();
-        }).catch((error) => {
-            console.log(error);
+        const input = document.getElementById("inputTodo");
+
+        axios({
+            url : 'http://211.200.250.190:7070/coconet/board/todo/add',
+            method : "post",
+            data : JSON.stringify({userName : user.name, todo : todo}),
+            responseType : 'json',
+            headers : {
+                'Content-Type': 'application/json',
+            }
         })
+        .then((res) => {
+            input.value = null;
+            getTodoList();
+            console.log(res);
+        })
+        .catch((error) => {
+            input.value = null;
+            setTodo();
+            console.log(error);
+        });
     }
 
     const pushState = (state) => {
-        axios.post('URL', {name : user.name, state : state})
+        axios.post('URL', JSON.stringify({name : user.name, state : state}))
         .then((data) => {
             console.log(data.res);
             setState(state);
@@ -75,6 +92,34 @@ const User = () =>
         .catch((error) => {
             console.log(error);
             setState(state);
+        })
+    }
+
+    const checkTodo = (id, todo) => {
+        axios.post('URL', JSON.stringify({name : user.name, id : id, todo : todo}))
+        .then((res) => {
+            alert({name : user.name, id : id, todo : todo});
+        })
+        .catch(() => {
+            alert({name : user.name, id : id, todo : todo});
+        })
+    }
+
+    const deleteTodo = (item) => {
+        axios({
+            url : 'http://211.200.250.190:7070/coconet/board/todo/delete',
+            method : "delete",
+            data : JSON.stringify({userName : user.name, todo : item}),
+            responseType : 'json',
+            headers : {
+                'Content-Type': 'application/json',
+            }
+        })
+        .then(() => {
+            getTodoList();
+        })
+        .catch((error) => {
+            console.log(error);
         })
     }
 
@@ -125,17 +170,18 @@ const User = () =>
                                     {
                                         todoList != null && todoList.map((item, idx) => {
                                             return (
-                                            <div className={style.mapItem} key = {idx}>
-                                                <span>{item.todo}</span>
-                                                <input type="checkbox" className={style.todoCheck} onClick = {(idx) => {
-
-                                                }}/>
+                                            <div className={style.todoItem} key = {idx}>
+                                                <div className={style.todoItemBox}>
+                                                    <input type="checkbox" className={style.todoCheck} onClick = {(idx) => {checkTodo(idx, item)}}/>
+                                                    <span className={style.todo}>{item.todo}</span>
+                                                </div>
+                                                <FontAwesomeIcon className={style.todoDelete} icon={faMinus} onClick={() => {deleteTodo(item.todo)}}/>
                                             </div>)
                                         })
                                     }
                                 </section>
                                 <div className={style.pushTodo} >
-                                    <input type="text" className={style.todoInput} onChange={(e) => {setTodo(e.target.value)}}/>
+                                    <input type="text" id="inputTodo" className={style.todoInput} onChange={(e) => {setTodo(e.target.value)}}/>
                                     <button className={style.todoSubmit} onClick={() => {todoSubmit()}}>등록</button>
                                 </div>
                             </div>

@@ -59,7 +59,7 @@ const Notice = () =>
                         return(
                             <div className={style.noticeItem} key={idx}>
                                 <Link to={"/noticePost"} state={{
-                                    year : year,
+                                    day : item.day,
                                     title : item.title,
                                     id : item.id
                                 }} className={style.noticeLink}>{item.title}</Link>

@@ -5,6 +5,8 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faTriangleExclamation } from "@fortawesome/free-solid-svg-icons";
 import style from '../css/findUser.module.css'
 
+axios.defaults.timeout = 3000;
+
 const FindUser = () =>
 {
 
@@ -57,6 +59,7 @@ const UserInfo = (props) =>
     const getCode = () =>
     {
         let resData;
+        alert(props.name, props.phone)
 
         if(props.phone.length != 11 && props.name == '')
         {
@@ -66,16 +69,17 @@ const UserInfo = (props) =>
         }
         else
         {
-            axios.post('URL', JSON.stringify({name : props.name, phone : props.phone}))
+            axios.get(`http://211.200.250.190:7070/coconet/sendSMS?name=${props.name}&phone=${props.phone}`)
             .then((res) => {
-                resData = JSON.parse(res.data);
-                if(resData.check == true)
+                console.log(res.data);
+                let data = res.data;
+                if(data.issuedCode == true)
                 {
+                    console.log(res.data);
                     // check값이 true일 경우 redCode state에 서버가 보낸 code값을 넣고 비활성화 된 code Input을 활성화
                     document.getElementById('code').disabled = false;
                     setMessage(true);
-                    setResCode(resData.code);
-                    
+                    setResCode(data.authCode);
                 }
                 else
                 {
@@ -137,7 +141,7 @@ const UserInfo = (props) =>
                 </div>
                 <div className={style.itemBox}>
                     <p className={style.label}>코드</p>
-                    <input id = "code" type ="text" disabled className ={style.input} placeholder="ex) 123456" maxLength="6" value = {code} onChange = {(e) => {
+                    <input id = "code" type ="text" disabled className ={style.input} placeholder="ex) 1234" maxLength="4" value = {code} onChange = {(e) => {
                         setCode(check(e.target.value)); // check 함수를 거쳐 리턴된 값을 code state에 저장
                         }}/> 
                 </div>

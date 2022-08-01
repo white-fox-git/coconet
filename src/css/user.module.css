@@ -117,7 +117,7 @@
     border-left: 1px solid var(--main-color);
     border-bottom: 1px solid var(--main-color);
     border-radius: 4px 0px 0px 4px;
-    width: 50%;
+    width: 40%;
     text-align: center;
     background-color: var(--main-color);
     color: white;
@@ -130,7 +130,7 @@
     padding: 10px;
     border: 1px solid var(--main-color);
     border-radius: 0px 4px 4px 0px;
-    width: 50%;
+    width: 60%;
     font-size: 16px;
     font-weight: 500;
     cursor: pointer;
@@ -191,10 +191,16 @@
     font-family: var(--main-font);
 }
 
+.todoItemBox
+{
+    margin-left: 10px;
+}
+
 .todoCheck
 {
     width: 18px;
     height: 18px;
+    margin-right: 10px;
 }
 
 .todoInput
@@ -206,6 +212,12 @@
     padding-left: 10px;
     margin-right: 5px;
     
+}
+
+.todoDelete
+{
+    color: var(--gray-color);
+    cursor: pointer;
 }
 
 .todoSubmit
@@ -228,6 +240,11 @@
 .todoInput:focus
 {
     outline: none;
+}
+
+.todo
+{
+    color: var(--black-color);
 }
 
 
@@ -381,6 +398,21 @@
     transition: 0.3s;
     display: flex;
     padding-bottom: 10px;
+    justify-content: space-between;
+}
+
+.todoItem
+{
+    font-size: 16px;
+    font-family: var(--main-font);
+    font-weight: 300;
+    margin-top: 14px;
+    color: var(--black-color);
+    transition: 0.3s;
+    display: flex;
+    padding-bottom: 10px;
+    margin-left : 10px;
+    margin-right : 15px;
     justify-content: space-between;
 }
 
@@ -816,7 +848,7 @@
         padding: 10px;
     }
 
-    .userName, .mapItem, .more, .alertText, .approvalName, .logName
+    .userName, .mapItem, .more, .alertText, .approvalName, .logName, .todoItem
     {
         font-size: 18px;
     }
@@ -850,6 +882,18 @@
     .setTap
     {
         font-size: 20px;
+    }
+
+    .chatBtnBox
+    {
+        position: fixed;
+        bottom: 40px;
+        right: 3%;
+        transition: 0.3s;
+        display: flex;
+        justify-content: center;
+        flex-flow: column;
+        align-items:flex-end;
     }
 }
 
@@ -909,6 +953,8 @@
         width: 20%;
         min-width: 500px;
         max-width: 600px;
+        margin-left: 120px;
+        padding-right: 10px;
    }
 
    .tapBox
@@ -921,25 +967,30 @@
         border-bottom: 5px solid var(--main-color);
     }
 
+    .board
+    {
+        margin-right: 50px;
+    }
+
     .tap, .setTap
     {
         width: 150px;
         font-size: 20px;
         margin-left: 5%;
     }
+
+    .approvalBox, .logBox
+    {
+        min-width: 400px;
+    }
 }
 
 @media screen and (min-width: 1600px) {
 
-   .workStatus, .chartLabel
+   .workStatus, .chartLabel, .businessInfo
    {
         grid-template-columns: 50% 50%;
    }   
-
-   .deviceManagement
-   {
-    grid-template-columns: 55% 45%;
-   }
 
    .chartBox
    {
@@ -951,6 +1002,15 @@
         margin-left: 10%;
         width: 60%;
     }
+}
+
+@media screen and (min-width: 1900px) {
+    
+    .deviceManagement
+    {
+        grid-template-columns: 50% 50%;
+    }
+
 }
 
 @keyframes ul
@@ -965,6 +1025,7 @@
         opacity: 100%;
     }
 }
+
 
 @keyframes fade
 {

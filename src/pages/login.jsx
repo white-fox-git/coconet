@@ -22,10 +22,10 @@ const Login = () => {
     let user = localStorage.getItem('user'); // redux.jsx에 있는 user state의 값을 가져옴
     let token = sessionStorage.getItem('Refresh_Token');
 
-    localStorage.setItem('user', JSON.stringify({name : "김현빈", authResult : true, state : "출근전"}));
+    //localStorage.setItem('user', JSON.stringify({name : "김현빈", authResult : true, state : "출근전"}));
 
     useEffect(() => {
-        if(user != null /*&& token != null*/)
+        if(user != null && token != null)
         {
             navigate('/main');
         }

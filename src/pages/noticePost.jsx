@@ -16,7 +16,7 @@ const NoticePost = () =>
     const [post, setPost] = useState('');
     
     useEffect(() => {
-        axios.get(`URL?year=${data.year}&title=${data.title}&id=${data.id}`)
+        axios.get(`URL?title=${data.title}&id=${data.id}&day=${data.day}`)
         .then((res) => {
             setPost(res);
         })
