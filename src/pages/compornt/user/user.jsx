@@ -35,7 +35,12 @@ const User = () =>
         })
         .catch((error) => {
             //console.log('Todo List Error => ' + error);
-            setTodoList([{todo:'test1'}, {todo:'test2'}, {todo:'test3'}, {todo:'test4'}, {todo:'test5'},])
+            setTodoList([
+                {todo:'test1', check : true}, 
+                {todo:'test2', check : false}, 
+                {todo:'test3', check : true}, 
+                {todo:'test4' , check : false}, 
+                {todo:'test5', check : true},])
         });
     }
 
@@ -95,13 +100,13 @@ const User = () =>
         })
     }
 
-    const checkTodo = (id, todo) => {
-        axios.post('URL', JSON.stringify({name : user.name, id : id, todo : todo}))
-        .then((res) => {
-            alert({name : user.name, id : id, todo : todo});
+    const checkTodo = (todo) => {
+        axios.post('URL', JSON.stringify({name : user.name, todo : todo}))
+        .then(() => {
+            getTodoList();
         })
         .catch(() => {
-            alert({name : user.name, id : id, todo : todo});
+            alert('서버와의 연결에 실패했습니다.');
         })
     }
 
@@ -172,8 +177,8 @@ const User = () =>
                                             return (
                                             <div className={style.todoItem} key = {idx}>
                                                 <div className={style.todoItemBox}>
-                                                    <input type="checkbox" className={style.todoCheck} onClick = {(idx) => {checkTodo(idx, item)}}/>
-                                                    <span className={style.todo}>{item.todo}</span>
+                                                    <input type="checkbox" className={style.todoCheck} onChange = {(idx) => {checkTodo(item.todo)}}/>
+                                                    <span className={/*item.check == true ? */style.todo/* : selectTodo*/}>{item.todo}</span>
                                                 </div>
                                                 <FontAwesomeIcon className={style.todoDelete} icon={faMinus} onClick={() => {deleteTodo(item.todo)}}/>
                                             </div>)

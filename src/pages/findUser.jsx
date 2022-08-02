@@ -145,6 +145,10 @@ const UserInfo = (props) =>
                         setCode(check(e.target.value)); // check 함수를 거쳐 리턴된 값을 code state에 저장
                         }}/> 
                 </div>
+                <div className={style.textBox}>
+                    <p className={style.checkText}>문자로 발송된 <font className={style.pointText}>인증번호(4자리)</font>를 입력해주세요.</p>
+                    <p className={style.checkText}>입력하신 정보가 <font className={style.pointText}>일치하지 않을 경우</font> 인증문자가 발송되지 않습니다.</p>
+                </div>
                 <button className={style.submitBtn} onClick = {() => {submitCode()}}>인증하기</button>
         </>
     )

@@ -1,5 +1,7 @@
 @import url('./default.css');
 
+/*---------- 공통 ---------*/
+
 .header
 {
     padding: 10px;
@@ -14,4 +16,371 @@
     min-width: 200px;
     max-width: 250px;
     cursor: pointer;
+}
+
+.bodyArea
+{
+    font-family: var(--main-font);
+    color: var(--black-color);
+    border-top: 10px solid #fdfdfd;
+    padding-top: 30px;
+    display: flex;
+    flex-flow: column;
+}
+
+.logout
+{
+    position: fixed;
+    bottom: 20px;
+    right: 3%;
+    background: var(--main-color);
+    border: 0;
+    border-radius: 100%;
+    padding: 16px;
+    font-size: 30px;
+    color: white;
+    cursor: pointer;
+    transition: 0.3s;
+}
+
+.logout:hover
+{
+    background-color: var(--hover-color);
+}
+
+.board
+{
+    padding: 60px;
+    animation-name: fade;
+    animation-duration: 0.5s;
+}
+
+.title
+{
+    font-size: 18px;
+}
+
+.inputBox
+{
+    margin-top: 30px;
+    font-family: var(--main-font);
+}
+
+.inputTitle
+{
+    font-size: 18px;
+    font-weight: 300;
+    color: var(--gray-color);
+    margin-bottom: 10px;
+}
+
+.btnInput
+{
+    width: 160px;
+    height: 28px;
+    padding: 5px;
+    padding-left: 15px;
+    font-size: 16px;
+    border-radius: 4px;
+    border: 1px solid var(--gray-color);
+}
+
+.input
+{
+    width: 230px;
+    height: 28px;
+    padding: 5px;
+    padding-left: 15px;
+    font-size: 16px;
+    border-radius: 4px;
+    border: 1px solid var(--gray-color);
+}
+
+.inputBtn
+{
+    margin-left: 10px;
+    width: 60px;
+    height: 40px;
+    padding: 5px;
+    font-size: 16px;
+    border-radius: 4px;
+    border: 0;
+    color: white;
+    background-color: var(--main-color);
+    cursor: pointer
+}
+
+.submitBtn
+{
+    font-family: var(--main-font);
+    margin-top: 30px;
+    background-color: var(--main-color);
+    border-radius: 4px;
+    border: 0;
+    height: 44px;
+    padding: 10px;
+    font-size: 18px;
+    color: white;
+    width: 150px;
+    cursor: pointer;
+    transition: 0.3s;
+}
+
+.submitBtn:hover, .inputBtn:hover
+{
+    background-color: var(--hover-color);
+}
+
+.check
+{
+    margin-top: 20px;
+    color: var(--main-color);
+    font-family: var(--main-font);
+    font-weight: 300;
+}
+
+/*---------- 프로필 ---------*/
+
+.userProfile
+{
+    padding: 40px;
+    display: flex;
+    align-items: center;
+    justify-content: start;
+    font-family: var(--main-font);
+    color: var(--black-color);
+}
+
+.imgBox
+{
+    width: 100px;
+    height: 100px;
+    position: relative;
+    cursor: pointer;
+}
+
+.addImg
+{
+    width: 20px;
+    height: 20px;
+    border-radius: 100%;
+    border: 1px solid white;
+    background-image: url("/public/plusIcon.jpg");
+    background-size: cover;
+    background-repeat: no-repeat;
+    bottom: 0;
+    right: 0;
+    position: absolute;
+}
+
+.userBox
+{
+    margin-left: 30px;
+}
+
+.userImg
+{
+    width: 100%;
+    height: 100%;
+    border-radius: 100%;
+    border: 4px solid var(--main-color);
+}
+
+.userName
+{
+    font-size: 24px;
+    font-weight: 500;
+}
+
+.userEmail
+{
+    font-weight: 300;
+}
+
+/*---------- 메뉴 ---------*/
+
+.menu
+{
+    display: flex;
+    list-style: none;
+    justify-content: space-evenly;
+}
+
+.menuItem
+{
+    font-size: 18px;
+    padding: 10px;
+    transition: 0.3s;
+    cursor: pointer;
+    font-weight: 300;
+    color: var(--gray-color);
+}
+
+.selectMenuItem
+{
+    font-size: 18px;
+    font-weight: 500;
+    padding: 10px;
+    border-bottom: 4px solid var(--main-color);
+    color: var(--main-color);
+    transition: 0.3s;
+    cursor: pointer;
+}
+
+.menuItem:hover
+{
+    color: var(--main-color);
+
+}
+
+
+/*---------- 메인 ---------*/
+
+@media screen and (min-width: 769px) {
+    .userName
+    {
+        font-size: 28px;
+    }
+
+    .userEmail
+    {
+        font-size: 20px;
+    }
+
+    .imgBox
+    {
+        width: 120px;
+        height: 120px;
+    }
+
+    .addImg
+    {
+        width: 24px;
+        height: 24px;
+    }
+}
+
+
+@media screen and (min-width: 1024px) {  
+
+    .bodyArea
+    {
+        flex-flow: row;
+    }
+
+
+    .menu
+    {
+        flex-flow: column;
+        padding: 60px;
+        padding-top: 30px;
+    }
+
+    .menuItem
+    {
+        font-size: 22px;
+        padding: 0;
+        padding-left: 10px;
+        margin-top: 30px;
+    }
+
+    .selectMenuItem
+    {
+        font-size: 22px;
+        border: 0;
+        border-left: 4px solid var(--main-color);
+        padding: 0;
+        padding-left: 14px;
+        margin-top: 30px;
+    }
+
+    .userProfile
+    {
+        padding-left: 60px;
+    }
+
+    .inputTitle
+    {
+        font-size: 20px;
+    }
+
+    .input, .btnInput
+    {
+        width: 250px;
+        height: 34px;
+        padding: 5px;
+        padding-left: 15px;
+        font-size: 18px;
+    }
+
+    .inputBtn
+    {
+        margin-left: 14px;
+        width: 100px;
+        height: 46px;
+        padding: 5px;
+        border: 0;
+    }
+}
+
+
+@media screen and (min-width: 1200px) {
+    .userName
+    {
+        font-size: 30px;
+    }
+
+    .userEmail
+    {
+        font-size: 22px;
+    }
+
+    .imgBox
+    {
+        width: 140px;
+        height: 140px;
+    }
+
+    .addImg
+    {
+        width: 28px;
+        height: 28px;
+    }
+
+    .logout
+    {
+        bottom: 40px;
+    }
+}
+
+@media screen and (min-width: 1600px) {
+
+    .input, .btnInput
+    {
+        width: 300px;
+    }
+
+    .submitBtn
+    {
+        width: 200px;   
+    }
+}
+
+@media screen and (min-width: 1900px) {
+    
+}
+
+@keyframes fade
+{
+    from
+    {
+        opacity: 0%;
+        margin-top: 100px;
+    }
+
+    to
+    {
+        opacity: 100%;
+        margin-top: 0px;
+    }
 }

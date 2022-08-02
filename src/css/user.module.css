@@ -70,6 +70,7 @@
     border: 4px solid var(--main-color);
 }
 
+
 .hello
 {
     padding: 20px;
@@ -153,7 +154,7 @@
     width: 16px;
     height: 16px;
     border-radius: 100%;
-    background-color: #ff8187;
+    background-color: #ffe344;
     margin-right: 10px;
 }
 
@@ -201,6 +202,12 @@
     width: 18px;
     height: 18px;
     margin-right: 10px;
+}
+
+.checkedTodo
+{
+    color: var(--gray-color);
+    text-decoration: line-through;
 }
 
 .todoInput

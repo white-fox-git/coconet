@@ -205,6 +205,25 @@
     animation-name: bg;
 }
 
+.textBox
+{
+    padding-left: 6%;
+    padding-top: 6%;
+    font-family: var(--main-font);
+    font-size: 14px;
+    color: var(--gray-color);
+}
+
+.checkText
+{
+    margin-top: 10px;
+}
+
+.pointText
+{
+    color: var(--main-color);
+}
+
 @media screen and (min-width: 769px) {
     .tap
     {
@@ -224,9 +243,14 @@
         font-size: 40px;
     }
 
-    .text, .link, input, .phoneNum, .getBtn, .submitBtn, .Alert, .label
+    .text, .link, input, .phoneNum, .getBtn, .submitBtn, .Alert, .label, .checkText
     {
         font-size: 18px;
+    }
+
+    .textBox
+    {
+        text-align: left;
     }
 }
 
