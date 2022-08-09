@@ -15,23 +15,12 @@ const Notice = () =>
     const getNotice = (year) => {
         setYear(year);
 
-        axios.get(`URL?year=${year}`)
+        axios.get(`http://211.200.250.190:7070/coconet/board/notice/year?day=${year}`)
         .then((res) => {
             setNotice(res.data);
         })
-        .catch(() => {
-            setNotice([
-                {title : '자율 재택근무 관련 공지', day : '2022.07.01 (금)', id : 0},
-                {title : '자율 재택근무 관련 공지', day : '2022.07.01 (금)', id : 1},
-                {title : '자율 재택근무 관련 공지', day : '2022.07.01 (금)', id : 2},
-                {title : '자율 재택근무 관련 공지', day : '2022.07.01 (금)', id : 3},
-                {title : '자율 재택근무 관련 공지', day : '2022.07.01 (금)', id : 4},
-                {title : '자율 재택근무 관련 공지', day : '2022.07.01 (금)', id : 5},
-                {title : '자율 재택근무 관련 공지', day : '2022.07.01 (금)', id : 6},
-                {title : '자율 재택근무 관련 공지', day : '2022.07.01 (금)', id : 7},
-                {title : '자율 재택근무 관련 공지', day : '2022.07.01 (금)', id : 8},
-                {title : '자율 재택근무 관련 공지', day : '2022.07.01 (금)', id : 9}
-            ])
+        .catch((error) => {
+            console.log(error);
         })
     }
 
@@ -56,6 +45,7 @@ const Notice = () =>
                 <section className={style.notice}>
                     {
                        notice!= null && notice.map((item, idx) => {
+                        console.log(JSON.stringify(item));
                         return(
                             <div className={style.noticeItem} key={idx}>
                                 <Link to={"/noticePost"} state={{

@@ -167,9 +167,19 @@ const SetPwd = (props) =>
         {
             // 서버로 암호값을 json 파일 형식으로 변경하여 보냄
 
-            axios.post('URL', JSON.stringify({name : props.name, phone : props.phone,  newPwd : pwd}))
-            .then((res) => {
-                console.log(res.data);
+
+            axios({
+                url : 'URL',
+                method : "post",
+                data : JSON.stringify({name : props.name, phone : props.phone,  newPwd : pwd}),
+                responseType : 'json',
+                headers : {
+                    'Content-Type': 'application/json',
+                    'Access-Control-Allow-Origin' : '*'
+                }
+            })
+            .then(() => {
+                console.log("success");
             })
             .catch((error) =>{
                 console.log(error);

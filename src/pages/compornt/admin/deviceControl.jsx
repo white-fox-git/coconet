@@ -36,7 +36,7 @@ const DeviceControl = () => {
     }
 
     const searchUser = (position) => {
-        axios.get(`URL?department=${selectDepartment}&position=${position}`)
+        axios.get(`http://211.200.250.190:7070/coconet/admin/logs/user?department=${selectDepartment}&position=${position}`)
         .then((res) => {
             setUserList(res.data);
         })
@@ -100,7 +100,15 @@ const DeviceControl = () => {
                 copy[idx].screenShot = true;
         }
         
-        axios.post("URL", JSON.stringify({user : user, device : copy[idx].device, controlItem : itemName, control : control}))
+        axios({
+            url : 'URL',
+            method : "post",
+            data : JSON.stringify({user : user, device : copy[idx].device, controlItem : itemName, control : control}),
+            responseType : 'json',
+            headers : {
+                'Content-Type': 'application/json',
+            }
+        })
         .then(() => {
             setDeviceInfo(copy);
         })

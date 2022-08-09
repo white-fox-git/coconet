@@ -6,7 +6,7 @@ import { Link, useNavigate } from 'react-router-dom'
 import { useDispatch, useSelector } from "react-redux/es/exports";
 import { setUser, removeUser } from '../utils/redux'
 import axios from 'axios';
-axios.defaults.timeout = 2000;
+axios.defaults.timeout = 3000;
 
 const Login = () => {
 
@@ -75,6 +75,7 @@ const Login = () => {
                 navigate('/main');
             })
             .catch((error) => {
+                console.log(error);
                 if(error.response.data.message == "자격 증명에 실패하였습니다.")
                 {
                     setPwdAlert(true)

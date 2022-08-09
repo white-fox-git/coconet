@@ -9,21 +9,18 @@ const CommutingTime = () => {
     const [info, setInfo] = useState();
 
     useEffect(() => {
-        axios.get('URL')
+        getInfo();
+    }, []);
+
+    const getInfo = () => {
+        axios.get('http://211.200.250.190:7070/coconet/admin/worktime')
         .then((res) => {
             setInfo(res.data);
         })
         .catch((error) => {
-            console.log("CommutingTime Error => " + error);
-            setInfo(
-                [{title : "근무일", value : "월-금", select : false},
-                {title : "출근시간", value : "09:00", select : false},
-                {title : "점심시간", value : "12:00 - 13:00", select : false},
-                {title : "퇴근시간", value : "05:00", select : false},
-                {title : "심야 퇴근시간", value : "09:00", select : false}]
-            )
+            console.log(error);
         });
-    }, []);
+    }
 
     const enableInput = (id) => {
 
@@ -33,20 +30,27 @@ const CommutingTime = () => {
         if(item.disabled == true)
         {
            item.disabled = false;
-           copy[id].select = true;
+           copy[id].state = true;
            setInfo(copy);
            item.focus();
         }
         else
         {
-            copy[id].select = false;
             setInfo(copy);
-            alert(JSON.stringify(copy));
-            axios.post('URL', JSON.stringify(copy))
-            .then((res) => {
-                setInfo(res.data);
+            axios({
+                url : 'http://211.200.250.190:7070/coconet/admin/worktime/edit',
+                method : "post",
+                data : JSON.stringify(copy[id]),
+                responseType : 'json',
+                headers : {
+                    'Content-Type': 'application/json',
+                }
+            })
+            .then(() => {
+                getInfo();
             })
             .catch((error) => {
+                console.log(error);
                 alert("업데이트 실패");
             })
 
@@ -55,7 +59,6 @@ const CommutingTime = () => {
     }
 
     const modifyInfo = (e, idx) => {
-        console.log(e);
         let copy = [...info];
         copy[idx].value = e;
         setInfo(copy);
@@ -87,7 +90,7 @@ const CommutingTime = () => {
                                         onKeyPress={(e) => Enter(e.key, idx)} 
                                         onChange={(e) => {modifyInfo(e.target.value, idx);}}
                                     />
-                                    <FontAwesomeIcon icon={item.select == false ? faPen : faFloppyDisk} className={style.ctiInfoBtn} onClick={() => {enableInput(idx)}}/>
+                                    <FontAwesomeIcon icon={item.state == false ?  faPen : faFloppyDisk} className={style.ctiInfoBtn} onClick={() => {enableInput(idx)}}/>
                                 </div>
                             </div>
                         )

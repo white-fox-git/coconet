@@ -15,7 +15,7 @@ const StatusManagement = () => {
 
     const getDepartment = () =>
     {
-        axios.get('URL')
+        axios.get('http://211.200.250.190:7070/coconet/user/department')
         .then((res) => {
             setDepartment(res.data);
         })
@@ -25,7 +25,7 @@ const StatusManagement = () => {
     }
 
     const searchPositon = (team) => {
-        axios.get(`URL?department=${team}`)
+        axios.get(`http://211.200.250.190:7070/coconet/user/position?department=${team}`)
         .then((res) => {
             setPosition(res.data);
         })
@@ -37,7 +37,7 @@ const StatusManagement = () => {
     }
 
     const searchUser = (position) => {
-        axios.get(`URL?department=${selectDepartment}&position${position}`)
+        axios.get(`http://211.200.250.190:7070/coconet/user/username?department=${selectDepartment}&position=${position}`)
         .then((res) => {
             setUserList(res.data);
         })
@@ -49,20 +49,22 @@ const StatusManagement = () => {
     }
 
     const getStatus = (user) => {
-        axios.get(`URL?department=${selectDepartment}&position=${selectPosition}&user=${user}`)
-        .then((res) => {
-            setStatus(res.data);
-        })
-        .catch(() => {
-            setStatus(['근무', '외근', '출장', '휴가'])
-        })
+        setStatus(['근무', '외근', '출장', '휴가'])
         setSuccess(false);
         setSelectUser(user);
     }
 
     const sendStatus = (status) => {
-        axios.post('URL', JSON.stringify({team : selectDepartment, position : selectPosition, user : selectUser, status : status}))
-        .then((res) => {
+        axios({
+            url : "URL",
+            method : "post",
+            data : JSON.stringify({team : selectDepartment, position : selectPosition, user : selectUser, status : status}),
+            responseType : 'json',
+            headers : {
+                'Content-Type': 'application/json',
+            }
+        })
+        .then(() => {
             setSuccess(true);
         })
         .catch(() => {

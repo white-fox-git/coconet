@@ -9,56 +9,58 @@ const UserLog = () => {
     const [position, setPosition] = useState(); // 직급 정보
     const [selectPosition, setSelectPosition] = useState(); // 어떤 직급이 선택되었는가?
     const [userList, setUserList] = useState(); // 유저 정보
-    const [logInfo, setLogInfo] = useState(); // 유저의 로그 정보
+    const [logInfo, setLogInfo] = useState([]); // 유저의 로그 정보
 
     const getDepartment = () =>
     {
-        axios.get('URL')
+        axios.get('http://211.200.250.190:7070/coconet/user/department')
         .then((res) => {
             setDepartment(res.data);
         })
-        .catch(() => {
-            setDepartment(['개발팀', '디자인팀', '인사팀', '회계팀', '영업팀']);
+        .catch((error) => {
+            console.log(error);
         })
     }
 
     const searchPositon = (team) => {
-        axios.get(`URL?department=${team}`)
+        axios.get(`http://211.200.250.190:7070/coconet/user/position?department=${team}`)
         .then((res) => {
             setPosition(res.data);
         })
         .catch(() => {
-            setPosition(['부장', '사장', '사원']);
+            console.log(error);
+            setPosition("직급없음");
         });
 
         setSelectDepartment(team);
     }
 
     const searchUser = (position) => {
-        axios.get(`URL?department=${selectDepartment}&position${position}`)
+        axios.get(`http://211.200.250.190:7070/coconet/user/username?department=${selectDepartment}&position=${position}`)
         .then((res) => {
             setUserList(res.data);
+            if(res == null)
+            { 
+                setUserList(["사용자 없음"]);
+            }
         })
-        .catch(() => {
-            setUserList(['김현빈', '김은비', '정재훈']);
+        .catch((error) => {
+            console.log(error);
+            setUserList(["사용자 없음"]);
         });
 
         setSelectPosition(position);
     }
 
     const getLog = (user) => {
-        axios.get(`URL?department=${selectDepartment}&position=${selectPosition}&user=${user}`)
+        
+        console.log("get");
+        axios.get(`http://211.200.250.190:7070/coconet/logs/user?department=${selectDepartment}&position=${selectPosition}&username=${user}`)
         .then((res) => {
-            setLogInfo(res.data);
+            console.log(res);
         })
-        .catch(() => {
-            setLogInfo(
-                [
-                    {user : "김현빈", category : "출근 시간 설정", info:"2022-07-20 08:59 출근"},
-                    {user : "김현빈", category : "출근 시간 설정", info:"2022-07-20 08:59 출근"},
-                    {user : "김현빈", category : "출근 시간 설정", info:"2022-07-20 08:59 출근"},
-                    {user : "김현빈", category : "출근 시간 설정", info:"2022-07-20 08:59 출근"},
-                ]);
+        .catch((error) => {
+            console.log(error);
         })
     }
 
@@ -113,17 +115,20 @@ const UserLog = () => {
                 <h4 className={style.tableTitle}>로그 확인</h4>
                 <div className={style.logInfo}>
                     <div className={style.tableItem}>
-                        <h4 className={`${style.tableTitleMini}, ${style.tableInfo}`}>사용자</h4> 
+                        <h4 className={`${style.tableTitleMini}, ${style.tableInfo}`}>사용자</h4>
+                        <h4 className={style.tableTitleMini}>태그</h4> 
                         <h4 className={style.tableTitleMini}>카테고리</h4>  
-                        <h4 className={style.tableTitleMini}>내용</h4>                
+                        <h4 className={style.tableTitleMini}>시간</h4>                
                     </div>
                     {
                         logInfo != null ? logInfo.map((item, idx) => {
+                            console.log(item);
                             return(
                                 <div className={style.tableItem} key={idx}>
-                                    <span className={style.tableInfo}>{item.user}</span>
-                                    <span className={style.tableInfo}>{item.category}</span>
-                                    <span className={style.tableInfo}>{item.info}</span>
+                                    <span className={style.tableInfo}>{item.name}</span>
+                                    <span className={style.tableInfo}>{item.tag}</span>
+                                    <span className={style.tableInfo}>{item.title}</span>
+                                    <span className={style.tableInfo}>{item.date}</span>
                                 </div>
                             )
                         })

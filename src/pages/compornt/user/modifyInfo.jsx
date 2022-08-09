@@ -37,7 +37,15 @@ const ModifyInfo = (props) => {
         }
         else
         {
-            axios.post('URL', JSON.stringify({name : name, change : changeItem, item : pushItem}))
+            axios({
+                url : "URL",
+                method : "post",
+                data : JSON.stringify({name : name, change : changeItem, item : pushItem}),
+                responseType : 'json',
+                headers : {
+                    'Content-Type': 'application/json',
+                }
+            })
             .then((res) => {
                 setInfo(res.data);
             })

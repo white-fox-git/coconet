@@ -45,18 +45,21 @@ const User = () =>
     }
 
     const getMessage = () => {
-        axios.get(`URL/message?message=${user.name}`)
+        
+        /*axios.get(`URL/message?message=${user.name}`)
         .then((res) => {
             setMessage(res.data);
         })
         .catch((error) => {
-            setMessage([
-                {name : '정사원', photo : 'https://search.pstatic.net/common/?src=http%3A%2F%2Fblogfiles.naver.net%2FMjAyMjA0MDVfMjAy%2FMDAxNjQ5MTI3NjkxMTY5.CIJjlqtoI_U-xEPO4gV0kESVLVzDiZRVqFJVPGiYXbUg.PmCIdXeIy0--BTtGLpVG0Uqfv_skFotargeHYoes5ssg.JPEG.dshm__%2F%25B4%25D9%25BF%25EE%25B7%25CE%25B5%25E5%25C6%25C4%25C0%25CF%25A3%25DF20220405%25A3%25DF120037.jpg&type=sc960_832', message : '일은 언제 다 할 수 있어?', count : 2, id: 0},
-                {name : '김사원', photo : 'https://search.pstatic.net/common/?src=http%3A%2F%2Fblogfiles.naver.net%2FMjAyMTA4MDNfMzQg%2FMDAxNjI3OTUyNzYyNjYx.MeunogcogYoUUdG3dIof_aZRvaJCKGEVHtW9hXte7wYg.9JCJJ8I9OX70w5p4OQB3KRodC3QBPAeUsYKN3vf1Eucg.JPEG.kimjin8946%2F30.jpg&type=sc960_832', message : '선배 이거 어떻게 해요?', count : 1, id: 1},
-                {name : '정부장', photo : 'https://search.pstatic.net/common/?src=http%3A%2F%2Fblogfiles.naver.net%2FMjAyMTA4MDJfMTAy%2FMDAxNjI3ODY3Mjg4OTE4.fSsvI5C1jzRaihZ9cf0Cr_Q0rZca-jKi6b-wcVdoWcsg.J_o6qJGoPuUIKxSTJ4ktNCer6T0mA45FcXWhSpmzBWsg.JPEG.wenice777%2F8.jpeg&type=sc960_832', message : '이번 크리스마스 때 출근 가능한가?', count : 4, id: 2},
-                {name : '유과장', photo : 'https://search.pstatic.net/common/?src=http%3A%2F%2Fblogfiles.naver.net%2FMjAyMTAzMDNfMjEw%2FMDAxNjE0NzgwMzAxNjk1.RymwABmkDl7R4SEqW9wxM7Mac_Zl8zzAXAob7LjccZcg.sWQwom3eaziWTh4BCY0f2D75X3_lwRj1Fw5fIC-aLNwg.JPEG.sosohan_n%2FIMG_3598.JPG&type=sc960_832', message : '자네 휴가가 짤릴 것 같아', count : 2, id: 3},
-            ])
-        });
+            
+        });*/
+
+        setMessage([
+            {name : '정사원', photo : 'https://search.pstatic.net/common/?src=http%3A%2F%2Fblogfiles.naver.net%2FMjAyMjA0MDVfMjAy%2FMDAxNjQ5MTI3NjkxMTY5.CIJjlqtoI_U-xEPO4gV0kESVLVzDiZRVqFJVPGiYXbUg.PmCIdXeIy0--BTtGLpVG0Uqfv_skFotargeHYoes5ssg.JPEG.dshm__%2F%25B4%25D9%25BF%25EE%25B7%25CE%25B5%25E5%25C6%25C4%25C0%25CF%25A3%25DF20220405%25A3%25DF120037.jpg&type=sc960_832', message : '일은 언제 다 할 수 있어?', count : 2, id: 0},
+            {name : '김사원', photo : 'https://search.pstatic.net/common/?src=http%3A%2F%2Fblogfiles.naver.net%2FMjAyMTA4MDNfMzQg%2FMDAxNjI3OTUyNzYyNjYx.MeunogcogYoUUdG3dIof_aZRvaJCKGEVHtW9hXte7wYg.9JCJJ8I9OX70w5p4OQB3KRodC3QBPAeUsYKN3vf1Eucg.JPEG.kimjin8946%2F30.jpg&type=sc960_832', message : '선배 이거 어떻게 해요?', count : 1, id: 1},
+            {name : '정부장', photo : 'https://search.pstatic.net/common/?src=http%3A%2F%2Fblogfiles.naver.net%2FMjAyMTA4MDJfMTAy%2FMDAxNjI3ODY3Mjg4OTE4.fSsvI5C1jzRaihZ9cf0Cr_Q0rZca-jKi6b-wcVdoWcsg.J_o6qJGoPuUIKxSTJ4ktNCer6T0mA45FcXWhSpmzBWsg.JPEG.wenice777%2F8.jpeg&type=sc960_832', message : '이번 크리스마스 때 출근 가능한가?', count : 4, id: 2},
+            {name : '유과장', photo : 'https://search.pstatic.net/common/?src=http%3A%2F%2Fblogfiles.naver.net%2FMjAyMTAzMDNfMjEw%2FMDAxNjE0NzgwMzAxNjk1.RymwABmkDl7R4SEqW9wxM7Mac_Zl8zzAXAob7LjccZcg.sWQwom3eaziWTh4BCY0f2D75X3_lwRj1Fw5fIC-aLNwg.JPEG.sosohan_n%2FIMG_3598.JPG&type=sc960_832', message : '자네 휴가가 짤릴 것 같아', count : 2, id: 3},
+        ]);
     }
 
     useEffect(() => {
@@ -89,7 +92,15 @@ const User = () =>
     }
 
     const pushState = (state) => {
-        axios.post('URL', JSON.stringify({name : user.name, state : state}))
+        axios({
+            url : 'URL',
+            method : "post",
+            data : JSON.stringify({name : user.name, state : state}),
+            responseType : 'json',
+            headers : {
+                'Content-Type': 'application/json',
+            }
+        })
         .then((data) => {
             console.log(data.res);
             setState(state);
@@ -101,7 +112,15 @@ const User = () =>
     }
 
     const checkTodo = (todo) => {
-        axios.post('URL', JSON.stringify({name : user.name, todo : todo}))
+        axios({
+            url : 'URL',
+            method : "post",
+            data : JSON.stringify({name : user.name, todo : todo}),
+            responseType : 'json',
+            headers : {
+                'Content-Type': 'application/json',
+            }
+        })
         .then(() => {
             getTodoList();
         })
@@ -112,7 +131,7 @@ const User = () =>
 
     const deleteTodo = (item) => {
         axios({
-            url : 'http://211.200.250.190:7070/coconet/board/todo/delete',
+            url : 'https://211.200.250.190:443/coconet/board/todo/delete',
             method : "delete",
             data : JSON.stringify({userName : user.name, todo : item}),
             responseType : 'json',
@@ -154,8 +173,7 @@ const User = () =>
                         <div className = {style.stateBox}>
                             <div className={style.stateItem}>
                                 <div className={style.userState}>근무 상태</div>
-                                <select className={style.state} onChange={(e) => {pushState(e.target.value)}}>
-                                    <option value="" disabled selected>{user.state}</option>
+                                <select className={style.state} value={user.state}onChange={(e) => {pushState(e.target.value)}}>
                                     <option value="업무">업무중</option>
                                     <option value="휴식">휴식중</option>
                                     <option value="출근전">퇴근</option>

@@ -24,7 +24,7 @@ const BusinessInfo = () =>
     }
 
     const getAlert = () => {
-        axios.get('')
+        axios.get('http://211.200.250.190:7070/coconet/board/alert')
         .then((res) => {
 
         })

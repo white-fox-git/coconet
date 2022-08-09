@@ -16,15 +16,15 @@ const NoticePost = () =>
     const [post, setPost] = useState('');
     
     useEffect(() => {
-        axios.get(`URL?title=${data.title}&id=${data.id}&day=${data.day}`)
+        axios.get(`http://211.200.250.190:7070/coconet/board/notice/one?title=${data.title}&id=${data.id}&day=${data.day}`)
         .then((res) => {
-            setPost(res);
+            setPost(res.data);
         })
         .catch(() => {
             setPost({
                 title : "네이버웍스 Drive 탐색기 v3.0버전 이하 강제 업데이트 안내",
                 day : "2022.06.24(금)",
-                data : `
+                date : `
 안녕하세요, 네이버웍스입니다.
 ​
 네이버웍스 Drive 탐색기를 이용해주셔서 감사합니다.
@@ -65,7 +65,7 @@ const NoticePost = () =>
                 <FontAwesomeIcon icon={faArrowLeft} className={style.arrow} onClick={() => {navigate(-1)}}/>
                 <h3 className={style.title}>{post.title}</h3>
                 <p className={style.day}>Day : {post.day}</p>
-                <pre className={style.postData}>{post.data}</pre>
+                <pre className={style.postData}>{post.date}</pre>
             </div>      
         </>
     )

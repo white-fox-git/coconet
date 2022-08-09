@@ -31,17 +31,25 @@ const AddUser = () => {
         {
             const data = JSON.stringify(
                 {
+                    name : name, // 이름
+                    birthdate : birthday, // 생년월일
+                    phone : phone,  // 전화번호
+                    email : email,  // 이메일
                     department : selectDepartment, // 부서
                     position : selectPosition,  // 직급
-                    name : name, // 이름
-                    email : email,  // 이메일
-                    phone : phone,  // 전화번호
-                    birthday : birthday // 생년월일
                 })
     
             alert(data);
     
-            axios.post('URL', data)
+            axios({
+                url : 'https://211.200.250.190:443/coconet/board/todo/delete',
+                method : "post",
+                data : data,
+                responseType : 'json',
+                headers : {
+                    'Content-Type': 'application/json',
+                }
+            })
             .then(() => {
                 alert('유저 등록 완료');
             })

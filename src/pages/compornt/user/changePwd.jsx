@@ -11,7 +11,16 @@ const ChangePwd = (props) => {
 
     const nowPwdCheck = () => {
         alert(JSON.stringify({user : props.user.name, email : props.info.email, pwd : nowPwd}));
-        axios.post('URL', JSON.stringify({user : props.user.name, pwd : nowPwd}))
+
+        axios({
+            url : "URL",
+            method : "post",
+            data : JSON.stringify({user : props.user.name, pwd : nowPwd}),
+            responseType : 'json',
+            headers : {
+                'Content-Type': 'application/json',
+            }
+        })
         .then(() => {
             setCheck(true);
             document.getElementById("newPwd").disabled = false;
@@ -32,7 +41,15 @@ const ChangePwd = (props) => {
         }
         else
         {
-            axios.post('URL', JSON.stringify({user : props.user.name, email : props.info.email, newPwd : newPwd}))
+            axios({
+                url : "URL",
+                method : "post",
+                data : JSON.stringify({user : props.user.name, email : props.info.email, newPwd : newPwd}),
+                responseType : 'json',
+                headers : {
+                    'Content-Type': 'application/json',
+                }
+            })
             .then(() => {
                 alert("변경이 완료되었습니다.");
             })

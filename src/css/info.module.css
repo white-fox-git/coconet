@@ -301,7 +301,7 @@
 
     .inputTitle
     {
-        font-size: 20px;
+        font-size: 18px;
     }
 
     .input, .btnInput
@@ -310,7 +310,7 @@
         height: 34px;
         padding: 5px;
         padding-left: 15px;
-        font-size: 18px;
+        font-size: 20px;
     }
 
     .inputBtn
@@ -332,7 +332,7 @@
 
     .userEmail
     {
-        font-size: 22px;
+        font-size: 20px;
     }
 
     .imgBox
