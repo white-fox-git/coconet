@@ -1,27 +1,38 @@
 import { configureStore, createSlice } from '@reduxjs/toolkit'
 import axios from 'axios';
 
-const defaultData = JSON.parse(localStorage.getItem('user'));
-axios.defaults.headers.common['Jwt_Access_Token'] = localStorage.getItem('JWT')
-
 const user = createSlice({
     name : "user",
-    initialState : defaultData, // user state 기본 값
+    initialState : {name : ''}, // user state 기본 값
     reducers : {
         setUser(state, res){
             const userData = res.payload;
-            localStorage.setItem('user', JSON.stringify(res.payload));
             console.log(res.payload);
 
             return userData;
         },
         removeUser(state)
         {
-            console.log('유저 삭제')
-            delete axios.defaults.headers.common['Jwt_Access_Token'];
             sessionStorage.removeItem('Refresh_Token');
-            localStorage.removeItem('user');
-            const data = {name : '', authResult : false};
+            const data = {name : ''};
+
+            axios({
+                url : 'http://211.200.250.190:7070/coconet/logout',
+                method : "post",
+                data : JSON.stringify({num : state.userid}),
+                responseType : 'json',
+                headers : {
+                    'Content-Type': 'application/json',
+                    'Access-Control-Allow-Origin' : '*'
+                }
+            })
+            .then(() => {
+                delete axios.defaults.headers.common['Jwt_Access_Token'];
+                console.log('유저 삭제');
+            })
+            .catch((error) => {
+                console.log(error);
+            })
 
             return data;
         },
@@ -41,15 +52,13 @@ const user = createSlice({
                 })
                 .then((res) => {
                     axios.defaults.headers.common['Jwt_Access_Token'] = res.headers.jwt_access_token;
-                    localStorage.setItem('user', JSON.stringify(res.data));
                     sessionStorage.setItem('Refresh_Token', res.headers.jwt_refresh_token);
                     console.log('새로운 토큰이 발급되었습니다.');
-
-                    return(res.data);
+                    return res.data;
                 })
                 .catch((error) => {
-                    console.log(error);
                     removeUser();
+                    console.log(error);
                 })
             }
             else

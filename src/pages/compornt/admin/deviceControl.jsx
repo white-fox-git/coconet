@@ -51,6 +51,11 @@ const DeviceControl = () => {
         axios.get(`URL?department=${selectDepartment}&position=${position}&user=${user}`)
         .then((res) => {
             setDeviceInfo(res.data);
+            setDepartment(null);
+            setPosition(null);
+            document.getElementById("option1").selected = true;
+            document.getElementById("option2").selected = true;
+            document.getElementById("option3").selected = true;
         })
         .catch(() => {
             setDeviceInfo(
@@ -58,7 +63,12 @@ const DeviceControl = () => {
                     {device : "Galuxy Note 10", camera : true, mike : false, record : true, screenShot : true},
                     {device : "Galuxy S22 Plus", camera : true, mike : true, record : false, screenShot : true}
                 ]
-            )
+            );
+            setDepartment(null);
+            setPosition(null);
+            document.getElementById("option1").selected = true;
+            document.getElementById("option2").selected = true;
+            document.getElementById("option3").selected = true;
         });
     }
 
@@ -127,7 +137,7 @@ const DeviceControl = () => {
                     <div className={style.userSelect}>
                         <h5 className={style.selectTitle}>부서</h5>
                         <select className={style.selectBox} value={selectDepartment} onClick={() => {getDepartment()}} onChange={(e) => {searchPositon(e.target.value)}}>
-                            <option value="" disabled selected>부서 선택</option>
+                            <option id="option1" value="" disabled selected>부서 선택</option>
                             {
                                 department != null ? department.map((item, idx) => {
                                     return <option value={item} key={idx}>{item}</option>
@@ -140,7 +150,7 @@ const DeviceControl = () => {
                     <div className={style.userSelect}>
                         <h5 className={style.selectTitle}>직급</h5>
                         <select className={style.selectBox} onChange={(e) => {searchUser(e.target.value)}}> 
-                            <option value="" disabled selected>직급 선택</option>
+                            <option id="option2" value="" disabled selected>직급 선택</option>
                             {
                                 position != null ? position.map((item, idx) => {
                                     return <option value={item} key={idx} >{item}</option>
@@ -153,7 +163,7 @@ const DeviceControl = () => {
                     <div className={style.userSelect}>
                         <h5 className={style.selectTitle}>사원명</h5>
                         <select className={style.selectBox} onChange={(e) => {getDevice(e.target.value)}}>
-                            <option value="" disabled selected>사원 선택</option>
+                            <option id="option3" value="" disabled selected>사원 선택</option>
                             {
                                 userList != null ? userList.map((item, idx) => {
                                     return <option value={item} key={idx}>{item}</option>

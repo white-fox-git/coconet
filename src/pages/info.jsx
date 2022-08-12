@@ -27,19 +27,48 @@ const Info = () =>
     let user = useSelector((state) => { return state.user });
 
     const getInfo = () => {
-        axios.get(`URL?user=${user.name}`)
+        axios.get(`http://localhost:7070/coconet/users/${user.userid}`)
         .then((res) => {
             setInfo(res.data);
         })
-        .catch(() => {
-            setInfo({
-                email : "whitefox@kakao.com", 
-                phone : "01065597556", 
-                department : "개발팀",
-                position : "대리",
-                birthday : "2001-05-31"
-                })
+        .catch((error) => {
+            console.log(error);
         })
+    }
+
+    const uploadImg = (file) => {
+        let fileName = file.name;
+        let fileLength = fileName.length;
+        let lastDot = fileName.lastIndexOf('.');
+        let fileExt = fileName.substring(lastDot, fileLength).toLowerCase();
+
+        const formData = new FormData();
+        formData.append('files', file);
+
+        if(fileExt == '.png' || fileExt == '.jpg' || fileExt == '.svg')
+        {
+
+            axios({
+                method: 'post',
+                url: 'http://211.200.250.190:7070/coconet/image/upload',
+                data: formData,
+                headers: {
+                    'Content-Type': 'multipart/form-data',
+                    'enctype': "multipart/form-data"
+                }
+            })
+            .then(() => {
+                alert('업로드 성공');
+            })
+            .catch((error) => {
+                console.log(error);
+            })
+            
+        }
+        else
+        {
+            alert('지원하지 않는 파일 형식입니다.');
+        }
     }
 
     useEffect(() => {
@@ -54,7 +83,8 @@ const Info = () =>
                 <div className={style.userProfile}>
                     <div className={style.imgBox}>
                         <img className={style.userImg} src="/logo.png"/>
-                        <div className={style.addImg} />
+                        <input id="imgUpload" type ="file" className={style.hidden} onChange={(e) => {uploadImg(e.target.files[0])}}/>
+                        <label htmlFor="imgUpload" className={style.addImg} />
                     </div>
                     <div className={style.userBox}>
                         <p className={style.userName}>{user.name}</p>

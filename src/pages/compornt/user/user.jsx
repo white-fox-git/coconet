@@ -11,36 +11,30 @@ import WorkStatus from "./workStatus";
 import DeviceManagement from "./deviceManagement";
 import Message from "./message";
 
-axios.defaults.timeout = 1000;
+axios.defaults.timeout = 3000;
 
 const User = () =>
 {
     let navigate = useNavigate();
     let dispatch = useDispatch();
-    let user = useSelector((state) => { return state.user } )
+    let user = useSelector((state) => { return state.user } );
 
     const [todo, setTodo] = useState();
     const [ul, setUl] = useState(false);
     const [tap, setTap] = useState(0);
-    const [state, setState] = useState(user.state);
+    const [state, setState] = useState(user.status);
 
     // Get Server
     const [todoList, setTodoList] = useState();
     const [message, setMessage] = useState();
 
     const getTodoList = () => {
-        axios.get(`http://211.200.250.190:7070/coconet/board/todo?username=${user.name}`)
+        axios.get(`http://211.200.250.190:7070/coconet/board/todo?userNum=${user.userid}`)
         .then((res) => {
             setTodoList(res.data);
         })
         .catch((error) => {
-            //console.log('Todo List Error => ' + error);
-            setTodoList([
-                {todo:'test1', check : true}, 
-                {todo:'test2', check : false}, 
-                {todo:'test3', check : true}, 
-                {todo:'test4' , check : false}, 
-                {todo:'test5', check : true},])
+            console.log(error);
         });
     }
 
@@ -73,7 +67,7 @@ const User = () =>
         axios({
             url : 'http://211.200.250.190:7070/coconet/board/todo/add',
             method : "post",
-            data : JSON.stringify({userName : user.name, todo : todo}),
+            data : JSON.stringify({userNum : user.userid, todo : todo}),
             responseType : 'json',
             headers : {
                 'Content-Type': 'application/json',
@@ -82,7 +76,7 @@ const User = () =>
         .then((res) => {
             input.value = null;
             getTodoList();
-            console.log(res);
+
         })
         .catch((error) => {
             input.value = null;
@@ -92,30 +86,40 @@ const User = () =>
     }
 
     const pushState = (state) => {
+
+        let status;
+
+        if(state == "업무")
+        {
+            status = 10;
+        }
+        else
+        {
+            status = 0;
+        }
+
         axios({
-            url : 'URL',
+            url : 'http://211.200.250.190:7070/coconet/status/break',
             method : "post",
-            data : JSON.stringify({name : user.name, state : state}),
+            data : JSON.stringify({num : user.userid}),
             responseType : 'json',
             headers : {
                 'Content-Type': 'application/json',
             }
         })
-        .then((data) => {
-            console.log(data.res);
-            setState(state);
+        .then(() => {
+            setState(status);
         })
         .catch((error) => {
             console.log(error);
-            setState(state);
         })
     }
 
-    const checkTodo = (todo) => {
+    const checkTodo = (item) => {
         axios({
-            url : 'URL',
+            url : 'http://211.200.250.190:7070/coconet/board/todo/check',
             method : "post",
-            data : JSON.stringify({name : user.name, todo : todo}),
+            data : JSON.stringify({userNum : user.userid, todo : item.todo, todo_Check : item.todo_Check}),
             responseType : 'json',
             headers : {
                 'Content-Type': 'application/json',
@@ -131,9 +135,9 @@ const User = () =>
 
     const deleteTodo = (item) => {
         axios({
-            url : 'https://211.200.250.190:443/coconet/board/todo/delete',
+            url : 'http://211.200.250.190:7070/coconet/board/todo/delete',
             method : "delete",
-            data : JSON.stringify({userName : user.name, todo : item}),
+            data : JSON.stringify({userNum : user.userid, todo : item}),
             responseType : 'json',
             headers : {
                 'Content-Type': 'application/json',
@@ -160,13 +164,7 @@ const User = () =>
                         </div>
                         <div className={style.hello}>
                             {
-                                state == "업무" ? <div className={style.workIcon} /> : null
-                            }
-                            {
-                                state == "휴식" ? <div className={style.restIcon} /> : null
-                            }
-                            {
-                                state == "출근전" ? <div className={style.goHomeIcon} /> : null
+                                state == 10 ? <div className={style.workIcon} /> : <div className={style.restIcon} />
                             }
                             <div className={style.helloText}>{user.name}님 환영합니다</div>
                         </div>
@@ -176,7 +174,6 @@ const User = () =>
                                 <select className={style.state} value={user.state}onChange={(e) => {pushState(e.target.value)}}>
                                     <option value="업무">업무중</option>
                                     <option value="휴식">휴식중</option>
-                                    <option value="출근전">퇴근</option>
                                 </select>
                             </div>
                         </div>
@@ -195,8 +192,8 @@ const User = () =>
                                             return (
                                             <div className={style.todoItem} key = {idx}>
                                                 <div className={style.todoItemBox}>
-                                                    <input type="checkbox" className={style.todoCheck} onChange = {(idx) => {checkTodo(item.todo)}}/>
-                                                    <span className={/*item.check == true ? */style.todo/* : selectTodo*/}>{item.todo}</span>
+                                                    <input type="checkbox" checked={item.todo_Check == "true" ? true : false} className={style.todoCheck} onChange = {() => {checkTodo(item)}}/>
+                                                    <span className={item.todo_Check == "false" ? style.todo : style.checkedTodo}>{item.todo}</span>
                                                 </div>
                                                 <FontAwesomeIcon className={style.todoDelete} icon={faMinus} onClick={() => {deleteTodo(item.todo)}}/>
                                             </div>)
@@ -214,7 +211,7 @@ const User = () =>
                                         <FontAwesomeIcon icon = {faComment} className={style.titleIcon}/>
                                         <h3 className={style.title}> 최근 받은 메시지</h3>
                                     </div>
-                                    <span className={style.more} onClick ={() => {navigate('/chat')}}>+ 더보기</span>
+                                    <span className={style.more} onClick ={() => {navigate('')}}>+ 더보기</span>
                                 </div>
                                 <section className={style.sectionItem}>
                                     {

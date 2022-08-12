@@ -29,7 +29,6 @@ const UserLog = () => {
         })
         .catch(() => {
             console.log(error);
-            setPosition("직급없음");
         });
 
         setSelectDepartment(team);
@@ -39,14 +38,9 @@ const UserLog = () => {
         axios.get(`http://211.200.250.190:7070/coconet/user/username?department=${selectDepartment}&position=${position}`)
         .then((res) => {
             setUserList(res.data);
-            if(res == null)
-            { 
-                setUserList(["사용자 없음"]);
-            }
         })
         .catch((error) => {
             console.log(error);
-            setUserList(["사용자 없음"]);
         });
 
         setSelectPosition(position);
@@ -54,10 +48,17 @@ const UserLog = () => {
 
     const getLog = (user) => {
         
-        console.log("get");
+        console.log(user);
+
         axios.get(`http://211.200.250.190:7070/coconet/logs/user?department=${selectDepartment}&position=${selectPosition}&username=${user}`)
         .then((res) => {
-            console.log(res);
+            setLogInfo(res.data);
+            setDepartment(null);
+            setPosition(null);
+            setUserList(null);
+            document.getElementById("option1").selected = true;
+            document.getElementById("option2").selected = true;
+            document.getElementById("option3").selected = true;
         })
         .catch((error) => {
             console.log(error);
@@ -73,7 +74,7 @@ const UserLog = () => {
                     <div className={style.userSelect}>
                         <h5 className={style.selectTitle}>부서</h5>
                         <select className={style.selectBox} value={selectDepartment} onClick={() => {getDepartment()}} onChange={(e) => {searchPositon(e.target.value)}}>
-                            <option value="" disabled selected>부서 선택</option>
+                            <option id="option1" value="" disabled selected>부서 선택</option>
                             {
                                 department != null ? department.map((item, idx) => {
                                     return <option value={item} key={idx}>{item}</option>
@@ -86,7 +87,7 @@ const UserLog = () => {
                     <div className={style.userSelect}>
                         <h5 className={style.selectTitle}>직급</h5>
                         <select className={style.selectBox} onChange={(e) => {searchUser(e.target.value)}}> 
-                            <option value="" disabled selected>직급 선택</option>
+                            <option id="option2" value="" disabled selected>직급 선택</option>
                             {
                                 position != null ? position.map((item, idx) => {
                                     return <option value={item} key={idx} >{item}</option>
@@ -99,10 +100,10 @@ const UserLog = () => {
                     <div className={style.userSelect}>
                         <h5 className={style.selectTitle}>사원명</h5>
                         <select className={style.selectBox} onChange={(e) => {getLog(e.target.value)}}>
-                            <option value="" disabled selected>사원 선택</option>
+                            <option id="option3" value="" disabled selected>사원 선택</option>
                             {
                                 userList != null ? userList.map((item, idx) => {
-                                    return <option value={item} key={idx}>{item}</option>
+                                    return <option value={item.name} key={idx}>{item.name}</option>
                                 })
                                 :
                                 null
@@ -122,7 +123,6 @@ const UserLog = () => {
                     </div>
                     {
                         logInfo != null ? logInfo.map((item, idx) => {
-                            console.log(item);
                             return(
                                 <div className={style.tableItem} key={idx}>
                                     <span className={style.tableInfo}>{item.name}</span>

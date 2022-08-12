@@ -156,7 +156,6 @@
     width: 100px;
     height: 100px;
     position: relative;
-    cursor: pointer;
 }
 
 .addImg
@@ -171,6 +170,12 @@
     bottom: 0;
     right: 0;
     position: absolute;
+    cursor: pointer;
+}
+
+.hidden
+{
+    display: none;
 }
 
 .userBox
@@ -310,7 +315,7 @@
         height: 34px;
         padding: 5px;
         padding-left: 15px;
-        font-size: 20px;
+        font-size: 18px;
     }
 
     .inputBtn

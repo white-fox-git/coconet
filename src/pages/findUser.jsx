@@ -71,11 +71,9 @@ const UserInfo = (props) =>
         {
             axios.get(`http://211.200.250.190:7070/coconet/sendSMS?name=${props.name}&phone=${props.phone}`)
             .then((res) => {
-                console.log(res.data);
                 let data = res.data;
                 if(data.issuedCode == true)
                 {
-                    console.log(res.data);
                     // check값이 true일 경우 redCode state에 서버가 보낸 code값을 넣고 비활성화 된 code Input을 활성화
                     document.getElementById('code').disabled = false;
                     setMessage(true);
@@ -169,9 +167,9 @@ const SetPwd = (props) =>
 
 
             axios({
-                url : 'URL',
+                url : 'http://211.200.250.190:7070/coconet/password/change',
                 method : "post",
-                data : JSON.stringify({name : props.name, phone : props.phone,  newPwd : pwd}),
+                data : JSON.stringify({name : props.name, phone : props.phone,  newPassword : pwd}),
                 responseType : 'json',
                 headers : {
                     'Content-Type': 'application/json',
@@ -179,7 +177,7 @@ const SetPwd = (props) =>
                 }
             })
             .then(() => {
-                console.log("success");
+                console.log("Login Success");
             })
             .catch((error) =>{
                 console.log(error);
@@ -190,7 +188,6 @@ const SetPwd = (props) =>
             // 암호에 문제가 있다면 pwd Alert창을 띄움
             props.setCheckPwd(true);
             setTimeout(() => {props.setCheckPwd(false)}, 2000);
-            console.log(false)
         }
     }
 

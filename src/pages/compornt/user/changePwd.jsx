@@ -10,27 +10,29 @@ const ChangePwd = (props) => {
     const [checkPwd, setCheckPwd] = useState('');
 
     const nowPwdCheck = () => {
-        alert(JSON.stringify({user : props.user.name, email : props.info.email, pwd : nowPwd}));
-
         axios({
-            url : "URL",
+            url : "http://211.200.250.190:7070/coconet/password/check",
             method : "post",
-            data : JSON.stringify({user : props.user.name, pwd : nowPwd}),
+            data : JSON.stringify({name : props.user.name, phone : props.info.phone, password : nowPwd}),
             responseType : 'json',
             headers : {
                 'Content-Type': 'application/json',
             }
         })
-        .then(() => {
-            setCheck(true);
-            document.getElementById("newPwd").disabled = false;
-            document.getElementById("checkPwd").disabled = false;
+        .then((res) => {
+            if(res.data == true)
+            {
+                setCheck(true);
+                document.getElementById("newPwd").disabled = false;
+                document.getElementById("checkPwd").disabled = false;
+            }
+            else
+            {
+                alert("비밀번호가 틀립니다.")
+            }
         })
-        .catch(() => {
-            //alert("비밀번호가 틀립니다.")
-            setCheck(true);
-            document.getElementById("newPwd").disabled = false;
-            document.getElementById("checkPwd").disabled = false;
+        .catch((error) => {
+            console.log(error);
         })
     }
 
@@ -42,9 +44,9 @@ const ChangePwd = (props) => {
         else
         {
             axios({
-                url : "URL",
+                url : "http://211.200.250.190:7070/coconet/password/change",
                 method : "post",
-                data : JSON.stringify({user : props.user.name, email : props.info.email, newPwd : newPwd}),
+                data : JSON.stringify({name : props.user.name, phone : props.info.phone, newPassword : newPwd}),
                 responseType : 'json',
                 headers : {
                     'Content-Type': 'application/json',
@@ -72,7 +74,7 @@ const ChangePwd = (props) => {
             }
             <div className={style.inputBox}>
                 <p className={style.inputTitle}>새로운 비밀번호</p>
-                <input type="password" id="newPwd" value={newPwd} className={style.input} onChange={(e) => {setNewPwd(e.target.value)}} disabled/>
+                <input type="password" id="newPwd" placeholder="영문 숫자 포함 8자 이상" value={newPwd} className={style.input} onChange={(e) => {setNewPwd(e.target.value)}} disabled/>
             </div>
             <div className={style.inputBox}>
                 <p className={style.inputTitle}>비밀번호 확인</p>

@@ -11,7 +11,7 @@ const BusinessInfo = () =>
 
 
     const [notice, setNotice] = useState();
-    const [alert, serAlert] = useState();
+    const [alert, setAlert] = useState();
 
     const getNotice = () => {
         axios.get('http://211.200.250.190:7070/coconet/board/notice')
@@ -19,17 +19,17 @@ const BusinessInfo = () =>
             setNotice(res.data);
         })
         .catch((error) => {
-            console.log('Notice Error => ' + error);
+            console.log(error);
         })
     }
 
     const getAlert = () => {
-        axios.get('http://211.200.250.190:7070/coconet/board/alert')
+        axios.get('http://211.200.250.190:7070/coconet/board/notification')
         .then((res) => {
-
+            setAlert(res.data.reverse());
         })
         .catch((error) => {
-            console.log('Alert Error => ' + error);
+            console.log(error);
         })
     }
     
@@ -79,8 +79,8 @@ const BusinessInfo = () =>
                                 <div className={style.alertItem} key={idx}>
                                     <img src = {item.img} className={style.alertIcon}/>
                                     <div className={style.alertText}>
-                                        <span>{item.text}</span>
-                                        <span className={style.alertTime}>{item.time}</span>
+                                        <span>{item.title}</span>
+                                        <span className={style.alertTime}>{item.date}</span>
                                     </div>
                                 </div>
                             )

@@ -32,7 +32,7 @@ const AddUser = () => {
             const data = JSON.stringify(
                 {
                     name : name, // 이름
-                    birthdate : birthday, // 생년월일
+                    birthDate : birthday, // 생년월일
                     phone : phone,  // 전화번호
                     email : email,  // 이메일
                     department : selectDepartment, // 부서
@@ -42,7 +42,7 @@ const AddUser = () => {
             alert(data);
     
             axios({
-                url : 'https://211.200.250.190:443/coconet/board/todo/delete',
+                url : 'http://211.200.250.190:7070/coconet/signup',
                 method : "post",
                 data : data,
                 responseType : 'json',

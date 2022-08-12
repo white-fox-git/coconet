@@ -1,6 +1,7 @@
 import {React, useState} from "react";
 import axios from "axios";
 import style from "../../../css/admin.module.css";
+import { setUser } from "../../../utils/redux";
 
 const StatusManagement = () => {
 
@@ -12,6 +13,8 @@ const StatusManagement = () => {
     const [selectUser, setSelectUser] = useState();
     const [status, setStatus] = useState();
     const [success, setSuccess] = useState(false);
+    const [userid, setUserid] = useState();
+    
 
     const getDepartment = () =>
     {
@@ -22,17 +25,18 @@ const StatusManagement = () => {
         .catch(() => {
             setDepartment(['개발팀', '디자인팀', '인사팀', '회계팀', '영업팀']);
         })
+        setSuccess(false);
     }
 
     const searchPositon = (team) => {
         axios.get(`http://211.200.250.190:7070/coconet/user/position?department=${team}`)
         .then((res) => {
-            setPosition(res.data);
+                setPosition(res.data);
         })
         .catch(() => {
-            setPosition(['부장', '사장', '사원']);
+            setPosition(['유저 없음']);
         });
-
+        setSuccess(false);
         setSelectDepartment(team);
     }
 
@@ -42,23 +46,42 @@ const StatusManagement = () => {
             setUserList(res.data);
         })
         .catch(() => {
-            setUserList(['김현빈', '김은비', '정재훈']);
+            setUserList(['유저 없음']);
         });
-
+        setSuccess(false);
         setSelectPosition(position);
     }
 
     const getStatus = (user) => {
-        setStatus(['근무', '외근', '출장', '휴가'])
+        setStatus(['근무', '외근', '출장', '휴가']);
+        setUserid(user);
         setSuccess(false);
-        setSelectUser(user);
     }
 
     const sendStatus = (status) => {
+
+        if(status == '근무')
+        {
+            status = undefined;
+        }
+        else if(status == '외근')
+        {
+            status = 11;
+        }
+        else if(status == '출장')
+        {
+            status = 13;
+        }
+        else if(status == '휴가')
+        {
+            status = 14;
+        }
+
+
         axios({
-            url : "URL",
+            url : "http://211.200.250.190:7070/coconet/status",
             method : "post",
-            data : JSON.stringify({team : selectDepartment, position : selectPosition, user : selectUser, status : status}),
+            data : JSON.stringify({num : userid, status : status}),
             responseType : 'json',
             headers : {
                 'Content-Type': 'application/json',
@@ -68,8 +91,8 @@ const StatusManagement = () => {
             setSuccess(true);
         })
         .catch(() => {
-            setSuccess(true);
-            //alert('서버 전송에 실패하였습니다.')
+            console.log(error);
+            alert('서버 전송에 실패하였습니다.')
         })
     }
 
@@ -111,7 +134,7 @@ const StatusManagement = () => {
                             <option value="" disabled selected>사원 선택</option>
                             {
                                 userList != null ? userList.map((item, idx) => {
-                                    return <option value={item} key={idx}>{item}</option>
+                                    return <option value={item.userid} key={idx}>{item.name}</option>
                                 })
                                 :
                                 null

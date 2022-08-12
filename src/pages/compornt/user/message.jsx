@@ -5,7 +5,7 @@ const Message = (props) =>
 {
     return(
         <div className={style.messageItem}>
-            <Link to ={"/chat/" + props.user.id} className={style.message}>
+            <Link to ="" className={style.message}>
                 <img src={props.user.photo} className={style.messagePhoto} />
                 <div className = {style.userBox}>
                     <h3 className={style.userName}>{props.user.name}</h3>

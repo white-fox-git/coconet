@@ -45,7 +45,6 @@ const Notice = () =>
                 <section className={style.notice}>
                     {
                        notice!= null && notice.map((item, idx) => {
-                        console.log(JSON.stringify(item));
                         return(
                             <div className={style.noticeItem} key={idx}>
                                 <Link to={"/noticePost"} state={{

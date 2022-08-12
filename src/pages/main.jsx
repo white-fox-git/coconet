@@ -17,26 +17,27 @@ const Main = () => {
 
 
     useEffect(() => {
-
         const token = sessionStorage.getItem('Refresh_Token');
-        console.log(user);
-        
-        if(user == null ||user.name == null || user.authResult == false || token == null)
+        dispatch(refreshToken(token));
+
+        if(user.name == '' || token == null)
         {
             dispatch(removeUser());
             navigate('/');
         }
         else
         {
-            dispatch(refreshToken(sessionStorage.getItem('Refresh_Token')));
+            checkAdmin();
         }
+        
+    }, []);
 
-        if(user.name == "admin")
+    const checkAdmin = () => {
+        if(user.name == "admin" && user.userid == 90000)
         {
-            console.log("admin입니다");
             setAdmin(true);
         }
-    }, []);
+    } 
 
     return(
         <>
