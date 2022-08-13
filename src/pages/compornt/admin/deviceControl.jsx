@@ -14,41 +14,46 @@ const DeviceControl = () => {
 
     const getDepartment = () =>
     {
-        axios.get('URL')
+        axios.get('http://211.200.250.190:7070/coconet/user/department')
         .then((res) => {
             setDepartment(res.data);
         })
-        .catch(() => {
-            setDepartment(['개발팀', '디자인팀', '인사팀', '회계팀', '영업팀']);
+        .catch((error) => {
+            console.log(error);
         })
     }
 
     const searchPositon = (team) => {
-        axios.get(`URL?department=${team}`)
+        axios.get(`http://211.200.250.190:7070/coconet/user/position?department=${team}`)
         .then((res) => {
             setPosition(res.data);
         })
         .catch(() => {
-            setPosition(['부장', '사장', '사원']);
+            console.log(error);
         });
 
         setSelectDepartment(team);
     }
 
     const searchUser = (position) => {
-        axios.get(`http://211.200.250.190:7070/coconet/admin/logs/user?department=${selectDepartment}&position=${position}`)
+
+        axios.get(`http://211.200.250.190:7070/coconet/user/username?department=${selectDepartment}&position=${position}`)
         .then((res) => {
+            console.log(res.data);
             setUserList(res.data);
         })
-        .catch(() => {
-            setUserList(['김현빈', '김은비', '정재훈']);
+        .catch((error) => {
+            console.log(error);
         });
 
         setSelectPosition(position);
     }
 
     const getDevice = (user) => {
-        axios.get(`URL?department=${selectDepartment}&position=${position}&user=${user}`)
+
+        setUser(user);
+
+        axios.get(`URL?department=${selectDepartment}&position=${selectPosition}&user=${user}`)
         .then((res) => {
             setDeviceInfo(res.data);
             setDepartment(null);
@@ -110,22 +115,14 @@ const DeviceControl = () => {
                 copy[idx].screenShot = true;
         }
         
-        axios({
-            url : 'URL',
-            method : "post",
-            data : JSON.stringify({user : user, device : copy[idx].device, controlItem : itemName, control : control}),
-            responseType : 'json',
-            headers : {
-                'Content-Type': 'application/json',
-            }
-        })
-        .then(() => {
-            setDeviceInfo(copy);
-        })
-        .catch(() => {
-            setDeviceInfo(copy);
-            //alert('서버와의 연결에 실패하였습니다.');
-        })
+        setDeviceInfo(copy);
+    }
+
+    const submitItem = (idx) => {
+        let copy = [...deviceInfo];
+        let addUser = { user : user };
+        const result = Object.assign(addUser, copy[idx]);
+        console.log(JSON.stringify(result));
     }
 
     return (
@@ -182,7 +179,8 @@ const DeviceControl = () => {
                             <h4 className={style.tableTitleMini}>카메라</h4>  
                             <h4 className={style.tableTitleMini}>마이크</h4> 
                             <h4 className={`${style.tableTitleMini}, ${style.tableInfo}`}>화면 녹화</h4>
-                            <h4 className={`${style.tableTitleMini}, ${style.tableInfo}`}>화면 캡쳐</h4>               
+                            <h4 className={`${style.tableTitleMini}, ${style.tableInfo}`}>화면 캡쳐</h4> 
+                            <h4 className={`${style.tableTitleMini}, ${style.tableInfo}`}></h4>              
                         </div>
                         {
                             deviceInfo != null ? deviceInfo.map((item, idx) => {
@@ -208,6 +206,9 @@ const DeviceControl = () => {
                                             <label className={style.toggleBtn} onClick={() => {changeState(item.screenShot, idx, 4)}}>
                                                 <div className={item.screenShot == true ? style.selectToggle : style.unselectToggle} />
                                             </label>
+                                        </div>
+                                        <div className={style.tableInfo}>
+                                            <button className={style.deviceSubmit} onClick={() => submitItem(idx)}>변경</button>
                                         </div>
                                     </div>
                                 )

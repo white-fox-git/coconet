@@ -1,6 +1,6 @@
 import axios from "axios";
 import {React, useState} from "react";
-import {Link} from 'react-router-dom'
+import {Link, Navigate, useNavigate} from 'react-router-dom'
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faTriangleExclamation } from "@fortawesome/free-solid-svg-icons";
 import style from '../css/findUser.module.css'
@@ -58,9 +58,6 @@ const UserInfo = (props) =>
 
     const getCode = () =>
     {
-        let resData;
-        alert(props.name, props.phone)
-
         if(props.phone.length != 11 && props.name == '')
         {
             // phone 번호 또는 name입력이 잘못 되었을 때 Alert창 띄우기
@@ -155,6 +152,8 @@ const UserInfo = (props) =>
 const SetPwd = (props) =>
 {
 
+    let navigate = useNavigate();
+
     const [pwd, setPwd] = useState(''); // 변경할 암호
     const [pwd2, setPwd2] = useState(''); // 변경할 암호와 비교할 암호
 
@@ -177,7 +176,8 @@ const SetPwd = (props) =>
                 }
             })
             .then(() => {
-                console.log("Login Success");
+                alert("변경완료");
+                navigate('/');
             })
             .catch((error) =>{
                 console.log(error);

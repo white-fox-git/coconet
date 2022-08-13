@@ -19,7 +19,6 @@ const Main = () => {
     useEffect(() => {
 
         const token = sessionStorage.getItem('Refresh_Token');
-        console.log(user);
         
         if(user == null ||user.name == null || user.authResult == false || token == null)
         {

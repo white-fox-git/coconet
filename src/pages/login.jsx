@@ -1,3 +1,5 @@
+/* eslint-disable */
+
 import {React, useEffect, useState} from "react";
 import style from '../css/login.module.css'
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";

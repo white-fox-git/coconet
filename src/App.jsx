@@ -1,3 +1,5 @@
+/* eslint-disable */
+
 import { React, useState } from "react"
 import { Route, Routes } from "react-router-dom"
 import Login from "./pages/login";

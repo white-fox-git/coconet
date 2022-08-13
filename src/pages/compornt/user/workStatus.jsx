@@ -23,7 +23,7 @@ const WorkStatus = () =>
     const getApprovalData = () => {
         axios.get('http://211.200.250.190:7070/coconet/board/approval')
         .then((res) => {
-            setApprovalData(res.data.reverse());
+            setApprovalData(res.data);
         })
         .catch((error) => {
         })
@@ -32,7 +32,7 @@ const WorkStatus = () =>
     const getLogData = () => {
         axios.get('http://211.200.250.190:7070/coconet/board/log')
         .then((res) => {
-            setLogData(res.data.reverse());
+            setLogData(res.data);
         })
         .catch((error) => {
             console.log(error);

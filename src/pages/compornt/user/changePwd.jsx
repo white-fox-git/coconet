@@ -1,3 +1,5 @@
+/* eslint-disable */
+
 import {React, useState} from "react";
 import axios from "axios";
 import style from "../../../css/info.module.css"
@@ -37,7 +39,7 @@ const ChangePwd = (props) => {
     }
 
     const changePassword = () => {
-        if(newPwd != checkPwd && newPwd == '' && checkPwd == '')
+        if(newPwd != checkPwd || newPwd == '' && checkPwd == '')
         {
             alert('비밀번호가 서로 다릅니다.')
         }
@@ -54,6 +56,12 @@ const ChangePwd = (props) => {
             })
             .then(() => {
                 alert("변경이 완료되었습니다.");
+                document.getElementById("newPwd").disabled = true;
+                document.getElementById("checkPwd").disabled = true;
+                setNowPwd('');
+                setNewPwd('');
+                setCheckPwd('');
+                setCheck(false);
             })
             .catch(() => {
                 alert("서버와의 연결에 실패하였습니다.")
@@ -66,7 +74,7 @@ const ChangePwd = (props) => {
             <h5 className={style.title}>비밀번호 변경</h5>
             <div className={style.inputBox}>
                 <p className={style.inputTitle}>현재 비밀번호</p>
-                <input type="password" maxLength="20" value={props.nowPwd} className={style.btnInput} onChange={(e) => {setNowPwd(e.target.value)}}/>
+                <input type="password" maxLength="20" value={nowPwd} className={style.btnInput} onChange={(e) => {setNowPwd(e.target.value)}}/>
                 <button className={style.inputBtn} onClick={() => {nowPwdCheck()}}>확인</button>
             </div>
             {

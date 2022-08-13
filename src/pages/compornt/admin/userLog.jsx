@@ -35,8 +35,10 @@ const UserLog = () => {
     }
 
     const searchUser = (position) => {
+
         axios.get(`http://211.200.250.190:7070/coconet/user/username?department=${selectDepartment}&position=${position}`)
         .then((res) => {
+            console.log(res.data);
             setUserList(res.data);
         })
         .catch((error) => {

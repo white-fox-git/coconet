@@ -19,6 +19,7 @@ const User = () =>
     let dispatch = useDispatch();
     let user = useSelector((state) => { return state.user } );
 
+    const [imgsrc, setImgsrc] = useState();
     const [todo, setTodo] = useState();
     const [ul, setUl] = useState(false);
     const [tap, setTap] = useState(0);
@@ -154,17 +155,17 @@ const User = () =>
     return(
         <>
             <header className={style.header}>
-                <img src="/logo_text.png" className={style.logo} onClick={() => navigate('/main')}/>
+                <img src={"/logo_text.png"} className={style.logo} onClick={() => navigate('/main')}/>
            </header>
            <div className={style.content}>
                 <div className={style.helloBox}>
                     <div className={style.userProfile}>
                         <div className={style.imgBox}>
-                            <img className={style.userImg} src="/logo.png" /*Get Server *//>
+                            <img className={style.userImg} src={`http://211.200.250.190:7070/coconet/image/output?num=${user.userid}`}/>
                         </div>
                         <div className={style.hello}>
                             {
-                                state == 10 ? <div className={style.workIcon} /> : <div className={style.restIcon} />
+                                state == 12 ? <div className={style.restIcon} /> : <div className={style.workIcon} />
                             }
                             <div className={style.helloText}>{user.name}님 환영합니다</div>
                         </div>

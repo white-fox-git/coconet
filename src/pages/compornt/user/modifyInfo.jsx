@@ -1,32 +1,29 @@
-import {React, useState, useEffect} from "react";
+import {React, useState } from "react";
+import { useDispatch } from "react-redux/es/exports";
+import { setUser } from '../../../utils/redux'
 import axios from "axios";
 import style from "../../../css/info.module.css"
+import { useEffect } from "react";
 
 const ModifyInfo = (props) => {
 
     const [name, setName] = useState(props.user.name);
-    const [phone, setPhone] = useState(props.info.phone);
+    const [phone, setPhone] = useState();
     const [nameBtn, setNameBtn] = useState(false);
     const [phoneBtn, setPhoneBtn] = useState(false);
+
+    const dispatch = useDispatch();
 
     const enableInput = (id) => {
 
         let item = document.getElementById(id)
-        let changeItem;
-        let pushItem;
 
-        if(id == name)
+        if(id == "name")
         {
-            changeItem = "name";
-            pushItem = name;
-
             nameBtn == true ? setNameBtn(false) : setNameBtn(true);
         }
         else
         {
-            changeItem = "phone"
-            pushItem = phone;
-
             phoneBtn == true ? setPhoneBtn(false) : setPhoneBtn(true);
         }
 
@@ -37,25 +34,55 @@ const ModifyInfo = (props) => {
         }
         else
         {
-            axios({
-                url : "URL",
-                method : "post",
-                data : JSON.stringify({name : name, change : changeItem, item : pushItem}),
-                responseType : 'json',
-                headers : {
-                    'Content-Type': 'application/json',
-                }
-            })
-            .then((res) => {
-                setInfo(res.data);
-            })
-            .catch((error) => {
-                alert("업데이트 실패");
-            })
-
-            item.disabled = true;
+            if(id == "name")
+            {
+                axios({
+                    url : "http://211.200.250.190:7070/coconet/name/change",
+                    method : "post",
+                    data : JSON.stringify({name : name, num : props.user.userid}),
+                    responseType : 'json',
+                    headers : {
+                        'Content-Type': 'application/json',
+                    }
+                })
+                .then((res) => {
+                    dispatch(setUser(res.data));
+                })
+                .catch((error) => {
+                    console.log(error);
+                    alert("업데이트 실패");
+                })
+    
+                item.disabled = true;
+            }
+            else
+            {
+                axios({
+                    
+                    url : "http://211.200.250.190:7070/coconet/phone/change",
+                    method : "post",
+                    data : JSON.stringify({phone : phone, num : props.user.userid}),
+                    responseType : 'json',
+                    headers : {
+                        'Content-Type': 'application/json',
+                    }
+                })
+                .then((res) => {
+                    props.getInfo();
+                })
+                .catch((error) => {
+                    alert("업데이트 실패");
+                    console.log(error);
+                })
+    
+                item.disabled = true;
+            }
         }
     }
+
+    useEffect(() => {
+        setPhone(props.info.phone);
+    }, []);
 
     const check = (e) =>
     {
@@ -75,22 +102,22 @@ const ModifyInfo = (props) => {
             <h5 className={style.title}>기본 정보</h5>
             <div className={style.inputBox}>
                 <p className={style.inputTitle}>이름</p>
-                <input type="text" value={name} id={name} className={style.btnInput} onChange={(e) => {setName(e.target.value)}} disabled/>
+                <input type="text" value={name != null ? name : ''} id="name" className={style.btnInput} onChange={(e) => {setName(e.target.value)}} disabled/>
                 {
                     nameBtn == false ?
-                    <button className={style.inputBtn} onClick={() => {enableInput(name)}}>변경</button>
+                    <button className={style.inputBtn} onClick={() => {enableInput("name")}}>변경</button>
                     :
-                    <button className={style.inputBtn} onClick={() => {enableInput(name)}}>저장</button>
+                    <button className={style.inputBtn} onClick={() => {enableInput("name")}}>저장</button>
                 }
             </div>
             <div className={style.inputBox}>
                 <p className={style.inputTitle}>전화번호</p>
-                <input type="text" value={phone} id={phone} className={style.btnInput} onChange={(e) => {setPhone(check(e.target.value))}} disabled/>
+                <input type="text" value={phone} id="phone" className={style.btnInput} onChange={(e) => {setPhone(check(e.target.value))}} disabled/>
                 {
                     phoneBtn == false ?
-                    <button className={style.inputBtn} onClick={() => {enableInput(phone)}}>변경</button>
+                    <button className={style.inputBtn} onClick={() => {enableInput("phone")}}>변경</button>
                     :
-                    <button className={style.inputBtn} onClick={() => {enableInput(phone)}}>저장</button>
+                    <button className={style.inputBtn} onClick={() => {enableInput("phone")}}>저장</button>
                 }
             </div>
             <div className={style.inputBox}>
@@ -99,7 +126,7 @@ const ModifyInfo = (props) => {
             </div>
             <div className={style.inputBox}>
                 <p className={style.inputTitle}>생년월일</p>
-                <input type="text" value={props.info.birthday} className={style.input} disabled/>
+                <input type="text" value={props.info.birthDate} className={style.input} disabled/>
             </div>
         </div>
     )

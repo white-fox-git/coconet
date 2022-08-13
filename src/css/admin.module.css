@@ -273,6 +273,26 @@
     float: right;
 }
 
+.deviceSubmit
+{
+    width: 100px;
+    border: 0;
+    background-color: var(--main-color);
+    color: white;
+    font-family: var(--main-font);
+    font-size: 16px;
+    padding: 6px;
+    font-weight: 500;
+    border-radius: 4px;
+    cursor: pointer;
+    transition: 0.3s;
+}
+
+.deviceSubmit:hover
+{
+    background-color: var(--hover-color);
+}
+
 /*-- Commuting Time 영역  -------------------------------------------*/
 
 .ctiInfoBox

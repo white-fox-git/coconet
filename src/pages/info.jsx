@@ -15,20 +15,15 @@ const Info = () =>
 {
 
     const [tap, setTap] = useState(1);
-    const [info, setInfo] = useState({
-        email : "whitefox@kakao.com", 
-        phone : "01065597556", 
-        department : "개발팀",
-        position : "대리",
-        birthday : "2001-05-31"
-        });
+    const [info, setInfo] = useState({});
     const dispatch = useDispatch();
     const navigate = useNavigate();
     let user = useSelector((state) => { return state.user });
 
     const getInfo = () => {
-        axios.get(`http://localhost:7070/coconet/users/${user.userid}`)
+        axios.get(`http://211.200.250.190:7070/coconet/users/${user.userid}`)
         .then((res) => {
+            console.log(res.data);
             setInfo(res.data);
         })
         .catch((error) => {
@@ -37,17 +32,19 @@ const Info = () =>
     }
 
     const uploadImg = (file) => {
+        
         let fileName = file.name;
         let fileLength = fileName.length;
         let lastDot = fileName.lastIndexOf('.');
         let fileExt = fileName.substring(lastDot, fileLength).toLowerCase();
+
+
 
         const formData = new FormData();
         formData.append('files', file);
 
         if(fileExt == '.png' || fileExt == '.jpg' || fileExt == '.svg')
         {
-
             axios({
                 method: 'post',
                 url: 'http://211.200.250.190:7070/coconet/image/upload',
@@ -57,12 +54,14 @@ const Info = () =>
                     'enctype': "multipart/form-data"
                 }
             })
-            .then(() => {
+            .then((res) => {
                 alert('업로드 성공');
             })
             .catch((error) => {
                 console.log(error);
             })
+
+            console.log(file.name);
             
         }
         else
@@ -82,7 +81,7 @@ const Info = () =>
            </header>
                 <div className={style.userProfile}>
                     <div className={style.imgBox}>
-                        <img className={style.userImg} src="/logo.png"/>
+                        <img className={style.userImg} src={`http://211.200.250.190:7070/coconet/image/output?num=${user.userid}`} align ="cneter"/>
                         <input id="imgUpload" type ="file" className={style.hidden} onChange={(e) => {uploadImg(e.target.files[0])}}/>
                         <label htmlFor="imgUpload" className={style.addImg} />
                     </div>
@@ -103,7 +102,7 @@ const Info = () =>
                 </div>
                 <main className={style.main}>
                     {
-                        tap == 1 ? <ModifyInfo user = {user} info={info} /> : null
+                        tap == 1 ? <ModifyInfo user = {user} info={info} getInfo = {getInfo} /> : null
                     }
                     {
                         tap == 2 ? <Department user = {user} info={info} /> : null
@@ -120,5 +119,8 @@ const Info = () =>
         </>
     )
 }
+
+
+
 
 export default Info;
