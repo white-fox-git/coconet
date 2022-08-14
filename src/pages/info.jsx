@@ -23,12 +23,15 @@ const Info = () =>
     const getInfo = () => {
         axios.get(`http://211.200.250.190:7070/coconet/users/${user.userid}`)
         .then((res) => {
-            console.log(res.data);
             setInfo(res.data);
         })
         .catch((error) => {
             console.log(error);
         })
+    }
+
+    const userImgLink = () => {
+        return `http://211.200.250.190:7070/coconet/image/output?num=${user.userid}`;
     }
 
     const uploadImg = (file) => {
@@ -81,7 +84,7 @@ const Info = () =>
            </header>
                 <div className={style.userProfile}>
                     <div className={style.imgBox}>
-                        <img className={style.userImg} src={`http://211.200.250.190:7070/coconet/image/output?num=${user.userid}`} align ="cneter"/>
+                        <img className={style.userImg} src={userImgLink()} align ="cneter"/>
                         <input id="imgUpload" type ="file" className={style.hidden} onChange={(e) => {uploadImg(e.target.files[0])}}/>
                         <label htmlFor="imgUpload" className={style.addImg} />
                     </div>
@@ -102,7 +105,7 @@ const Info = () =>
                 </div>
                 <main className={style.main}>
                     {
-                        tap == 1 ? <ModifyInfo user = {user} info={info} getInfo = {getInfo} /> : null
+                        tap == 1 ? <ModifyInfo user = {user} /> : null
                     }
                     {
                         tap == 2 ? <Department user = {user} info={info} /> : null

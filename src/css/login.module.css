@@ -9,9 +9,7 @@
 {
     font-family: var(--main-font);
     font-weight: 700;
-    font-size: 28px;
-    letter-spacing: 1px;
-    
+    font-size: 24px;
 }
 
 .headerText
@@ -19,8 +17,7 @@
     font-family: var(--main-font);
     font-weight: 300;
     margin-top: 10px;
-    letter-spacing: -1px;
-    
+    font-size: 18px;
 }
 
 .loginBox
@@ -36,7 +33,7 @@
     flex-flow: column;
     justify-content: space-between;
     width: 100%;
-    max-width: 600px;
+    max-width: 400px;
     margin: auto;
     margin-top: 3vh;
 }
@@ -52,7 +49,7 @@
 .input
 {
     width: 94%;
-    max-width: 600px;
+    max-width: 400px;
     padding: 3%;
     font-size: 18px;
     margin-top: 4px;
@@ -75,22 +72,21 @@
     color: white;
     border: 0;
     width: 100%;
-    max-width: 600px;
+    max-width: 400px;
     border-radius: 4px;
     margin: 0 auto;
     margin-top: 5vh;
-    font-size: 18px;
+    font-size: 16px;
     transition: 0.3s;
     cursor: pointer;
     min-height: 40px;
     font-family: var(--main-font);
     font-weight: 400;
-    letter-spacing: 1px;
 }
 
 .linkBox
 {
-    margin-top: 5px;
+    margin-top: 10px;
     text-align: center;
 }
 
@@ -100,7 +96,7 @@
     color: gray;
     font-family: var(--main-font);
     font-weight: 300;
-    letter-spacing: 1px;
+    font-size: 16px;
     cursor: pointer;
     transition: 0.3s;
     
@@ -167,28 +163,16 @@
     padding-top: 16vh
 }
 
-@media screen and (min-width: 769px) {
-    .title
-    {
-        font-size: 54px;
-    }
-
-    .label, .input
-    {
-       font-size: 18px;
-    }
-}
-
 
 @media screen and (min-width: 1024px) {  
-    .title
+    .headerText
     {
-        font-size: 58px;
+        font-size: 20px;
     }
 
-    .label, .input, .link, .Alert, .headerText
+    .label, .input, .link, .Alert
     {
-       font-size: 20px;
+       font-size: 18px;
     }
     
     .headerTitle
@@ -196,23 +180,20 @@
         font-size: 34px;
     }
 
+    .input
+    {
+        max-width: 400px;
+    }
+
+
     .loginBtn
     {
-        font-size: 22px;
+        font-size: 18px;
     }
 }
 
 
 @media screen and (min-width: 1200px) {
-	.title
-    {
-        font-size: 64px;
-    }
-
-    .label, .input, .headerText
-    {
-       font-size: 22px;
-    }
 
     .linkBox
     {
@@ -223,7 +204,7 @@
 
     .loginBtn
     {
-        max-width: 350px;
+        max-width: 200px;
     }
 
     .header
@@ -237,10 +218,6 @@
         padding-top: 24vh
     }
 
-    .headerTitle
-    {
-        font-size: 42px;
-    }
 
     .loginBox, .inputBox, .loginBtn
     {

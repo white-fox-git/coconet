@@ -20,15 +20,15 @@ const Main = () => {
 
         const token = sessionStorage.getItem('Refresh_Token');
         
-        if(user == null ||user.name == null || user.authResult == false || token == null)
-        {
-            dispatch(removeUser());
-            navigate('/');
-        }
-        else
-        {
-            dispatch(refreshToken(sessionStorage.getItem('Refresh_Token')));
-        }
+        // if(user == null ||user.name == null || user.authResult == false || token == null)
+        // {
+        //     dispatch(removeUser());
+        //     navigate('/');
+        // }
+        // else
+        // {
+        //     dispatch(refreshToken(sessionStorage.getItem('Refresh_Token')));
+        // }
 
         if(user.name == "admin")
         {

@@ -204,6 +204,38 @@
     margin-right: 10px;
 }
 
+.checkOn
+{
+    display: inline-block;
+    margin-right: 10px;
+    width: 22px;
+    height: 22px;
+    background: url('/public/todo_check.svg');
+    cursor: pointer;
+    background-repeat: no-repeat;
+    background-size: 95%;
+    background-position: center;
+    cursor: pointer;
+}
+
+.checkOff
+{
+    display: inline-block;
+    margin-right: 10px;
+    width: 22px;
+    height: 22px;
+    background-image: url('/public/todo_none.svg');
+    background-size: 95%;
+    background-repeat: no-repeat;
+    background-position: center;
+    cursor: pointer;
+}
+
+.checkOff:hover
+{
+    background-image: url('/public/todo_hover.svg');
+}
+
 .checkedTodo
 {
     color: var(--gray-color);
@@ -528,11 +560,21 @@
     text-align: center;
 }
 
-.approvalItem, .logItem
+.logItem
 {
     display: flex;
     padding: 20px;
     justify-content: space-between;
+    align-items: center;
+    font-family: var(--main-font);
+    color: var(--black-color);
+}
+
+.approvalItem
+{
+    display: flex;
+    padding: 20px;
+    justify-content: start;
     align-items: center;
     font-family: var(--main-font);
     color: var(--black-color);
@@ -556,9 +598,15 @@
     border-radius: 20px 20px 20px 20px;
 }
 
+.approvalText
+{
+    display: flex;
+    flex-flow: column;
+    padding-left: 10px;
+}
+
 .approvalName
 {
-    margin-left: 10px;
     font-weight: 500;
 }
 
@@ -570,9 +618,11 @@
 
 .logTime
 {
+    width: 50px;
+    text-align: center;
     font-weight: 300;
     padding: 10px;
-    border: 2px solid;
+    border: 1px solid;
     border-radius: 0px 8px 8px 0px;
     display: none;
 }
@@ -590,15 +640,17 @@
 
 .logState
 {
-    display: inline;
-    padding: 10px;
-    font-size: 14px;
+    display: inline-block;
+    width: 40px;
+    text-align: center;
+    font-size: 16px;
     border-top: 1px solid;
     border-left: 1px solid;
     border-bottom: 1px solid;
     border-right: 1px solid;
-    font-weight: 500;
+    font-weight: 300;
     border-radius: 8px 8px 8px 8px;
+    color: white;
 }
 
 .label
@@ -837,11 +889,23 @@
         border-radius: 8px 0px 0px 8px;
     }
 
-    .noticeDay, .alertTime, .approvalDay, .logTime
+    .noticeDay, .alertTime, .approvalDay
     {
         display: inline;
         font-size: 15px;
         font-weight: 300;
+    }
+
+    .logTime
+    {
+        display: inline-block;
+        font-size: 16px;
+        font-weight: 300;
+    }
+
+    .noticeDay
+    {
+        padding-left: 30px;
     }
 
     .messagePhoto, .alertIcon, .approvalPhoto
@@ -902,6 +966,11 @@
         flex-flow: column;
         align-items:flex-end;
     }
+}
+
+.hidden
+{
+    display: none;
 }
 
 
@@ -994,10 +1063,15 @@
 
 @media screen and (min-width: 1600px) {
 
-   .workStatus, .chartLabel, .businessInfo
+   .workStatus, .chartLabel
    {
         grid-template-columns: 50% 50%;
-   }   
+   } 
+   
+   .businessInfo
+   {
+        grid-template-columns: 60% 40%;
+   }
 
    .chartBox
    {

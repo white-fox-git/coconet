@@ -22,8 +22,8 @@ const StatusManagement = () => {
         .then((res) => {
             setDepartment(res.data);
         })
-        .catch(() => {
-            setDepartment(['개발팀', '디자인팀', '인사팀', '회계팀', '영업팀']);
+        .catch((error) => {
+            console.log(error);
         })
         setSuccess(false);
     }
@@ -31,13 +31,13 @@ const StatusManagement = () => {
     const searchPositon = (team) => {
         axios.get(`http://211.200.250.190:7070/coconet/user/position?department=${team}`)
         .then((res) => {
-                setPosition(res.data);
+            setPosition(res.data);
         })
-        .catch(() => {
+        .catch((error) => {
             setPosition(['유저 없음']);
         });
-        setSuccess(false);
         setSelectDepartment(team);
+        setSuccess(false);
     }
 
     const searchUser = (position) => {
@@ -48,8 +48,8 @@ const StatusManagement = () => {
         .catch(() => {
             setUserList(['유저 없음']);
         });
-        setSuccess(false);
         setSelectPosition(position);
+        setSuccess(false);
     }
 
     const getStatus = (user) => {
@@ -89,6 +89,13 @@ const StatusManagement = () => {
         })
         .then(() => {
             setSuccess(true);
+            setDepartment(null);
+            setPosition(null);
+            setUserList(null);
+            document.getElementById("option1").selected = true;
+            document.getElementById("option2").selected = true;
+            document.getElementById("option3").selected = true;
+            document.getElementById("option4").selected = true;
         })
         .catch(() => {
             console.log(error);
@@ -105,7 +112,7 @@ const StatusManagement = () => {
                     <div className={style.userSelect}>
                         <h5 className={style.selectTitle}>부서</h5>
                         <select className={style.selectBox} value={selectDepartment} onClick={() => {getDepartment()}} onChange={(e) => {searchPositon(e.target.value)}}>
-                            <option value="" disabled selected>부서 선택</option>
+                            <option value="" id="option1" disabled selected>부서 선택</option>
                             {
                                 department != null ? department.map((item, idx) => {
                                     return <option value={item} key={idx}>{item}</option>
@@ -118,7 +125,7 @@ const StatusManagement = () => {
                     <div className={style.userSelect}>
                         <h5 className={style.selectTitle}>직급</h5>
                         <select className={style.selectBox} onChange={(e) => {searchUser(e.target.value)}}> 
-                            <option value="" disabled selected>직급 선택</option>
+                            <option id="option2" value="" disabled selected>직급 선택</option>
                             {
                                 position != null ? position.map((item, idx) => {
                                     return <option value={item} key={idx} >{item}</option>
@@ -131,7 +138,7 @@ const StatusManagement = () => {
                     <div className={style.userSelect}>
                         <h5 className={style.selectTitle}>사원명</h5>
                         <select className={style.selectBox} onChange={(e) => {getStatus(e.target.value)}}>
-                            <option value="" disabled selected>사원 선택</option>
+                            <option value="" id="option3" disabled selected>사원 선택</option>
                             {
                                 userList != null ? userList.map((item, idx) => {
                                     return <option value={item.userid} key={idx}>{item.name}</option>
@@ -144,7 +151,7 @@ const StatusManagement = () => {
                     <div className={style.userSelect}>
                         <h5 className={style.selectTitle}>근무 상태</h5>
                         <select className={style.selectBox} onChange={(e) => {sendStatus(e.target.value)}}>
-                            <option value="" disabled selected>상태 선택</option>
+                            <option value="" id="option4" disabled selected>상태 선택</option>
                             {
                                 status != null ? status.map((item, idx) => {
                                     return <option value={item} key={idx}>{item}</option>

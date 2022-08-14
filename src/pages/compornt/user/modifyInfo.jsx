@@ -4,6 +4,8 @@ import { setUser } from '../../../utils/redux'
 import axios from "axios";
 import style from "../../../css/info.module.css"
 import { useEffect } from "react";
+import { useLayoutEffect } from "react";
+import { render } from "react-dom";
 
 const ModifyInfo = (props) => {
 
@@ -11,6 +13,18 @@ const ModifyInfo = (props) => {
     const [phone, setPhone] = useState();
     const [nameBtn, setNameBtn] = useState(false);
     const [phoneBtn, setPhoneBtn] = useState(false);
+    const [info , setInfo] = useState();
+
+    const getInfo = () => {
+        axios.get(`http://211.200.250.190:7070/coconet/users/${props.user.userid}`)
+        .then((res) => {
+            setInfo(res.data);
+            setPhone(res.data.phone);
+        })
+        .catch((error) => {
+            console.log(error);
+        })
+    }
 
     const dispatch = useDispatch();
 
@@ -67,8 +81,9 @@ const ModifyInfo = (props) => {
                         'Content-Type': 'application/json',
                     }
                 })
-                .then((res) => {
-                    props.getInfo();
+                .then(() => {
+                    console.log(phone)
+                    getInfo();
                 })
                 .catch((error) => {
                     alert("업데이트 실패");
@@ -81,8 +96,9 @@ const ModifyInfo = (props) => {
     }
 
     useEffect(() => {
-        setPhone(props.info.phone);
-    }, []);
+        getInfo();
+    }, [])
+
 
     const check = (e) =>
     {
@@ -122,11 +138,11 @@ const ModifyInfo = (props) => {
             </div>
             <div className={style.inputBox}>
                 <p className={style.inputTitle}>이메일</p>
-                <input type="text" value={props.info.email} className={style.input} disabled/>
+                <input type="text" value={info != null ? info.email : ''} className={style.input} disabled/>
             </div>
             <div className={style.inputBox}>
                 <p className={style.inputTitle}>생년월일</p>
-                <input type="text" value={props.info.birthDate} className={style.input} disabled/>
+                <input type="text" value={info != null ? info.birthDate : ''} className={style.input} disabled/>
             </div>
         </div>
     )

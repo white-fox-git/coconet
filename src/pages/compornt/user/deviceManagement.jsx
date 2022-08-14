@@ -1,5 +1,6 @@
 import {React, useState, useEffect} from "react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { useSelector } from "react-redux/es/hooks/useSelector";
 import { faTimeline, faMobileScreen, faCube, faBan, faCircleCheck } from "@fortawesome/free-solid-svg-icons";
 import style from "../../../css/user.module.css";
 import axios from "axios";
@@ -7,30 +8,36 @@ import axios from "axios";
 const DeviceManagement = () =>
 {
 
-    const [deviceLog, setDeviceLog] = useState([
-        {text : '업무 시간 시작', img : 'https://previews.123rf.com/images/jovanas/jovanas1602/jovanas160201359/52097507-%EC%95%8C%EB%A6%BC-%EC%95%84%EC%9D%B4%EC%BD%98.jpg', time : '2022.07.01 (금) 9:00'},
-        {text : '업무 시간 시작', img : 'https://previews.123rf.com/images/jovanas/jovanas1602/jovanas160201359/52097507-%EC%95%8C%EB%A6%BC-%EC%95%84%EC%9D%B4%EC%BD%98.jpg', time : '2022.07.01 (금) 9:00'},
-        {text : '업무 시간 시작', img : 'https://previews.123rf.com/images/jovanas/jovanas1602/jovanas160201359/52097507-%EC%95%8C%EB%A6%BC-%EC%95%84%EC%9D%B4%EC%BD%98.jpg', time : '2022.07.01 (금) 9:00'},
-        {text : '업무 시간 시작', img : 'https://previews.123rf.com/images/jovanas/jovanas1602/jovanas160201359/52097507-%EC%95%8C%EB%A6%BC-%EC%95%84%EC%9D%B4%EC%BD%98.jpg', time : '2022.07.01 (금) 9:00'},
-        {text : '업무 시간 시작', img : 'https://previews.123rf.com/images/jovanas/jovanas1602/jovanas160201359/52097507-%EC%95%8C%EB%A6%BC-%EC%95%84%EC%9D%B4%EC%BD%98.jpg', time : '2022.07.01 (금) 9:00'},
-        {text : '업무 시간 시작', img : 'https://previews.123rf.com/images/jovanas/jovanas1602/jovanas160201359/52097507-%EC%95%8C%EB%A6%BC-%EC%95%84%EC%9D%B4%EC%BD%98.jpg', time : '2022.07.01 (금) 9:00'},
-        {text : '업무 시간 시작', img : 'https://previews.123rf.com/images/jovanas/jovanas1602/jovanas160201359/52097507-%EC%95%8C%EB%A6%BC-%EC%95%84%EC%9D%B4%EC%BD%98.jpg', time : '2022.07.01 (금) 9:00'}
-    ]);
+    let user = useSelector((state) => {return state.user});
+
+    const [deviceLog, setDeviceLog] = useState([]);
     
-    const [device, setDevice] = useState(
-        {
-            name : 'Galuxy Note 10+',
-            os : 'Android',
-            camera : true,
-            mike : true,
-            record : true,
-            screenShout : false
-        }
-    )
+    const [device, setDevice] = useState();
+
+    const getDeviceInfo = () => {
+        axios.get(`http://211.200.250.190:7070/coconet/device/one?userNum=${user.userid}`)
+        .then((res) => {
+             setDevice(res.data[0])
+        })
+        .catch((error) => {
+            console.log(error);
+        })
+    } 
+
+    const getDeviceLog = () => {
+        axios.get(`http://211.200.250.190:7070/coconet/device/log?userNum=${user.userid}`)
+        .then((res) => {
+             setDeviceLog(res.data);
+        })
+        .catch((error) => {
+            console.log(error);
+        })
+    } 
 
     useEffect(() => {
-
-    })
+        getDeviceInfo();
+        getDeviceLog();
+    }, [])
 
     return(
         <div className={style.deviceManagement}>
@@ -47,7 +54,7 @@ const DeviceManagement = () =>
                         <section className={style.deviceInfoBox}>
                             <div className={style.deviceInfo}>
                                 <h4 className={style.deviceOs}>{device.os}</h4>
-                                <h3 className={style.deviceName}>{device.name}</h3>
+                                <h3 className={style.deviceName}>{device.device}</h3>
                             </div>
                         </section>
                         <section className={style.deviceInfoBox}>
@@ -63,7 +70,7 @@ const DeviceManagement = () =>
                                     <div className={device.record == true ? style.acceptIcon : style.banIcon}>
                                         <img src='/ic_record.svg' className={style.icon}/>
                                     </div>
-                                    <div className={device.screenShout == true ? style.acceptIcon : style.banIcon}>
+                                    <div className={device.screenShot == true ? style.acceptIcon : style.banIcon}>
                                         <img src='/ic_screenshot.svg' className={style.icon}/>
                                     </div>
                                 </div> 
@@ -105,7 +112,7 @@ const DeviceManagement = () =>
                                     null
                                 }
                                 {
-                                    device.screenShout == true ?
+                                    device.screenShot == true ?
                                     <>
                                         <div className={style.acceptIcon}>
                                             <img src='/ic_screenshot.svg' className={style.icon}/>
@@ -153,7 +160,7 @@ const DeviceManagement = () =>
                                         null
                                     }
                                     {
-                                        device.screenShout != true ?
+                                        device.screenShot != true ?
                                         <>
                                             <div className={style.banIcon}>
                                                 <img src='/ic_screenshot.svg' className={style.icon}/>
@@ -182,10 +189,10 @@ const DeviceManagement = () =>
                         deviceLog != null && deviceLog.map((item, idx) => {
                             return(
                                 <div className={style.alertItem} key={idx}>
-                                    <img src = {item.img} className={style.alertIcon}/>
+                                    <img src ={`http://211.200.250.190:7070/coconet/image/output?num=${item.userNum}`} className={style.alertIcon}/>
                                     <div className={style.alertText}>
-                                        <span>{item.text}</span>
-                                        <span className={style.alertTime}>{item.time}</span>
+                                        <span>{item.title}</span>
+                                        <span className={style.alertTime}>{item.date}</span>
                                     </div>
                                 </div>
                                 )

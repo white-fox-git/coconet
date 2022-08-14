@@ -39,8 +39,6 @@ const AddUser = () => {
                     position : selectPosition,  // 직급
                 })
     
-            alert(data);
-    
             axios({
                 url : 'http://211.200.250.190:7070/coconet/signup',
                 method : "post",
@@ -52,6 +50,14 @@ const AddUser = () => {
             })
             .then(() => {
                 alert('유저 등록 완료');
+                setName(null);
+                setEmail(null);
+                setPhone(null);
+                setBirthday(null);
+                setSelectDepartment(null);
+                setSelectPosition(null);
+                document.querySelector("#option1").selected = true;
+                document.querySelector("#option2").selected = true;
             })
             .catch(() => {
                 alert('서버와의 연결에 실패했습니다.');
@@ -72,7 +78,7 @@ const AddUser = () => {
                     <div className={style.userSelect}>
                         <h5 className={style.selectTitle}>부서</h5>
                         <select className={style.selectBox} onChange={(e) => {setSelectDepartment(e.target.value)}}>
-                            <option value="" disabled selected>부서 선택</option>
+                            <option id="option1" value="" disabled selected>부서 선택</option>
                                 {
                                 department != null ? department.map((item, idx) => {
                                     return <option value={item} key={idx}>{item}</option>
@@ -85,7 +91,7 @@ const AddUser = () => {
                     <div className={style.userSelect}>
                         <h5 className={style.selectTitle}>직급</h5>
                         <select className={style.selectBox} onChange={(e) => {setSelectPosition(e.target.value)}}> 
-                            <option value="" disabled selected>직급 선택</option>
+                            <option id="option2" value="" disabled selected>직급 선택</option>
                             {
                                 position != null ? position.map((item, idx) => {
                                     return <option value={item} key={idx} >{item}</option>
@@ -99,19 +105,19 @@ const AddUser = () => {
                 <h4 className={style.tableTitle}>기본 정보</h4>
                 <div className={style.inputBox}>
                     <h5 className={style.selectTitle}>이름</h5>
-                    <input type="text" className={style.input} placeholder="ex. 홍길동" onChange={(e) => {setName(e.target.value)}}/>
+                    <input value={name} type="text" className={style.input} placeholder="ex. 홍길동" onChange={(e) => {setName(e.target.value)}}/>
                 </div>
                 <div className={style.inputBox}>
                     <h5 className={style.selectTitle}>이메일</h5>
-                    <input type="email" className={style.input} placeholder="ex. coconet123@coconet.com" onChange={(e) => {setEmail(e.target.value)}}/>
+                    <input value={email} type="email" className={style.input} placeholder="ex. coconet123@coconet.com" onChange={(e) => {setEmail(e.target.value)}}/>
                 </div>
                 <div className={style.inputBox}>
                     <h5 className={style.selectTitle}>전화번호</h5>
-                    <input type="text" className={style.input} value={phone} placeholder="ex. 01012345678" minLength="11" maxLength="11" onChange={(e) => {setPhone(check(e.target.value))}}/>
+                    <input value={phone} type="text" className={style.input} placeholder="ex. 01012345678" minLength="11" maxLength="11" onChange={(e) => {setPhone(check(e.target.value))}}/>
                 </div>
                 <div className={style.inputBox}>
                     <h5 className={style.selectTitle}>생년월일</h5>
-                    <input type="text" className={style.input} value={birthday} placeholder="ex. 20010101" minLength="8" maxLength="8" onChange={(e) => {setBirthday(check(e.target.value))}}/>
+                    <input value={birthday} type="text" className={style.input} placeholder="ex. 20010101" minLength="8" maxLength="8" onChange={(e) => {setBirthday(check(e.target.value))}}/>
                 </div>
                 <button className={style.userSubmitBtn} onClick={() => {submitUser()}}>사용자 등록</button>
             </div>

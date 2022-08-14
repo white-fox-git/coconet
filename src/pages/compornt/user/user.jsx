@@ -57,9 +57,14 @@ const User = () =>
         ]);
     }
 
+    const userImgLink = () => {
+        return `http://211.200.250.190:7070/coconet/image/output?num=${user.userid}`;
+    }
+
     useEffect(() => {
         getTodoList();
         getMessage();
+        userImgLink();
     }, [])
 
     const todoSubmit = () => {
@@ -96,7 +101,7 @@ const User = () =>
         }
         else
         {
-            status = 0;
+            status = 12;
         }
 
         axios({
@@ -108,7 +113,7 @@ const User = () =>
                 'Content-Type': 'application/json',
             }
         })
-        .then(() => {
+        .then((res) => {
             setState(status);
         })
         .catch((error) => {
@@ -161,7 +166,7 @@ const User = () =>
                 <div className={style.helloBox}>
                     <div className={style.userProfile}>
                         <div className={style.imgBox}>
-                            <img className={style.userImg} src={`http://211.200.250.190:7070/coconet/image/output?num=${user.userid}`}/>
+                            <img className={style.userImg} src={userImgLink()}/>
                         </div>
                         <div className={style.hello}>
                             {
@@ -193,7 +198,8 @@ const User = () =>
                                             return (
                                             <div className={style.todoItem} key = {idx}>
                                                 <div className={style.todoItemBox}>
-                                                    <input type="checkbox" checked={item.todo_Check == "true" ? true : false} className={style.todoCheck} onChange = {() => {checkTodo(item)}}/>
+                                                    <label htmlFor={item.todo} className={item.todo_Check == "true" ? style.checkOn : style.checkOff}></label>
+                                                    <input id={item.todo} type="checkbox" checked={item.todo_Check == "true" ? true : false} className={style.hidden} onChange = {() => {checkTodo(item)}}/>
                                                     <span className={item.todo_Check == "false" ? style.todo : style.checkedTodo}>{item.todo}</span>
                                                 </div>
                                                 <FontAwesomeIcon className={style.todoDelete} icon={faMinus} onClick={() => {deleteTodo(item.todo)}}/>

@@ -28,24 +28,20 @@ const DeviceControl = () => {
         .then((res) => {
             setPosition(res.data);
         })
-        .catch(() => {
-            console.log(error);
+        .catch((error) => {
+            setPosition(['유저 없음']);
         });
-
         setSelectDepartment(team);
     }
 
     const searchUser = (position) => {
-
         axios.get(`http://211.200.250.190:7070/coconet/user/username?department=${selectDepartment}&position=${position}`)
         .then((res) => {
-            console.log(res.data);
             setUserList(res.data);
         })
-        .catch((error) => {
-            console.log(error);
+        .catch(() => {
+            setUserList(['유저 없음']);
         });
-
         setSelectPosition(position);
     }
 
@@ -53,7 +49,7 @@ const DeviceControl = () => {
 
         setUser(user);
 
-        axios.get(`URL?department=${selectDepartment}&position=${selectPosition}&user=${user}`)
+        axios.get(`http://211.200.250.190:7070/coconet/device/one?userNum=${user}`)
         .then((res) => {
             setDeviceInfo(res.data);
             setDepartment(null);
@@ -63,12 +59,6 @@ const DeviceControl = () => {
             document.getElementById("option3").selected = true;
         })
         .catch(() => {
-            setDeviceInfo(
-                [
-                    {device : "Galuxy Note 10", camera : true, mike : false, record : true, screenShot : true},
-                    {device : "Galuxy S22 Plus", camera : true, mike : true, record : false, screenShot : true}
-                ]
-            );
             setDepartment(null);
             setPosition(null);
             document.getElementById("option1").selected = true;
@@ -119,10 +109,23 @@ const DeviceControl = () => {
     }
 
     const submitItem = (idx) => {
-        let copy = [...deviceInfo];
-        let addUser = { user : user };
-        const result = Object.assign(addUser, copy[idx]);
-        console.log(JSON.stringify(result));
+        axios({
+                    
+            url : "http://211.200.250.190:7070/coconet/admin/device/set",
+            method : "post",
+            data : JSON.stringify(deviceInfo[idx]),
+            responseType : 'json',
+            headers : {
+                'Content-Type': 'application/json',
+            }
+        })
+        .then(() => {
+            alert('변경 완료');
+        })
+        .catch((error) => {
+            alert("서버와의 연결에 실패하였습니다.");
+            console.log(error);
+        })
     }
 
     return (
@@ -163,7 +166,7 @@ const DeviceControl = () => {
                             <option id="option3" value="" disabled selected>사원 선택</option>
                             {
                                 userList != null ? userList.map((item, idx) => {
-                                    return <option value={item} key={idx}>{item}</option>
+                                    return <option value={item.userid} key={idx}>{item.name}</option>
                                 })
                                 :
                                 null

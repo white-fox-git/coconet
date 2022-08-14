@@ -99,13 +99,12 @@ const WorkStatus = () =>
                                 return(
                                     <div className={style.approvalItem} key={idx}>
                                         <div className={style.approval}>
-                                            <div style={{backgroundColor : item.color}} className={style.approvalState}>
-                                                {item.title}
-                                            </div>
-                                            <img src={item.img} className={style.approvalPhoto} />
-                                            <span className={style.approvalName}>{item.name}</span>
+                                            <img src={`http://211.200.250.190:7070/coconet/image/output?num=${item.userNum}`} className={style.approvalPhoto} />
                                         </div>
-                                        <span className={style.approvalDay}>{item.date}</span>
+                                        <div className={style.approvalText}>
+                                            <span className={style.approvalName}>{item.name} {item.title} 승인</span>
+                                            <span className={style.approvalDay}>{item.date}</span>
+                                        </div>
                                     </div>
                                 )
                             })
@@ -116,7 +115,7 @@ const WorkStatus = () =>
                     <div className={style.sectionHeader}>
                         <div className={style.titleBox}>
                             <FontAwesomeIcon icon = {faTimeline} className={style.titleIcon}/>
-                            <h3 className={style.title}> 실시간 기록</h3>
+                            <h3 className={style.title}> 출퇴근 기록</h3>
                         </div>
                     </div>
                     <section className={style.sectionItem}>
@@ -125,14 +124,14 @@ const WorkStatus = () =>
                                 return(
                                     <div className={style.logItem} key={idx}>
                                         <div className={style.log}>
-                                            <img src={item.img} className={style.approvalPhoto} />
+                                            <img src={`http://211.200.250.190:7070/coconet/image/output?num=${item.userNum}`} className={style.approvalPhoto} />
                                             <div className={style.logUserInfo}>
                                                 <p className={style.logName}>{item.name}</p>
                                                 <p className={style.logPosition}>{item.department}</p>
                                             </div>
                                         </div>
                                         <div className={style.logTimeBox}>
-                                            <div style={{borderColor : item.color}} className={style.logState}>
+                                            <div style={{backgroundColor : item.color, borderColor : item.color}} className={style.logState}>
                                                     {item.title}
                                             </div>
                                             <span style = {{borderColor : item.color}}className={style.logTime}>{item.date}</span>

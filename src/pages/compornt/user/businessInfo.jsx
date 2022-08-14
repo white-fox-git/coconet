@@ -77,7 +77,7 @@ const BusinessInfo = () =>
                         alert != null && alert.map((item, idx) => {
                             return(
                                 <div className={style.alertItem} key={idx}>
-                                    <img src = {`http://211.200.250.190:7070/coconet/image/output?num=${item.id}`} className={style.alertIcon}/>
+                                    <img src = {`http://211.200.250.190:7070/coconet/image/output?num=${item.userNum}`} className={style.alertIcon}/>
                                     <div className={style.alertText}>
                                         <span>{item.title}</span>
                                         <span className={style.alertTime}>{item.date}</span>
