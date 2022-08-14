@@ -4,7 +4,7 @@
 {
     position: absolute;
     margin: 0 auto;
-    top: 15vh;
+    top: 8vh;
     left: 0;
     right: 0;
     width: 80%;
@@ -65,6 +65,11 @@
     font-size: 14px;
 }
 
+.changePassword
+{
+    margin-top: 60px;
+}
+
 .link:hover
 {
     color: var(--hover-color);
@@ -95,6 +100,7 @@
     font-weight: 300;
     letter-spacing: 1px;
     padding: 0.5em;
+    padding-left: 14px;
     font-size: 16px;
     border: 1px solid #dfdfdf;
     border-radius: 4px;
@@ -108,6 +114,7 @@
     font-weight: 300;
     letter-spacing: 1px;
     padding: 0.5em;
+    padding-left: 14px;
     font-size: 16px;
     -webkit-appearance: none;
     border: 1px solid #dfdfdf;
@@ -162,7 +169,7 @@
 .Alert
 {
     position: absolute;
-    padding: 1.3em;
+    padding: 1em;
     top: 2%;
     width: 80%;
     left: 0;
@@ -227,7 +234,7 @@
 @media screen and (min-width: 769px) {
     .tap
     {
-        font-size: 36px;
+        font-size: 30px;
     }
 
     .text, .link
@@ -238,14 +245,10 @@
 
 
 @media screen and (min-width: 1024px) {  
-    .tap
-    {
-        font-size: 40px;
-    }
 
     .text, .link, input, .phoneNum, .getBtn, .submitBtn, .Alert, .label, .checkText
     {
-        font-size: 18px;
+        font-size: 16px;
     }
 
     .textBox
@@ -257,19 +260,10 @@
 
 
 @media screen and (min-width: 1200px) {
-	.tap, .clickTap
-    {
-        font-size: 44px;
-    }
-
-    .Alert
-    {
-        font-size: 22px;
-    }
 
     .input, .phoneNum, .getBtn
     {
-        font-size: 20px;
+        font-size: 16px;
     }
 }
 
@@ -286,11 +280,11 @@
 @keyframes top {
     from {
         opacity: 0%;
-        top: 30vh;
+        top: 20vh;
     }
   
     to {
-      top: 15vh;
+      top: 8vh;
       opacity: 100%;
     }
 }

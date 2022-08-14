@@ -192,7 +192,7 @@ const SetPwd = (props) =>
     }
 
     return(
-        <>
+        <div className={style.changePassword}>
             <div className={style.itemBox}>
                 <p className={style.label}>새로운 비밀번호</p>
                 <input type ="password" className ={style.input} onChange={(e) => setPwd(e.target.value)} maxLength="20"/>
@@ -202,7 +202,7 @@ const SetPwd = (props) =>
                 <input type ="password" className ={style.input} onChange={(e) => setPwd2(e.target.value)} maxLength="20"/>
             </div>
             <button className={style.submitBtn} onClick={() => submit()}>변경</button>
-        </>
+        </div>
     )
 }
 

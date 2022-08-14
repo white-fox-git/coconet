@@ -39,33 +39,43 @@ const ChangePwd = (props) => {
     }
 
     const changePassword = () => {
+
+
         if(newPwd != checkPwd || newPwd == '' && checkPwd == '')
         {
             alert('비밀번호가 서로 다릅니다.')
         }
         else
         {
-            axios({
-                url : "http://211.200.250.190:7070/coconet/password/change",
-                method : "post",
-                data : JSON.stringify({name : props.user.name, phone : props.info.phone, newPassword : newPwd}),
-                responseType : 'json',
-                headers : {
-                    'Content-Type': 'application/json',
-                }
-            })
-            .then(() => {
-                alert("변경이 완료되었습니다.");
-                document.getElementById("newPwd").disabled = true;
-                document.getElementById("checkPwd").disabled = true;
-                setNowPwd('');
-                setNewPwd('');
-                setCheckPwd('');
-                setCheck(false);
-            })
-            .catch(() => {
-                alert("서버와의 연결에 실패하였습니다.")
-            })
+            if(newPwd.length > 10)
+            {
+                axios({
+                    url : "http://211.200.250.190:7070/coconet/password/change",
+                    method : "post",
+                    data : JSON.stringify({name : props.user.name, phone : props.info.phone, newPassword : newPwd}),
+                    responseType : 'json',
+                    headers : {
+                        'Content-Type': 'application/json',
+                    }
+                })
+                .then(() => {
+                    alert("변경이 완료되었습니다.");
+                    document.getElementById("newPwd").disabled = true;
+                    document.getElementById("checkPwd").disabled = true;
+                    setNowPwd('');
+                    setNewPwd('');
+                    setCheckPwd('');
+                    setCheck(false);
+                })
+                .catch(() => {
+                    alert("서버와의 연결에 실패하였습니다.")
+                })
+            }
+            else
+            {
+                alert('비밀번호의 길이를 확인해주세요.');
+            }
+            
         }
     }
 
