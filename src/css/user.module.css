@@ -623,6 +623,7 @@
     font-weight: 300;
     padding: 10px;
     border: 1px solid;
+    font-size: 16px;
     border-radius: 0px 8px 8px 0px;
     display: none;
 }
@@ -881,10 +882,7 @@
     .logState
     {
         padding: 10px;
-        font-size: 15px;
-        border-top: 2px solid;
-        border-left: 2px solid;
-        border-bottom: 2px solid;
+        font-size: 16px;
         border-right: 0;
         border-radius: 8px 0px 0px 8px;
     }

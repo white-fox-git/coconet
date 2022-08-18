@@ -4,6 +4,7 @@ import { useDispatch, useSelector } from "react-redux/es/exports";
 import { removeUser } from "../utils/redux";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faRightFromBracket } from "@fortawesome/free-solid-svg-icons";
+import { refreshToken } from "../utils/redux";
 import style from "../css/info.module.css";
 import ModifyInfo from "./compornt/user/modifyInfo";
 import Department from "./compornt/user/Department";
@@ -33,6 +34,7 @@ const Info = () =>
     const userImgLink = () => {
         return `http://211.200.250.190:7070/coconet/image/output?num=${user.userid}`;
     }
+    
 
     const uploadImg = (file) => {
         
@@ -73,8 +75,11 @@ const Info = () =>
         }
     }
 
+    const token = sessionStorage.getItem('Refresh_Token');
+
     useEffect(() => {
         getInfo();
+        dispatch(refreshToken(sessionStorage.getItem('Refresh_Token')));
     }, []);
 
     return(
