@@ -13,4 +13,4 @@ Front-end : 김현빈
 
 [ 기술 스택 ] : Rest API / react / JS / html / css / redux / vite / axios
 
-notion Link : https://delicious-breath-a42.notion.site/45948e4e1bdd462885e3de6571d9593d
+notion Link : https://developer-white.notion.site/0217ee13b9a24dc9ba14ab384a65bfb9
